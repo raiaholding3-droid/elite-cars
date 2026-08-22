@@ -1823,3 +1823,235 @@ if (editCarForm) {
     );
 
 }
+// =====================================
+// الصفحة الرئيسية الجديدة
+// =====================================
+
+const heroSlides =
+    document.querySelectorAll(
+        ".hero-slide"
+    );
+
+const heroDots =
+    document.querySelectorAll(
+        ".hero-dot"
+    );
+
+let currentHeroSlide = 0;
+
+let heroTimer;
+
+
+// =====================================
+// تغيير صورة الواجهة
+// =====================================
+
+function showHeroSlide(index) {
+
+    if (
+        heroSlides.length === 0
+    ) {
+        return;
+    }
+
+
+    heroSlides.forEach(
+        function(slide) {
+
+            slide.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    heroDots.forEach(
+        function(dot) {
+
+            dot.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    heroSlides[index]
+        .classList.add(
+            "active"
+        );
+
+
+    if (
+        heroDots[index]
+    ) {
+
+        heroDots[index]
+            .classList.add(
+                "active"
+            );
+
+    }
+
+
+    currentHeroSlide =
+        index;
+
+}
+
+
+// =====================================
+// تشغيل التغيير التلقائي
+// =====================================
+
+function startHeroSlider() {
+
+    if (
+        heroSlides.length <= 1
+    ) {
+        return;
+    }
+
+
+    clearInterval(
+        heroTimer
+    );
+
+
+    heroTimer =
+        setInterval(
+            function() {
+
+                let nextSlide =
+                    currentHeroSlide + 1;
+
+
+                if (
+                    nextSlide >=
+                    heroSlides.length
+                ) {
+
+                    nextSlide = 0;
+
+                }
+
+
+                showHeroSlide(
+                    nextSlide
+                );
+
+            },
+            5000
+        );
+
+}
+
+
+heroDots.forEach(
+    function(dot) {
+
+        dot.addEventListener(
+            "click",
+            function() {
+
+                const slideIndex =
+                    Number(
+                        dot.dataset.slide
+                    );
+
+
+                showHeroSlide(
+                    slideIndex
+                );
+
+
+                startHeroSlider();
+
+            }
+        );
+
+    }
+);
+
+
+startHeroSlider();
+
+
+// =====================================
+// قائمة الهاتف
+// =====================================
+
+const mobileMenuButton =
+    document.getElementById(
+        "mobileMenuButton"
+    );
+
+
+const mainNav =
+    document.querySelector(
+        ".main-nav"
+    );
+
+
+if (
+    mobileMenuButton &&
+    mainNav
+) {
+
+    mobileMenuButton.addEventListener(
+        "click",
+        function() {
+
+            mainNav.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    mainNav
+        .querySelectorAll("a")
+        .forEach(
+            function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        mainNav
+                            .classList.remove(
+                                "open"
+                            );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+// =====================================
+// عدد السيارات في الصفحة الرئيسية
+// =====================================
+
+const homeCarsCount =
+    document.getElementById(
+        "homeCarsCount"
+    );
+
+
+if (
+    homeCarsCount &&
+    typeof getAllCars ===
+        "function"
+) {
+
+    homeCarsCount.textContent =
+        "+" +
+        getAllCars().length;
+
+}

@@ -3,68 +3,398 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>شركة رؤية النخبة للسيارات</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>رؤية النخبة للسيارات</title>
+
+    <meta
+        name="description"
+        content="رؤية النخبة للسيارات - سيارات أمريكية مختارة بعناية"
+    >
+
+    <!-- خط عربي احترافي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-    <header>
-        <div class="logo">
-            رؤية النخبة للسيارات
+
+<!-- =================================
+     الهيدر
+================================= -->
+
+<header class="main-header">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+        <span class="brand-mark">
+            R
+        </span>
+
+        <div>
+            <strong>
+                رؤية النخبة
+            </strong>
+
+            <small>
+                للسيارات
+            </small>
         </div>
+    </a>
 
-        <nav>
-            <a href="#">الرئيسية</a>
-            <a href="#">معرض السيارات</a>
-            <a href="#">من نحن</a>
-            <a href="#">اتصل بنا</a>
-        </nav>
-    </header>
 
-    <main>
+    <nav class="main-nav">
 
-        <section class="hero">
+        <a
+            href="index.html"
+            class="active"
+        >
+            الرئيسية
+        </a>
 
-            <h1>رؤية النخبة للسيارات</h1>
+        <a href="#cars">
+            السيارات
+        </a>
 
-            <p>
-                وجهتك الموثوقة للسيارات الأمريكية
-            </p>
+        <a href="#about">
+            من نحن
+        </a>
 
-            <button>
-                تصفح السيارات
-            </button>
+        <a href="#services">
+            خدماتنا
+        </a>
 
-        </section>
-<section class="search-section">
+        <a href="#contact">
+            اتصل بنا
+        </a>
 
-    <div class="section-title">
+    </nav>
 
-        <h2>ابحث عن سيارتك</h2>
+
+    <div class="header-actions">
+
+        <a
+            href="admin.html"
+            class="admin-link"
+        >
+            لوحة الإدارة
+        </a>
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =================================
+     الواجهة الرئيسية المتحركة
+================================= -->
+
+<section class="hero-new">
+
+    <div class="hero-slides">
+
+        <div
+            class="hero-slide active"
+            style="
+                background-image:
+                url('https://images.unsplash.com/photo-1503376780353-7e6692767b70');
+            "
+        ></div>
+
+
+        <div
+            class="hero-slide"
+            style="
+                background-image:
+                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7');
+            "
+        ></div>
+
+
+        <div
+            class="hero-slide"
+            style="
+                background-image:
+                url('https://images.unsplash.com/photo-1542362567-b07e54358753');
+            "
+        ></div>
+
+    </div>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            سيارات مختارة بعناية
+        </span>
+
+
+        <h1>
+            قيادة مختلفة تبدأ
+            <span>
+                برؤية النخبة
+            </span>
+        </h1>
+
 
         <p>
-            استخدم البحث للوصول إلى السيارة التي تبحث عنها
+            سيارات أمريكية مختارة، مواصفات واضحة،
+            وتجربة بحث تساعدك في الوصول إلى سيارتك
+            المناسبة بسهولة.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#cars"
+                class="primary-button"
+            >
+                استعرض السيارات
+                <span>←</span>
+            </a>
+
+
+            <a
+                href="#contact"
+                class="secondary-button"
+            >
+                تواصل معنا
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div>
+                <strong id="homeCarsCount">
+                    +0
+                </strong>
+
+                <span>
+                    سيارة في المعرض
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    100%
+                </strong>
+
+                <span>
+                    معلومات واضحة
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    24/7
+                </strong>
+
+                <span>
+                    تصفح الموقع
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-dots">
+
+        <button
+            class="hero-dot active"
+            data-slide="0"
+        ></button>
+
+        <button
+            class="hero-dot"
+            data-slide="1"
+        ></button>
+
+        <button
+            class="hero-dot"
+            data-slide="2"
+        ></button>
+
+    </div>
+
+
+    <a
+        href="#cars"
+        class="scroll-down"
+    >
+        <span>
+            اكتشف السيارات
+        </span>
+
+        <b>
+            ↓
+        </b>
+    </a>
+
+</section>
+
+
+
+<!-- =================================
+     المميزات
+================================= -->
+
+<section class="features-section">
+
+    <div class="features-grid">
+
+        <article class="feature-card">
+
+            <span class="feature-number">
+                01
+            </span>
+
+            <h3>
+                سيارات مختارة
+            </h3>
+
+            <p>
+                عرض منظم للسيارات مع المواصفات
+                والصور والحالة والسعر.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <span class="feature-number">
+                02
+            </span>
+
+            <h3>
+                بحث سريع
+            </h3>
+
+            <p>
+                ابحث حسب الاسم والماركة والسنة
+                ونوع السيارة.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <span class="feature-number">
+                03
+            </span>
+
+            <h3>
+                تفاصيل واضحة
+            </h3>
+
+            <p>
+                انتقل مباشرة إلى صفحة السيارة
+                وشاهد صورها ومواصفاتها.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     السيارات
+================================= -->
+
+<section
+    class="cars-section-new"
+    id="cars"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-kicker">
+                معرضنا
+            </span>
+
+            <h2>
+                اكتشف سياراتنا
+            </h2>
+
+        </div>
+
+
+        <p>
+            استخدم البحث والتصفية للوصول
+            إلى السيارة المناسبة لك.
         </p>
 
     </div>
 
 
-    <div class="search-box">
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="ابحث عن اسم السيارة..."
-        >
+    <!-- البحث -->
+
+    <div class="modern-search-box">
+
+        <div class="search-main">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="ابحث عن GMC، Tahoe، Yukon..."
+            >
+
+        </div>
 
 
         <select id="brandFilter">
 
-            <option value="">كل الماركات</option>
+            <option value="">
+                كل الماركات
+            </option>
 
             <option value="GMC">
                 GMC
@@ -76,6 +406,14 @@
 
             <option value="Ford">
                 Ford
+            </option>
+
+            <option value="Toyota">
+                Toyota
+            </option>
+
+            <option value="Kia">
+                Kia
             </option>
 
         </select>
@@ -99,6 +437,10 @@
                 2024
             </option>
 
+            <option value="2023">
+                2023
+            </option>
+
         </select>
 
 
@@ -120,38 +462,316 @@
                 Truck
             </option>
 
+            <option value="Coupe">
+                Coupe
+            </option>
+
         </select>
 
 
-        <button onclick="filterCars()">
-            🔎 بحث
+        <button
+            type="button"
+            onclick="filterCars()"
+            class="search-button"
+        >
+            بحث
         </button>
 
     </div>
 
-</section>
-        <section class="cars-section">
 
-    <div class="section-title">
-        <h2>سياراتنا المميزة</h2>
+
+    <!-- JavaScript يضع السيارات هنا -->
+
+    <div
+        class="cars-container"
+        id="carsContainer"
+    ></div>
+
+
+</section>
+
+
+
+<!-- =================================
+     من نحن
+================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+    <div class="about-content">
+
+        <span class="section-kicker">
+            من نحن
+        </span>
+
+        <h2>
+            رؤية النخبة ليست مجرد معرض سيارات
+        </h2>
 
         <p>
-            اختر سيارتك من مجموعة السيارات المتوفرة لدينا
+            نسعى إلى تقديم تجربة أكثر وضوحًا
+            وتنظيمًا للباحث عن السيارة، من لحظة
+            التصفح وحتى الاطلاع على كامل التفاصيل.
         </p>
+
+
+        <div class="about-points">
+
+            <div>
+                <span>✓</span>
+                معلومات منظمة
+            </div>
+
+            <div>
+                <span>✓</span>
+                صور متعددة للسيارة
+            </div>
+
+            <div>
+                <span>✓</span>
+                تحديث حالة السيارة
+            </div>
+
+            <div>
+                <span>✓</span>
+                تجربة مناسبة للهاتف
+            </div>
+
+        </div>
+
     </div>
 
-<div
-    class="cars-container"
-    id="carsContainer">
-</div>
+
+    <div class="about-visual">
+
+        <div class="about-image-main">
+
+            <img
+                src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5"
+                alt="سيارة فاخرة"
+            >
+
+        </div>
+
+
+        <div class="about-floating-card">
+
+            <strong>
+                رؤية النخبة
+            </strong>
+
+            <span>
+                تجربة سيارات أكثر أناقة
+            </span>
+
+        </div>
+
+    </div>
+
 </section>
-    </main>
 
-    <footer>
-        <p>© 2026 شركة رؤية النخبة للسيارات</p>
-    </footer>
 
-    <script src="script.js"></script>
+
+<!-- =================================
+     خدماتنا
+================================= -->
+
+<section
+    class="services-section"
+    id="services"
+>
+
+    <div class="section-heading centered">
+
+        <div>
+
+            <span class="section-kicker">
+                خدماتنا
+            </span>
+
+            <h2>
+                كل ما تحتاجه في مكان واحد
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        <article>
+            <span>01</span>
+
+            <h3>
+                استعراض السيارات
+            </h3>
+
+            <p>
+                تصفح السيارات المتوفرة
+                وشاهد أهم المعلومات مباشرة.
+            </p>
+        </article>
+
+
+        <article>
+            <span>02</span>
+
+            <h3>
+                مقارنة المواصفات
+            </h3>
+
+            <p>
+                بيانات مرتبة تساعدك على معرفة
+                السيارة التي تناسب احتياجك.
+            </p>
+        </article>
+
+
+        <article>
+            <span>03</span>
+
+            <h3>
+                تواصل سريع
+            </h3>
+
+            <p>
+                الوصول إلى معلومات السيارة
+                والتواصل للاستفسار بسهولة.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================
+     التواصل
+================================= -->
+
+<section
+    class="contact-section"
+    id="contact"
+>
+
+    <div>
+
+        <span class="section-kicker light">
+            تواصل معنا
+        </span>
+
+        <h2>
+            وجدت السيارة التي تبحث عنها؟
+        </h2>
+
+        <p>
+            تواصل معنا لمعرفة المزيد عن السيارة
+            ومواصفاتها وتوفرها.
+        </p>
+
+    </div>
+
+
+    <a
+        href="mailto:your-email@example.com"
+        class="contact-button"
+    >
+        تواصل معنا
+        <span>←</span>
+    </a>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =================================
+     الفوتر
+================================= -->
+
+<footer class="modern-footer">
+
+    <div class="footer-top">
+
+        <div>
+
+            <a
+                href="index.html"
+                class="brand footer-brand"
+            >
+
+                <span class="brand-mark">
+                    R
+                </span>
+
+                <div>
+
+                    <strong>
+                        رؤية النخبة
+                    </strong>
+
+                    <small>
+                        للسيارات
+                    </small>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="#cars">
+                السيارات
+            </a>
+
+            <a href="#about">
+                من نحن
+            </a>
+
+            <a href="#contact">
+                التواصل
+            </a>
+
+            <a href="admin.html">
+                الإدارة
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 شركة رؤية النخبة للسيارات
+        </p>
+
+        <span>
+            جميع الحقوق محفوظة
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 
