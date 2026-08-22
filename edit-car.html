@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>تعديل السيارة - رؤية النخبة</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        رؤية النخبة للسيارات
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+        <a href="admin.html">
+            لوحة الإدارة
+        </a>
+
+        <a href="add-car.html">
+            إضافة سيارة
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <section class="add-car-section">
+
+        <div class="section-title">
+
+            <h1>
+                تعديل السيارة
+            </h1>
+
+            <p>
+                قم بتعديل بيانات السيارة ثم اضغط حفظ التعديلات
+            </p>
+
+        </div>
+
+
+        <form id="editCarForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    اسم السيارة
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الماركة
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarBrand"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الموديل
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarModel"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    السنة
+                </label>
+
+                <input
+                    type="number"
+                    id="editCarYear"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    النوع
+                </label>
+
+                <select
+                    id="editCarType"
+                    required
+                >
+
+                    <option value="SUV">
+                        SUV
+                    </option>
+
+                    <option value="Sedan">
+                        Sedan
+                    </option>
+
+                    <option value="Truck">
+                        Truck
+                    </option>
+
+                    <option value="Coupe">
+                        Coupe
+                    </option>
+
+                    <option value="Convertible">
+                        Convertible
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    المحرك
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarEngine"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    ناقل الحركة
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarTransmission"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    type="text"
+                    id="editCarPrice"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    الصور الجديدة
+                </label>
+
+                <input
+                    type="file"
+                    id="editCarImages"
+                    accept="image/*"
+                    multiple
+                >
+
+                <p>
+                    إذا لم تختر صورًا جديدة، ستبقى الصور الحالية.
+                </p>
+
+            </div>
+
+
+            <div
+                id="editImagePreview"
+                class="image-preview"
+            ></div>
+
+
+            <div class="form-group">
+
+                <label>
+                    وصف السيارة
+                </label>
+
+                <textarea
+                    id="editCarDescription"
+                    rows="6"
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="add-car-button"
+            >
+                💾 حفظ التعديلات
+            </button>
+
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 شركة رؤية النخبة للسيارات
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

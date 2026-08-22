@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>شركة رؤية النخبة للسيارات</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            رؤية النخبة للسيارات
+        </div>
+
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">معرض السيارات</a>
+            <a href="#">من نحن</a>
+            <a href="#">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <h1>رؤية النخبة للسيارات</h1>
+
+            <p>
+                وجهتك الموثوقة للسيارات الأمريكية
+            </p>
+
+            <button>
+                تصفح السيارات
+            </button>
+
+        </section>
+<section class="search-section">
+
+    <div class="section-title">
+
+        <h2>ابحث عن سيارتك</h2>
+
+        <p>
+            استخدم البحث للوصول إلى السيارة التي تبحث عنها
+        </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="ابحث عن اسم السيارة..."
+        >
+
+
+        <select id="brandFilter">
+
+            <option value="">كل الماركات</option>
+
+            <option value="GMC">
+                GMC
+            </option>
+
+            <option value="Chevrolet">
+                Chevrolet
+            </option>
+
+            <option value="Ford">
+                Ford
+            </option>
+
+        </select>
+
+
+        <select id="yearFilter">
+
+            <option value="">
+                كل السنوات
+            </option>
+
+            <option value="2026">
+                2026
+            </option>
+
+            <option value="2025">
+                2025
+            </option>
+
+            <option value="2024">
+                2024
+            </option>
+
+        </select>
+
+
+        <select id="typeFilter">
+
+            <option value="">
+                كل الأنواع
+            </option>
+
+            <option value="SUV">
+                SUV
+            </option>
+
+            <option value="Sedan">
+                Sedan
+            </option>
+
+            <option value="Truck">
+                Truck
+            </option>
+
+        </select>
+
+
+        <button onclick="filterCars()">
+            🔎 بحث
+        </button>
+
+    </div>
+
+</section>
+        <section class="cars-section">
+
+    <div class="section-title">
+        <h2>سياراتنا المميزة</h2>
+
+        <p>
+            اختر سيارتك من مجموعة السيارات المتوفرة لدينا
+        </p>
+    </div>
+
+<div
+    class="cars-container"
+    id="carsContainer">
+</div>
+</section>
+    </main>
+
+    <footer>
+        <p>© 2026 شركة رؤية النخبة للسيارات</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
