@@ -5,11 +5,19 @@ export async function onRequestPost(context) {
         const formData =
             await context.request.formData();
 
+
         const file =
             formData.get("image");
 
+
         const carId =
             formData.get("carId");
+
+
+        const imageOrder =
+            Number(
+                formData.get("imageOrder") || 0
+            );
 
 
         if (!file) {
@@ -42,8 +50,6 @@ export async function onRequestPost(context) {
         }
 
 
-        // السماح بالصور فقط
-
         if (
             !file.type ||
             !file.type.startsWith("image/")
@@ -62,7 +68,7 @@ export async function onRequestPost(context) {
         }
 
 
-        // حد أقصى 8 MB للصورة
+        // الحد الأقصى للصورة الواحدة 8MB
 
         if (
             file.size >
@@ -72,7 +78,8 @@ export async function onRequestPost(context) {
             return Response.json(
                 {
                     success: false,
-                    message: "حجم الصورة أكبر من 8MB"
+                    message:
+                        "حجم الصورة أكبر من 8MB"
                 },
                 {
                     status: 400
@@ -82,22 +89,34 @@ export async function onRequestPost(context) {
         }
 
 
-        const extension =
+        // =====================================
+        // إنشاء اسم فريد للصورة
+        // =====================================
+
+        let extension = "jpg";
+
+
+        if (
+            file.name &&
             file.name.includes(".")
-                ? file.name
+        ) {
+
+            extension =
+                file.name
                     .split(".")
                     .pop()
-                    .toLowerCase()
-                : "jpg";
+                    .toLowerCase();
 
-
-        const randomPart =
-            crypto.randomUUID();
+        }
 
 
         const key =
-            `cars/${carId}/${Date.now()}-${randomPart}.${extension}`;
+            `cars/${carId}/${Date.now()}-${crypto.randomUUID()}.${extension}`;
 
+
+        // =====================================
+        // رفع الصورة إلى R2
+        // =====================================
 
         await context.env.IMAGES.put(
             key,
@@ -111,12 +130,83 @@ export async function onRequestPost(context) {
         );
 
 
+        // رابط الصورة داخل موقعنا
+
+        const imageUrl =
+            `/api/image?key=${encodeURIComponent(key)}`;
+
+
+        // =====================================
+        // تسجيل الصورة في D1
+        // =====================================
+
+        const isMain =
+            imageOrder === 0
+                ? 1
+                : 0;
+
+
+        await context.env.DB
+            .prepare(`
+                INSERT INTO car_images
+                (
+                    car_id,
+                    image_url,
+                    image_order,
+                    is_main
+                )
+
+                VALUES (?, ?, ?, ?)
+            `)
+            .bind(
+                Number(carId),
+                imageUrl,
+                imageOrder,
+                isMain
+            )
+            .run();
+
+
+        // =====================================
+        // إذا كانت الأولى نجعلها الرئيسية
+        // =====================================
+
+        if (isMain === 1) {
+
+            await context.env.DB
+                .prepare(`
+                    UPDATE cars
+
+                    SET
+                        main_image = ?,
+                        updated_at = CURRENT_TIMESTAMP
+
+                    WHERE id = ?
+                `)
+                .bind(
+                    imageUrl,
+                    Number(carId)
+                )
+                .run();
+
+        }
+
+
         return Response.json(
             {
                 success: true,
-                key: key,
+
                 image_url:
-                    `/api/image?key=${encodeURIComponent(key)}`
+                    imageUrl,
+
+                key:
+                    key,
+
+                image_order:
+                    imageOrder,
+
+                is_main:
+                    isMain
             },
             {
                 status: 201
@@ -129,9 +219,11 @@ export async function onRequestPost(context) {
 
         console.error(error);
 
+
         return Response.json(
             {
                 success: false,
+
                 message:
                     error.message ||
                     "حدث خطأ أثناء رفع الصورة"
