@@ -240,7 +240,31 @@
 
 
             <div class="form-actions">
+<div class="form-group form-full">
 
+    <label for="newCarImages">
+        صور السيارة *
+    </label>
+
+    <input
+        type="file"
+        id="newCarImages"
+        accept="image/*"
+        multiple
+        required
+    >
+
+    <small>
+        يمكنك اختيار عدة صور.
+        الصورة الأولى ستكون الصورة الرئيسية.
+    </small>
+
+    <div
+        id="newCarImagesPreview"
+        class="image-preview"
+    ></div>
+
+</div>
                 <button
                     type="submit"
                     id="saveCarButton"
