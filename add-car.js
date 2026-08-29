@@ -1,12 +1,133 @@
+// ==========================================
+// إضافة سيارة إلى D1 + رفع الصور إلى R2
+// ==========================================
+
 const onlineAddCarForm =
-    document.getElementById("onlineAddCarForm");
+    document.getElementById(
+        "onlineAddCarForm"
+    );
+
 
 const addCarMessage =
-    document.getElementById("addCarMessage");
+    document.getElementById(
+        "addCarMessage"
+    );
+
 
 const saveCarButton =
-    document.getElementById("saveCarButton");
+    document.getElementById(
+        "saveCarButton"
+    );
 
+
+const newCarImages =
+    document.getElementById(
+        "newCarImages"
+    );
+
+
+const newCarImagesPreview =
+    document.getElementById(
+        "newCarImagesPreview"
+    );
+
+
+let selectedCarFiles = [];
+
+
+// ==========================================
+// معاينة الصور
+// ==========================================
+
+if (newCarImages) {
+
+    newCarImages.addEventListener(
+        "change",
+        function() {
+
+            selectedCarFiles =
+                Array.from(
+                    newCarImages.files
+                );
+
+
+            showSelectedImages();
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// عرض معاينة الصور
+// ==========================================
+
+function showSelectedImages() {
+
+    if (!newCarImagesPreview) {
+        return;
+    }
+
+
+    newCarImagesPreview.innerHTML = "";
+
+
+    selectedCarFiles.forEach(
+        function(file, index) {
+
+            const imageUrl =
+                URL.createObjectURL(file);
+
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className =
+                "preview-image-box";
+
+
+            box.innerHTML = `
+
+                <img
+                    src="${imageUrl}"
+                    alt="صورة السيارة"
+                >
+
+                ${
+                    index === 0
+
+                    ? `
+                        <span class="main-image-label">
+                            ⭐ الصورة الرئيسية
+                        </span>
+                    `
+
+                    : `
+                        <span class="image-number">
+                            صورة ${index + 1}
+                        </span>
+                    `
+                }
+
+            `;
+
+
+            newCarImagesPreview
+                .appendChild(box);
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// إضافة السيارة
+// ==========================================
 
 if (onlineAddCarForm) {
 
@@ -16,112 +137,375 @@ if (onlineAddCarForm) {
 
             event.preventDefault();
 
+
+            // =================================
+            // التأكد من وجود صورة
+            // =================================
+
+            if (
+                selectedCarFiles.length === 0
+            ) {
+
+                alert(
+                    "يرجى اختيار صورة واحدة على الأقل"
+                );
+
+                return;
+
+            }
+
+
             saveCarButton.disabled = true;
-            saveCarButton.textContent = "جاري الحفظ...";
 
-            addCarMessage.textContent = "";
+            saveCarButton.textContent =
+                "جاري حفظ السيارة...";
 
+
+            if (addCarMessage) {
+
+                addCarMessage.textContent =
+                    "جاري حفظ بيانات السيارة...";
+
+            }
+
+
+            // =================================
+            // بيانات السيارة
+            // =================================
 
             const carData = {
 
                 name:
-                    document.getElementById("newCarName").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarName"
+                        )
+                        .value
+                        .trim(),
+
 
                 brand:
-                    document.getElementById("newCarBrand").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarBrand"
+                        )
+                        .value
+                        .trim(),
+
 
                 model:
-                    document.getElementById("newCarModel").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarModel"
+                        )
+                        .value
+                        .trim(),
+
 
                 year:
                     Number(
-                        document.getElementById("newCarYear").value
+                        document
+                            .getElementById(
+                                "newCarYear"
+                            )
+                            .value
                     ),
 
+
                 vin:
-                    document.getElementById("newCarVin").value
+                    document
+                        .getElementById(
+                            "newCarVin"
+                        )
+                        .value
                         .trim()
                         .toUpperCase(),
 
+
                 mileage:
-                    document.getElementById("newCarMileage").value
-                        ? Number(
-                            document.getElementById("newCarMileage").value
+                    document
+                        .getElementById(
+                            "newCarMileage"
                         )
-                        : null,
+                        .value
+
+                    ? Number(
+                        document
+                            .getElementById(
+                                "newCarMileage"
+                            )
+                            .value
+                    )
+
+                    : null,
+
 
                 color:
-                    document.getElementById("newCarColor").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarColor"
+                        )
+                        .value
+                        .trim(),
+
 
                 fuel_type:
-                    document.getElementById("newCarFuel").value,
+                    document
+                        .getElementById(
+                            "newCarFuel"
+                        )
+                        .value,
+
 
                 body_type:
-                    document.getElementById("newCarBodyType").value,
+                    document
+                        .getElementById(
+                            "newCarBodyType"
+                        )
+                        .value,
+
 
                 engine:
-                    document.getElementById("newCarEngine").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarEngine"
+                        )
+                        .value
+                        .trim(),
+
 
                 transmission:
-                    document.getElementById("newCarTransmission").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarTransmission"
+                        )
+                        .value
+                        .trim(),
+
 
                 price:
                     Number(
-                        document.getElementById("newCarPrice").value
+                        document
+                            .getElementById(
+                                "newCarPrice"
+                            )
+                            .value
                     ),
 
+
                 status:
-                    document.getElementById("newCarStatus").value,
+                    document
+                        .getElementById(
+                            "newCarStatus"
+                        )
+                        .value,
+
 
                 description:
-                    document.getElementById("newCarDescription").value.trim(),
+                    document
+                        .getElementById(
+                            "newCarDescription"
+                        )
+                        .value
+                        .trim(),
+
 
                 main_image: null
+
             };
 
 
             try {
 
-                const response =
-                    await fetch("/api/cars", {
+                // =================================
+                // 1- إنشاء السيارة في D1
+                // =================================
 
-                        method: "POST",
+                const carResponse =
+                    await fetch(
+                        "/api/cars",
+                        {
 
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
+                            method:
+                                "POST",
 
-                        body: JSON.stringify(carData)
+                            headers: {
 
-                    });
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    carData
+                                )
+
+                        }
+                    );
 
 
-                const result =
-                    await response.json();
+                const carResult =
+                    await carResponse.json();
 
 
-                if (!response.ok || !result.success) {
+                if (
+                    !carResponse.ok ||
+                    !carResult.success
+                ) {
 
                     throw new Error(
-                        result.message ||
-                        "لم تتم إضافة السيارة"
+                        carResult.message ||
+                        "فشل حفظ السيارة"
                     );
 
                 }
 
 
-                addCarMessage.textContent =
-                    "تمت إضافة السيارة بنجاح ✅";
+                const carId =
+                    carResult.id;
+
+
+                if (!carId) {
+
+                    throw new Error(
+                        "لم يتم الحصول على رقم السيارة"
+                    );
+
+                }
+
+
+                // =================================
+                // 2- رفع الصور
+                // =================================
+
+                for (
+                    let i = 0;
+                    i < selectedCarFiles.length;
+                    i++
+                ) {
+
+                    const file =
+                        selectedCarFiles[i];
+
+
+                    if (addCarMessage) {
+
+                        addCarMessage.textContent =
+                            `جاري رفع الصورة ${
+                                i + 1
+                            } من ${
+                                selectedCarFiles.length
+                            }...`;
+
+                    }
+
+
+                    saveCarButton.textContent =
+                        `رفع الصور ${
+                            i + 1
+                        } / ${
+                            selectedCarFiles.length
+                        }`;
+
+
+                    const formData =
+                        new FormData();
+
+
+                    formData.append(
+                        "image",
+                        file
+                    );
+
+
+                    formData.append(
+                        "carId",
+                        carId
+                    );
+
+
+                    formData.append(
+                        "imageOrder",
+                        i
+                    );
+
+
+                    const uploadResponse =
+                        await fetch(
+                            "/api/upload-image",
+                            {
+
+                                method:
+                                    "POST",
+
+                                body:
+                                    formData
+
+                            }
+                        );
+
+
+                    const uploadResult =
+                        await uploadResponse.json();
+
+
+                    if (
+                        !uploadResponse.ok ||
+                        !uploadResult.success
+                    ) {
+
+                        throw new Error(
+                            uploadResult.message ||
+                            `فشل رفع الصورة ${
+                                i + 1
+                            }`
+                        );
+
+                    }
+
+                }
+
+
+                // =================================
+                // نجاح العملية كاملة
+                // =================================
+
+                if (addCarMessage) {
+
+                    addCarMessage.textContent =
+                        "تمت إضافة السيارة ورفع الصور بنجاح ✅";
+
+                }
+
+
+                saveCarButton.textContent =
+                    "تم الحفظ ✅";
+
 
                 onlineAddCarForm.reset();
 
 
-                setTimeout(function() {
+                selectedCarFiles = [];
 
-                    window.location.href =
-                        "admin.html";
 
-                }, 1500);
+                if (newCarImagesPreview) {
+
+                    newCarImagesPreview.innerHTML =
+                        "";
+
+                }
+
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "cars.html";
+
+                    },
+                    1500
+                );
 
             }
 
@@ -129,15 +513,38 @@ if (onlineAddCarForm) {
 
                 console.error(error);
 
-                addCarMessage.textContent =
-                    "حدث خطأ: " + error.message;
+
+                if (addCarMessage) {
+
+                    addCarMessage.textContent =
+                        "حدث خطأ: " +
+                        error.message;
+
+                }
+
+
+                alert(
+                    "حدث خطأ:\n" +
+                    error.message
+                );
 
             }
 
             finally {
 
-                saveCarButton.disabled = false;
-                saveCarButton.textContent = "حفظ السيارة";
+                saveCarButton.disabled =
+                    false;
+
+
+                if (
+                    saveCarButton.textContent !==
+                    "تم الحفظ ✅"
+                ) {
+
+                    saveCarButton.textContent =
+                        "حفظ السيارة";
+
+                }
 
             }
 
