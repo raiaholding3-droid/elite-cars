@@ -2,291 +2,271 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>إضافة سيارة | رؤية النخبة للسيارات</title>
 
-    <title>إضافة سيارة - رؤية النخبة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+<header class="main-header">
 
-<header>
+    <div class="container header-content">
 
-    <div class="logo">
-        رؤية النخبة للسيارات
+        <a href="index.html" class="brand">
+            <span class="brand-mark">R</span>
+
+            <div>
+                <strong>رؤية النخبة</strong>
+                <small>للسيارات</small>
+            </div>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="cars.html">السيارات</a>
+            <a href="admin.html">لوحة الإدارة</a>
+
+            <a href="add-car.html" class="admin-link">
+                إضافة سيارة
+            </a>
+        </nav>
+
+        <button class="mobile-menu-button" id="mobileMenuButton">
+            ☰
+        </button>
+
     </div>
-
-
-    <nav>
-
-        <a href="index.html">
-            الرئيسية
-        </a>
-
-        <a href="index.html#cars">
-            معرض السيارات
-        </a>
-
-        <a href="add-car.html">
-            إضافة سيارة
-        </a>
-
-    </nav>
 
 </header>
 
 
-<main>
+<main class="add-car-page">
 
-    <section class="add-car-section">
+    <div class="container">
 
-        <div class="section-title">
+        <div class="add-car-heading">
 
-            <h1>
-                إضافة سيارة جديدة
-            </h1>
+            <span class="section-badge">
+                إدارة السيارات
+            </span>
+
+            <h1>إضافة سيارة جديدة</h1>
 
             <p>
-                أضف سيارة جديدة إلى معرض رؤية النخبة للسيارات
+                أدخل معلومات السيارة وسيتم حفظها في قاعدة بيانات الموقع.
             </p>
 
         </div>
 
 
-        <form id="addCarForm">
+        <form id="onlineAddCarForm" class="modern-car-form">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="newCarName">اسم السيارة *</label>
+                    <input
+                        type="text"
+                        id="newCarName"
+                        placeholder="GMC Yukon Denali"
+                        required
+                    >
+                </div>
 
 
-            <div class="form-group">
+                <div class="form-group">
+                    <label for="newCarBrand">الماركة *</label>
+                    <input
+                        type="text"
+                        id="newCarBrand"
+                        placeholder="GMC"
+                        required
+                    >
+                </div>
 
-                <label>
-                    اسم السيارة
-                </label>
 
-                <input
-                    type="text"
-                    id="carNameInput"
-                    placeholder="مثال: GMC Yukon Denali"
-                    required
+                <div class="form-group">
+                    <label for="newCarModel">الموديل *</label>
+                    <input
+                        type="text"
+                        id="newCarModel"
+                        placeholder="Yukon Denali"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarYear">السنة *</label>
+                    <input
+                        type="number"
+                        id="newCarYear"
+                        placeholder="2026"
+                        min="1900"
+                        max="2100"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarVin">رقم الشاصي VIN</label>
+                    <input
+                        type="text"
+                        id="newCarVin"
+                        maxlength="17"
+                        placeholder="1GKS2DKL0TR000000"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarMileage">العداد / ميل</label>
+                    <input
+                        type="number"
+                        id="newCarMileage"
+                        min="0"
+                        placeholder="12500"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarColor">اللون</label>
+                    <input
+                        type="text"
+                        id="newCarColor"
+                        placeholder="أسود"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarFuel">نوع الوقود</label>
+
+                    <select id="newCarFuel">
+                        <option value="">اختر</option>
+                        <option value="بنزين">بنزين</option>
+                        <option value="ديزل">ديزل</option>
+                        <option value="هايبرد">هايبرد</option>
+                        <option value="Plug-in Hybrid">Plug-in Hybrid</option>
+                        <option value="كهربائي">كهربائي</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarBodyType">نوع السيارة</label>
+
+                    <select id="newCarBodyType">
+                        <option value="">اختر</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Coupe">Coupe</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Minivan">Minivan</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarEngine">المحرك</label>
+                    <input
+                        type="text"
+                        id="newCarEngine"
+                        placeholder="6.2L V8"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarTransmission">ناقل الحركة</label>
+                    <input
+                        type="text"
+                        id="newCarTransmission"
+                        placeholder="10-Speed Automatic"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarPrice">السعر بالدولار *</label>
+                    <input
+                        type="number"
+                        id="newCarPrice"
+                        min="0"
+                        step="0.01"
+                        placeholder="85000"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="newCarStatus">حالة السيارة</label>
+
+                    <select id="newCarStatus">
+                        <option value="متوفرة">متوفرة</option>
+                        <option value="محجوزة">محجوزة</option>
+                        <option value="مباعة">مباعة</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group form-full">
+                    <label for="newCarDescription">وصف السيارة</label>
+
+                    <textarea
+                        id="newCarDescription"
+                        rows="6"
+                        placeholder="اكتب تفاصيل السيارة..."
+                    ></textarea>
+                </div>
+
+            </div>
+
+
+            <div id="addCarMessage" class="form-message"></div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    id="saveCarButton"
+                    class="hero-button primary-button"
                 >
+                    حفظ السيارة
+                </button>
 
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    الماركة
-                </label>
-
-                <input
-                    type="text"
-                    id="carBrandInput"
-                    placeholder="مثال: GMC"
-                    required
+                <a
+                    href="admin.html"
+                    class="hero-button secondary-button"
                 >
+                    إلغاء
+                </a>
 
             </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    الموديل
-                </label>
-
-                <input
-                    type="text"
-                    id="carModelInput"
-                    placeholder="مثال: Yukon Denali"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    السنة
-                </label>
-
-                <input
-                    type="number"
-                    id="carYearInput"
-                    placeholder="2026"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    النوع
-                </label>
-
-                <select
-                    id="carTypeInput"
-                    required
-                >
-
-                    <option value="">
-                        اختر نوع السيارة
-                    </option>
-
-                    <option value="SUV">
-                        SUV
-                    </option>
-
-                    <option value="Sedan">
-                        Sedan
-                    </option>
-
-                    <option value="Truck">
-                        Truck
-                    </option>
-
-                    <option value="Coupe">
-                        Coupe
-                    </option>
-
-                    <option value="Convertible">
-                        Convertible
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    المحرك
-                </label>
-
-                <input
-                    type="text"
-                    id="carEngineInput"
-                    placeholder="مثال: V8 6.2L"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    ناقل الحركة
-                </label>
-
-                <input
-                    type="text"
-                    id="carTransmissionInput"
-                    placeholder="مثال: أوتوماتيك"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    السعر
-                </label>
-
-                <input
-                    type="text"
-                    id="carPriceInput"
-                    placeholder="مثال: $85,000"
-                    required
-                >
-
-            </div>
-
-
-             <div class="form-group">
-
-              <label>
-                 صور السيارة
-              </label>
-
-                  <input
-                type="file"
-                 id="carImagesInput"
-                accept="image/*"
-                 multiple
-                  required
-    >
-
-                     <small>
-                     اختر عدة صور. الصورة الأولى ستكون الصورة الرئيسية.
-                  </small>
-
-                  </div>
-
-
-                   <div
-                    id="imagePreview"
-                 class="image-preview"
->
-             </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    وصف السيارة
-                </label>
-
-                <textarea
-                    id="carDescriptionInput"
-                    rows="6"
-                    placeholder="اكتب وصف السيارة هنا..."
-                ></textarea>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="add-car-button"
-            >
-                إضافة السيارة
-            </button>
-
 
         </form>
 
-    </section>
+    </div>
 
 </main>
 
 
-<footer>
-
-    <p>
-        © 2026 شركة رؤية النخبة للسيارات
-    </p>
-
-</footer>
-
-
 <script src="script.js"></script>
+<script src="add-car.js"></script>
 
 </body>
-
 </html>
