@@ -327,226 +327,207 @@ if (
 
 
 // =====================================
-// تفاصيل السيارة
+// صفحة تفاصيل السيارة
 // =====================================
 
-const urlParams =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const carId =
-    urlParams.get("car");
-
+const urlParams = new URLSearchParams(window.location.search);
+const carId = urlParams.get("car");
 
 if (carId) {
 
-    const selectedCar =
-        getAllCars().find(
-            function(car) {
+    const allCars = getAllCars();
 
-                return car.id === carId;
-
-            }
-        );
+    const selectedCar = allCars.find(function(car) {
+        return car.id === carId;
+    });
 
 
-    if (
-        selectedCar &&
-        document.getElementById(
-            "carName"
-        )
-    ) {
+    if (selectedCar && document.getElementById("carName")) {
 
-        document.getElementById(
-            "carName"
-        ).textContent =
-            selectedCar.name;
+        document.getElementById("carName").textContent =
+            selectedCar.name || "";
 
+        document.getElementById("carPrice").textContent =
+            selectedCar.price || "-";
 
-        document.getElementById(
-            "carPrice"
-        ).textContent =
-            selectedCar.price;
+        document.getElementById("carYear").textContent =
+            selectedCar.year || "-";
 
+        document.getElementById("carBrand").textContent =
+            selectedCar.brand || "-";
 
-        document.getElementById(
-            "carYear"
-        ).textContent =
-            selectedCar.year;
+        document.getElementById("carModel").textContent =
+            selectedCar.model || "-";
 
+        document.getElementById("carType").textContent =
+            selectedCar.type || "-";
 
-        document.getElementById(
-            "carBrand"
-        ).textContent =
-            selectedCar.brand;
+        document.getElementById("carEngine").textContent =
+            selectedCar.engine || "-";
+
+        document.getElementById("carTransmission").textContent =
+            selectedCar.transmission || "-";
 
 
-        document.getElementById(
-            "carModel"
-        ).textContent =
-            selectedCar.model;
+        const descriptionElement =
+            document.getElementById("carDescription");
+
+        if (descriptionElement) {
+            descriptionElement.textContent =
+                selectedCar.description ||
+                "سيارة مختارة من رؤية النخبة للسيارات.";
+        }
 
 
-        document.getElementById(
-            "carType"
-        ).textContent =
-            selectedCar.type;
+        const statusElement =
+            document.getElementById("carStatus");
+
+        if (statusElement) {
+
+            const status =
+                selectedCar.status || "متوفرة";
+
+            statusElement.textContent = status;
+
+            statusElement.classList.add(
+                getStatusClass(status)
+            );
+        }
 
 
-        document.getElementById(
-            "carEngine"
-        ).textContent =
-            selectedCar.engine;
+        // الصور
+
+        let carImages = [];
+
+        if (
+            selectedCar.images &&
+            selectedCar.images.length > 0
+        ) {
+
+            carImages = selectedCar.images;
+
+        } else if (selectedCar.image) {
+
+            carImages = [selectedCar.image];
+
+        }
 
 
-        document.getElementById(
-            "carTransmission"
-        ).textContent =
-            selectedCar.transmission;
+        const mainImage =
+            document.getElementById("carImage");
+
+        const thumbnails =
+            document.getElementById("carThumbnails");
 
 
-        const detailImage =
-    document.getElementById(
-        "carImage"
-    );
+        if (mainImage && carImages.length > 0) {
+
+            mainImage.src = carImages[0];
+            mainImage.alt = selectedCar.name;
+
+        }
 
 
-if (detailImage) {
+        if (thumbnails) {
 
-    detailImage.src =
-        getMainImage(selectedCar);
+            thumbnails.innerHTML = "";
 
-    detailImage.alt =
-        selectedCar.name;
+            carImages.forEach(function(image, index) {
 
-}
+                const thumbnail =
+                    document.createElement("div");
 
+                thumbnail.className =
+                    "car-thumbnail";
 
-// =====================================
-// معرض صور السيارة
-// =====================================
-
-const thumbnails =
-    document.getElementById(
-        "carThumbnails"
-    );
+                if (index === 0) {
+                    thumbnail.classList.add("active");
+                }
 
 
-if (
-    thumbnails &&
-    selectedCar
-) {
-
-    thumbnails.innerHTML = "";
-
-
-    let images = [];
+                thumbnail.innerHTML = `
+                    <img
+                        src="${image}"
+                        alt="${selectedCar.name}"
+                    >
+                `;
 
 
-    // السيارات الجديدة
+                thumbnail.addEventListener(
+                    "click",
+                    function() {
 
-    if (
-        selectedCar.images &&
-        selectedCar.images.length > 0
-    ) {
-
-        images =
-            selectedCar.images;
-
-    }
-
-    // السيارات القديمة
-
-    else if (
-        selectedCar.image
-    ) {
-
-        images = [
-            selectedCar.image
-        ];
-
-    }
+                        mainImage.src = image;
 
 
-    images.forEach(
-        function(image, index) {
-
-            const thumbnail =
-                document.createElement(
-                    "img"
-                );
-
-
-            thumbnail.src =
-                image;
-
-
-            thumbnail.alt =
-                selectedCar.name;
-
-
-            thumbnail.className =
-                "car-thumbnail";
-
-
-            // الصورة الأولى تكون محددة
-
-            if (index === 0) {
-
-                thumbnail.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            thumbnail.addEventListener(
-                "click",
-                function() {
-
-                    detailImage.src =
-                        image;
-
-
-                    document
-                        .querySelectorAll(
-                            ".car-thumbnail"
-                        )
-                        .forEach(
-                            function(item) {
+                        document
+                            .querySelectorAll(".car-thumbnail")
+                            .forEach(function(item) {
 
                                 item.classList.remove(
                                     "active"
                                 );
 
-                            }
+                            });
+
+
+                        thumbnail.classList.add(
+                            "active"
                         );
 
-
-                    thumbnail.classList.add(
-                        "active"
-                    );
-
-                }
-            );
+                    }
+                );
 
 
-            thumbnails.appendChild(
-                thumbnail
-            );
+                thumbnails.appendChild(
+                    thumbnail
+                );
+
+            });
 
         }
-    );
 
-}
+    } else {
+
+        const detailsPage =
+            document.querySelector(
+                ".car-details-page"
+            );
+
+        if (detailsPage) {
+
+            detailsPage.innerHTML = `
+                <div
+                    class="container"
+                    style="
+                        text-align:center;
+                        padding:100px 20px;
+                    "
+                >
+
+                    <h1>
+                        السيارة غير موجودة
+                    </h1>
+
+                    <p>
+                        ربما تم حذف السيارة أو تغير رابطها.
+                    </p>
+
+                    <a
+                        href="cars.html"
+                        class="hero-button primary-button"
+                    >
+                        العودة إلى معرض السيارات
+                    </a>
+
+                </div>
+            `;
+
+        }
 
     }
 
 }
-
-
 // =====================================
 // اختيار صور السيارة
 // =====================================
@@ -1154,6 +1135,7 @@ function deleteCar(carId) {
     displayAdminCars(
         getAllCars()
     );
+    updateAdminStats();
 
 }
 
@@ -1253,6 +1235,7 @@ function changeCarStatus(carId) {
     displayAdminCars(
         getAllCars()
     );
+    updateAdminStats();
 
 }
 // =====================================
@@ -2055,3 +2038,62 @@ if (
         getAllCars().length;
 
 }
+// =====================================
+// عدد السيارات في صفحة المعرض
+// =====================================
+
+const carsPageCount = document.getElementById("carsPageCount");
+
+if (carsPageCount && typeof getAllCars === "function") {
+    carsPageCount.textContent = getAllCars().length;
+}
+// =====================================
+// إحصائيات لوحة الإدارة
+// =====================================
+
+function updateAdminStats() {
+
+    const totalElement =
+        document.getElementById("adminTotalCars");
+
+    if (!totalElement) {
+        return;
+    }
+
+
+    const allCars = getAllCars();
+
+
+    const availableCars =
+        allCars.filter(function(car) {
+            return (car.status || "متوفرة") === "متوفرة";
+        });
+
+
+    const reservedCars =
+        allCars.filter(function(car) {
+            return car.status === "محجوزة";
+        });
+
+
+    const soldCars =
+        allCars.filter(function(car) {
+            return car.status === "مباعة";
+        });
+
+
+    document.getElementById("adminTotalCars").textContent =
+        allCars.length;
+
+    document.getElementById("adminAvailableCars").textContent =
+        availableCars.length;
+
+    document.getElementById("adminReservedCars").textContent =
+        reservedCars.length;
+
+    document.getElementById("adminSoldCars").textContent =
+        soldCars.length;
+}
+
+
+updateAdminStats();

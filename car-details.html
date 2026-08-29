@@ -1,132 +1,255 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>تفاصيل السيارة - رؤية النخبة</title>
+    <title>تفاصيل السيارة | رؤية النخبة للسيارات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-    <header>
+    <header class="main-header">
+        <div class="container header-content">
 
-        <div class="logo">
-            رؤية النخبة للسيارات
+            <a href="index.html" class="brand">
+                <span class="brand-mark">R</span>
+
+                <div>
+                    <strong>رؤية النخبة</strong>
+                    <small>للسيارات</small>
+                </div>
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="cars.html">السيارات</a>
+                <a href="index.html#about">من نحن</a>
+                <a href="index.html#services">خدماتنا</a>
+                <a href="index.html#contact">اتصل بنا</a>
+                <a href="admin.html" class="admin-link">لوحة الإدارة</a>
+            </nav>
+
+            <button class="mobile-menu-button" id="mobileMenuButton">
+                ☰
+            </button>
+
         </div>
-
-        <nav>
-
-            <a href="index.html">
-                الرئيسية
-            </a>
-
-            <a href="#">
-                معرض السيارات
-            </a>
-
-            <a href="#">
-                من نحن
-            </a>
-
-            <a href="#">
-                اتصل بنا
-            </a>
-
-        </nav>
-
     </header>
 
 
-    <main>
+    <section class="car-details-page">
 
-        <section class="car-details">
+        <div class="container">
 
-    <div class="car-gallery">
+            <a href="cars.html" class="back-to-cars">
+                ← العودة إلى السيارات
+            </a>
 
-    <!-- الصورة الرئيسية -->
-
-    <div class="main-car-image">
-
-        <img
-            id="carImage"
-            src=""
-            alt=""
-        >
-
-    </div>
+            <div class="car-details-layout">
 
 
-    <!-- الصور المصغرة -->
+                <!-- الصور -->
+                <div class="car-gallery">
 
-    <div
-        id="carThumbnails"
-        class="car-thumbnails"
-    ></div>
+                    <div class="main-car-image">
 
-</div>
-    <div class="car-details-info">
+                        <img
+                            id="carImage"
+                            src=""
+                            alt="صورة السيارة"
+                        >
 
-        <h1 id="carName"></h1>
+                        <span
+                            id="carStatus"
+                            class="details-status"
+                        >
+                            متوفرة
+                        </span>
 
-        <p id="carPrice" class="car-price"></p>
+                    </div>
 
-        <div class="specifications">
 
-            <p>
-                <strong>السنة:</strong>
-                <span id="carYear"></span>
-            </p>
+                    <div
+                        id="carThumbnails"
+                        class="car-thumbnails"
+                    >
+                    </div>
 
-            <p>
-                <strong>الماركة:</strong>
-                <span id="carBrand"></span>
-            </p>
+                </div>
 
-            <p>
-                <strong>الموديل:</strong>
-                <span id="carModel"></span>
-            </p>
 
-            <p>
-                <strong>النوع:</strong>
-                <span id="carType"></span>
-            </p>
+                <!-- المعلومات -->
+                <div class="car-details-info">
 
-            <p>
-                <strong>المحرك:</strong>
-                <span id="carEngine"></span>
-            </p>
+                    <span class="section-badge">
+                        تفاصيل السيارة
+                    </span>
 
-            <p>
-                <strong>ناقل الحركة:</strong>
-                <span id="carTransmission"></span>
-            </p>
+                    <h1 id="carName">
+                        اسم السيارة
+                    </h1>
+
+                    <p
+                        id="carDescription"
+                        class="car-details-description"
+                    >
+                    </p>
+
+
+                    <div class="details-price-box">
+
+                        <span>
+                            السعر
+                        </span>
+
+                        <strong id="carPrice">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="specifications-grid">
+
+
+                        <div class="spec-box">
+                            <span>السنة</span>
+                            <strong id="carYear">-</strong>
+                        </div>
+
+
+                        <div class="spec-box">
+                            <span>الماركة</span>
+                            <strong id="carBrand">-</strong>
+                        </div>
+
+
+                        <div class="spec-box">
+                            <span>الموديل</span>
+                            <strong id="carModel">-</strong>
+                        </div>
+
+
+                        <div class="spec-box">
+                            <span>النوع</span>
+                            <strong id="carType">-</strong>
+                        </div>
+
+
+                        <div class="spec-box">
+                            <span>المحرك</span>
+                            <strong id="carEngine">-</strong>
+                        </div>
+
+
+                        <div class="spec-box">
+                            <span>ناقل الحركة</span>
+                            <strong id="carTransmission">-</strong>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="details-actions">
+
+                        <a
+                            href="index.html#contact"
+                            class="hero-button primary-button"
+                        >
+                            تواصل معنا
+                        </a>
+
+                        <a
+                            href="cars.html"
+                            class="hero-button secondary-button"
+                        >
+                            مشاهدة سيارات أخرى
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <button onclick="contactUs()">
-            تواصل معنا
-        </button>
-
-    </div>
-
-</section>
-
-    </main>
+    </section>
 
 
-    <footer>
+    <footer class="modern-footer">
 
-        <p>
-            © 2026 شركة رؤية النخبة للسيارات
-        </p>
+        <div class="container footer-grid">
+
+            <div>
+
+                <a href="index.html" class="brand footer-brand">
+
+                    <span class="brand-mark">
+                        R
+                    </span>
+
+                    <div>
+                        <strong>رؤية النخبة</strong>
+                        <small>للسيارات</small>
+                    </div>
+
+                </a>
+
+                <p>
+                    وجهتك للسيارات الأمريكية المختارة بعناية.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>روابط سريعة</h4>
+
+                <a href="index.html">
+                    الرئيسية
+                </a>
+
+                <a href="cars.html">
+                    السيارات
+                </a>
+
+                <a href="index.html#about">
+                    من نحن
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>الإدارة</h4>
+
+                <a href="admin.html">
+                    لوحة الإدارة
+                </a>
+
+                <a href="add-car.html">
+                    إضافة سيارة
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © رؤية النخبة للسيارات
+        </div>
 
     </footer>
 
@@ -134,5 +257,4 @@
     <script src="script.js"></script>
 
 </body>
-
 </html>

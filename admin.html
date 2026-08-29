@@ -2,107 +2,278 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>لوحة الإدارة | رؤية النخبة للسيارات</title>
 
-    <title>
-        لوحة الإدارة - رؤية النخبة
-    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<header class="main-header">
 
-<header>
+    <div class="container header-content">
 
-    <div class="logo">
-        رؤية النخبة للسيارات
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">R</span>
+
+            <div>
+                <strong>رؤية النخبة</strong>
+                <small>للسيارات</small>
+            </div>
+
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a href="admin.html" class="active">
+                لوحة الإدارة
+            </a>
+
+            <a href="add-car.html" class="admin-link">
+                + إضافة سيارة
+            </a>
+
+        </nav>
+
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+        >
+            ☰
+        </button>
+
     </div>
-
-
-    <nav>
-
-        <a href="index.html">
-            الرئيسية
-        </a>
-
-        <a href="add-car.html">
-            إضافة سيارة
-        </a>
-
-    </nav>
 
 </header>
 
 
-<main>
+<main class="admin-page-new">
 
-    <section class="admin-section">
+    <div class="container">
 
-        <div class="section-title">
 
-            <h1>
-                لوحة إدارة السيارات
-            </h1>
+        <!-- رأس لوحة الإدارة -->
+
+        <section class="admin-heading">
+
+            <div>
+
+                <span class="section-badge">
+                    إدارة المعرض
+                </span>
+
+                <h1>
+                    لوحة إدارة السيارات
+                </h1>
+
+                <p>
+                    أضف السيارات وعدّل بياناتها وحالتها
+                    من مكان واحد.
+                </p>
+
+            </div>
+
+
+            <a
+                href="add-car.html"
+                class="hero-button primary-button"
+            >
+                + إضافة سيارة جديدة
+            </a>
+
+        </section>
+
+
+        <!-- الإحصائيات -->
+
+        <section class="admin-stats">
+
+            <div class="admin-stat-card">
+
+                <span>
+                    إجمالي السيارات
+                </span>
+
+                <strong id="adminTotalCars">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <span>
+                    المتوفرة
+                </span>
+
+                <strong id="adminAvailableCars">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <span>
+                    المحجوزة
+                </span>
+
+                <strong id="adminReservedCars">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <span>
+                    المباعة
+                </span>
+
+                <strong id="adminSoldCars">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- البحث -->
+
+        <section class="admin-search-section">
+
+            <div class="admin-search-title">
+
+                <div>
+
+                    <h2>
+                        السيارات
+                    </h2>
+
+                    <p>
+                        ابحث عن سيارة ثم عدّلها أو غيّر حالتها.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-search-box">
+
+                <input
+                    type="text"
+                    id="adminSearchInput"
+                    placeholder="ابحث باسم السيارة أو الماركة أو الموديل..."
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- قائمة السيارات -->
+
+        <section>
+
+            <div
+                id="adminCarsContainer"
+                class="admin-cars-grid"
+            >
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<footer class="modern-footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <a href="index.html" class="brand footer-brand">
+
+                <span class="brand-mark">
+                    R
+                </span>
+
+                <div>
+                    <strong>رؤية النخبة</strong>
+                    <small>للسيارات</small>
+                </div>
+
+            </a>
 
             <p>
-                إدارة السيارات الموجودة في المعرض
+                إدارة معرض رؤية النخبة للسيارات.
             </p>
 
         </div>
 
 
-        <div class="admin-actions">
-            <div class="admin-search">
+        <div>
 
-    <input
-        type="text"
-        id="adminSearchInput"
-        placeholder="ابحث عن السيارة أو الماركة..."
-    >
+            <h4>
+                الموقع
+            </h4>
 
-</div>
+            <a href="index.html">
+                الرئيسية
+            </a>
 
-            <a
-                href="add-car.html"
-                class="admin-add-button"
-            >
-                + إضافة سيارة جديدة
+            <a href="cars.html">
+                معرض السيارات
             </a>
 
         </div>
 
 
-        <div
-            id="adminCarsContainer"
-            class="admin-cars-container"
-        >
+        <div>
+
+            <h4>
+                الإدارة
+            </h4>
+
+            <a href="add-car.html">
+                إضافة سيارة
+            </a>
 
         </div>
 
-
-    </section>
-
-</main>
+    </div>
 
 
-<footer>
-
-    <p>
-        © 2026 شركة رؤية النخبة للسيارات
-    </p>
+    <div class="footer-bottom">
+        © رؤية النخبة للسيارات
+    </div>
 
 </footer>
 
@@ -110,5 +281,4 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
