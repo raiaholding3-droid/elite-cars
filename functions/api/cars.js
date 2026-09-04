@@ -142,3 +142,188 @@ export async function onRequestPost(context) {
         }, { status: 500 });
     }
 }
+// ==========================================
+// حذف سيارة
+// DELETE /api/cars?id=123
+// ==========================================
+
+export async function onRequestDelete(context) {
+
+    try {
+
+        const url =
+            new URL(
+                context.request.url
+            );
+
+
+        const carId =
+            url.searchParams.get("id");
+
+
+        if (!carId) {
+
+            return Response.json(
+                {
+                    success: false,
+                    message:
+                        "رقم السيارة غير موجود"
+                },
+                {
+                    status: 400
+                }
+            );
+
+        }
+
+
+        // =====================================
+        // التأكد أن السيارة موجودة
+        // =====================================
+
+        const car =
+            await context.env.DB
+                .prepare(`
+                    SELECT id
+                    FROM cars
+                    WHERE id = ?
+                `)
+                .bind(
+                    Number(carId)
+                )
+                .first();
+
+
+        if (!car) {
+
+            return Response.json(
+                {
+                    success: false,
+                    message:
+                        "السيارة غير موجودة"
+                },
+                {
+                    status: 404
+                }
+            );
+
+        }
+
+
+        // =====================================
+        // جلب صور السيارة قبل حذفها
+        // =====================================
+
+        const { results: images } =
+            await context.env.DB
+                .prepare(`
+                    SELECT image_url
+                    FROM car_images
+                    WHERE car_id = ?
+                `)
+                .bind(
+                    Number(carId)
+                )
+                .all();
+
+
+        // =====================================
+        // حذف الصور من R2
+        // =====================================
+
+        for (const image of images) {
+
+            try {
+
+                const imageUrl =
+                    new URL(
+                        image.image_url,
+                        context.request.url
+                    );
+
+
+                const key =
+                    imageUrl
+                        .searchParams
+                        .get("key");
+
+
+                if (key) {
+
+                    await context.env.IMAGES
+                        .delete(key);
+
+                }
+
+            }
+
+            catch (imageError) {
+
+                console.error(
+                    "خطأ أثناء حذف صورة:",
+                    imageError
+                );
+
+            }
+
+        }
+
+
+        // =====================================
+        // حذف سجلات الصور من D1
+        // =====================================
+
+        await context.env.DB
+            .prepare(`
+                DELETE FROM car_images
+                WHERE car_id = ?
+            `)
+            .bind(
+                Number(carId)
+            )
+            .run();
+
+
+        // =====================================
+        // حذف السيارة من D1
+        // =====================================
+
+        await context.env.DB
+            .prepare(`
+                DELETE FROM cars
+                WHERE id = ?
+            `)
+            .bind(
+                Number(carId)
+            )
+            .run();
+
+
+        return Response.json({
+            success: true,
+            message:
+                "تم حذف السيارة بنجاح"
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        return Response.json(
+            {
+                success: false,
+                message:
+                    error.message ||
+                    "حدث خطأ أثناء حذف السيارة"
+            },
+            {
+                status: 500
+            }
+        );
+
+    }
+
+}
