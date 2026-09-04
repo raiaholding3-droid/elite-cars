@@ -2,10 +2,6 @@ export async function onRequestPost(context) {
 
     try {
 
-        // =====================================
-        // قراءة رقم المهمة
-        // =====================================
-
         const body =
             await context.request.json();
 
@@ -20,16 +16,14 @@ export async function onRequestPost(context) {
                     success: false,
                     message: "رقم المهمة غير صحيح"
                 },
-                {
-                    status: 400
-                }
+                { status: 400 }
             );
 
         }
 
 
         // =====================================
-        // جلب المهمة من D1
+        // جلب المهمة
         // =====================================
 
         const rule =
@@ -50,9 +44,7 @@ export async function onRequestPost(context) {
                     success: false,
                     message: "المهمة غير موجودة"
                 },
-                {
-                    status: 404
-                }
+                { status: 404 }
             );
 
         }
@@ -65,17 +57,11 @@ export async function onRequestPost(context) {
                     success: false,
                     message: "المهمة متوقفة"
                 },
-                {
-                    status: 400
-                }
+                { status: 400 }
             );
 
         }
 
-
-        // =====================================
-        // التأكد من وجود مفتاح Apibara
-        // =====================================
 
         const apiKey =
             context.env.APIBARA_API_KEY;
@@ -87,11 +73,9 @@ export async function onRequestPost(context) {
                 {
                     success: false,
                     message:
-                        "APIBARA_API_KEY غير موجود في Cloudflare"
+                        "APIBARA_API_KEY غير موجود"
                 },
-                {
-                    status: 500
-                }
+                { status: 500 }
             );
 
         }
@@ -147,9 +131,25 @@ export async function onRequestPost(context) {
         }
 
 
-        // =====================================
-        // Buy Now فقط
-        // =====================================
+        if (rule.price_min) {
+
+            url.searchParams.set(
+                "price_min",
+                rule.price_min
+            );
+
+        }
+
+
+        if (rule.price_max) {
+
+            url.searchParams.set(
+                "price_max",
+                rule.price_max
+            );
+
+        }
+
 
         if (rule.fast_buy_only) {
 
@@ -160,19 +160,6 @@ export async function onRequestPost(context) {
 
         }
 
-        else {
-
-            url.searchParams.set(
-                "lot_status",
-                "All"
-            );
-
-        }
-
-
-        // =====================================
-        // شركة المزاد
-        // =====================================
 
         if (
             rule.auction_house === "Copart"
@@ -199,15 +186,15 @@ export async function onRequestPost(context) {
         }
 
 
-        // عدد قليل للاختبار
+        // نبدأ بـ 20 سيارة لكل مهمة
         url.searchParams.set(
             "per_page",
-            "10"
+            "20"
         );
 
 
         // =====================================
-        // الاتصال بـ Apibara
+        // جلب السيارات من Apibara
         // =====================================
 
         const response =
@@ -217,13 +204,11 @@ export async function onRequestPost(context) {
                     method: "GET",
 
                     headers: {
-
                         "Accept":
                             "application/json",
 
                         "X-API-Key":
                             apiKey
-
                     }
                 }
             );
@@ -235,20 +220,9 @@ export async function onRequestPost(context) {
 
         if (!response.ok) {
 
-            return Response.json(
-                {
-                    success: false,
-
-                    message:
-                        data.message ||
-                        `Apibara HTTP ${response.status}`,
-
-                    status:
-                        response.status
-                },
-                {
-                    status: 502
-                }
+            throw new Error(
+                data.message ||
+                `Apibara HTTP ${response.status}`
             );
 
         }
@@ -256,17 +230,9 @@ export async function onRequestPost(context) {
 
         if (!data.ok) {
 
-            return Response.json(
-                {
-                    success: false,
-
-                    message:
-                        data.message ||
-                        "Apibara أعاد نتيجة غير ناجحة"
-                },
-                {
-                    status: 502
-                }
+            throw new Error(
+                data.message ||
+                "Apibara أعاد نتيجة غير ناجحة"
             );
 
         }
@@ -278,8 +244,372 @@ export async function onRequestPost(context) {
                 : [];
 
 
+        let inserted = 0;
+        let updated = 0;
+        let matched = 0;
+
+
         // =====================================
-        // تحديث آخر تشغيل
+        // حفظ السيارات
+        // =====================================
+
+        for (const car of cars) {
+
+            const platform =
+                car.platform ||
+                null;
+
+
+            const lotNumber =
+                car.lot_number
+                    ? String(car.lot_number)
+                    : null;
+
+
+            // بدون Lot لا نحفظ
+            if (!lotNumber) {
+                continue;
+            }
+
+
+            const auctionHouse =
+                platform === "iaai"
+                    ? "IAA"
+                    : platform === "copart"
+                        ? "Copart"
+                        : platform;
+
+
+            const existingCar =
+                await context.env.DB
+                    .prepare(`
+                        SELECT id
+                        FROM auction_cars
+                        WHERE
+                            auction_house = ?
+                            AND lot_number = ?
+                    `)
+                    .bind(
+                        auctionHouse,
+                        lotNumber
+                    )
+                    .first();
+
+
+            const title =
+                car.title ||
+                [
+                    car.year,
+                    car.make,
+                    car.model
+                ]
+                .filter(Boolean)
+                .join(" ");
+
+
+            const mainImage =
+                car.images &&
+                Array.isArray(car.images) &&
+                car.images.length > 0
+                    ? car.images[0]
+                    : car.main_image ||
+                      null;
+
+
+            const currentBid =
+                car.pricing
+                    ?.current_bid_usd ??
+                car.current_bid ??
+                null;
+
+
+            const buyNowPrice =
+                car.pricing
+                    ?.buy_now_usd ??
+                car.buy_now ??
+                null;
+
+
+            const odometer =
+                car.odometer?.mi ??
+                car.odometer ??
+                null;
+
+
+            const primaryDamage =
+                car.condition
+                    ?.primary_damage ??
+                car.primary_damage ??
+                null;
+
+
+            const secondaryDamage =
+                car.condition
+                    ?.secondary_damage ??
+                null;
+
+
+            const damage =
+                [
+                    primaryDamage,
+                    secondaryDamage
+                ]
+                .filter(Boolean)
+                .join(" / ") ||
+                null;
+
+
+            const sourceUrl =
+                car.url ||
+                car.source_url ||
+                null;
+
+
+            const auctionDate =
+                car.auction_date ||
+                car.sale_date ||
+                null;
+
+
+            if (existingCar) {
+
+                // =====================================
+                // تحديث السيارة الموجودة
+                // =====================================
+
+                await context.env.DB
+                    .prepare(`
+                        UPDATE auction_cars
+
+                        SET
+                            source_site = ?,
+                            external_id = ?,
+                            vin = ?,
+                            name = ?,
+                            brand = ?,
+                            model = ?,
+                            trim = ?,
+                            year = ?,
+                            mileage = ?,
+                            color = ?,
+                            fuel_type = ?,
+                            body_type = ?,
+                            engine = ?,
+                            transmission = ?,
+                            drivetrain = ?,
+                            damage = ?,
+                            current_bid = ?,
+                            buy_now_price = ?,
+                            auction_date = ?,
+                            source_url = ?,
+                            main_image = ?,
+                            status = 'active',
+                            last_seen_at = CURRENT_TIMESTAMP,
+                            updated_at = CURRENT_TIMESTAMP
+
+                        WHERE id = ?
+                    `)
+                    .bind(
+                        "apibara",
+                        car.id || null,
+                        car.vin || null,
+                        title || "Auction Vehicle",
+                        car.make || null,
+                        car.model || null,
+                        car.trim || null,
+                        car.year || null,
+                        odometer,
+                        car.color || null,
+                        car.fuel_type || null,
+                        car.body_type || null,
+                        car.engine ||
+                            car.engine_description ||
+                            null,
+                        car.transmission || null,
+                        car.drivetrain || null,
+                        damage,
+                        currentBid,
+                        buyNowPrice,
+                        auctionDate,
+                        sourceUrl,
+                        mainImage,
+                        existingCar.id
+                    )
+                    .run();
+
+
+                updated++;
+
+            }
+
+            else {
+
+                // =====================================
+                // إضافة سيارة جديدة
+                // =====================================
+
+                const insertResult =
+                    await context.env.DB
+                        .prepare(`
+                            INSERT INTO auction_cars
+                            (
+                                source_site,
+                                external_id,
+                                auction_house,
+                                lot_number,
+                                vin,
+                                name,
+                                brand,
+                                model,
+                                trim,
+                                year,
+                                mileage,
+                                color,
+                                fuel_type,
+                                body_type,
+                                engine,
+                                transmission,
+                                drivetrain,
+                                damage,
+                                current_bid,
+                                buy_now_price,
+                                auction_date,
+                                source_url,
+                                main_image,
+                                status,
+                                first_seen_at,
+                                last_seen_at,
+                                created_at,
+                                updated_at
+                            )
+
+                            VALUES
+                            (
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                                ?, ?, ?, 'active',
+                                CURRENT_TIMESTAMP,
+                                CURRENT_TIMESTAMP,
+                                CURRENT_TIMESTAMP,
+                                CURRENT_TIMESTAMP
+                            )
+                        `)
+                        .bind(
+                            "apibara",
+                            car.id || null,
+                            auctionHouse,
+                            lotNumber,
+                            car.vin || null,
+                            title || "Auction Vehicle",
+                            car.make || null,
+                            car.model || null,
+                            car.trim || null,
+                            car.year || null,
+                            odometer,
+                            car.color || null,
+                            car.fuel_type || null,
+                            car.body_type || null,
+                            car.engine ||
+                                car.engine_description ||
+                                null,
+                            car.transmission || null,
+                            car.drivetrain || null,
+                            damage,
+                            currentBid,
+                            buyNowPrice,
+                            auctionDate,
+                            sourceUrl,
+                            mainImage
+                        )
+                        .run();
+
+
+                const newCarId =
+                    insertResult.meta
+                        .last_row_id;
+
+
+                inserted++;
+
+
+                // =====================================
+                // ربط السيارة بالمهمة
+                // =====================================
+
+                await context.env.DB
+                    .prepare(`
+                        INSERT OR IGNORE INTO
+                        auction_car_matches
+                        (
+                            car_id,
+                            rule_id
+                        )
+
+                        VALUES (?, ?)
+                    `)
+                    .bind(
+                        newCarId,
+                        ruleId
+                    )
+                    .run();
+
+
+                matched++;
+
+                continue;
+
+            }
+
+
+            // =====================================
+            // ربط السيارة الموجودة بالمهمة
+            // =====================================
+
+            const savedCar =
+                await context.env.DB
+                    .prepare(`
+                        SELECT id
+                        FROM auction_cars
+                        WHERE
+                            auction_house = ?
+                            AND lot_number = ?
+                    `)
+                    .bind(
+                        auctionHouse,
+                        lotNumber
+                    )
+                    .first();
+
+
+            if (savedCar) {
+
+                await context.env.DB
+                    .prepare(`
+                        INSERT OR IGNORE INTO
+                        auction_car_matches
+                        (
+                            car_id,
+                            rule_id
+                        )
+
+                        VALUES (?, ?)
+                    `)
+                    .bind(
+                        savedCar.id,
+                        ruleId
+                    )
+                    .run();
+
+
+                matched++;
+
+            }
+
+        }
+
+
+        // =====================================
+        // تحديث وقت آخر تشغيل
         // =====================================
 
         await context.env.DB
@@ -287,11 +617,9 @@ export async function onRequestPost(context) {
                 UPDATE auction_watch_rules
 
                 SET
-                    last_run_at =
-                        CURRENT_TIMESTAMP,
-
-                    updated_at =
-                        CURRENT_TIMESTAMP
+                    source_site = 'apibara',
+                    last_run_at = CURRENT_TIMESTAMP,
+                    updated_at = CURRENT_TIMESTAMP
 
                 WHERE id = ?
             `)
@@ -299,64 +627,24 @@ export async function onRequestPost(context) {
             .run();
 
 
-        // =====================================
-        // اختبار فقط - بدون حفظ السيارات
-        // =====================================
-
         return Response.json({
 
             success: true,
 
             message:
-                "تم الاتصال بـ Apibara بنجاح",
+                "تم جلب وحفظ سيارات المزاد بنجاح",
 
             received_cars:
                 cars.length,
 
-            request_url:
-                url.toString(),
+            inserted:
+                inserted,
 
-            first_car:
-                cars.length > 0
-                    ? {
-                        platform:
-                            cars[0].platform || null,
+            updated:
+                updated,
 
-                        lot_number:
-                            cars[0].lot_number || null,
-
-                        vin:
-                            cars[0].vin || null,
-
-                        title:
-                            cars[0].title || null,
-
-                        year:
-                            cars[0].year || null,
-
-                        make:
-                            cars[0].make || null,
-
-                        model:
-                            cars[0].model || null,
-
-                        current_bid:
-                            cars[0].pricing
-                                ?.current_bid_usd ?? null,
-
-                        buy_now:
-                            cars[0].pricing
-                                ?.buy_now_usd ?? null,
-
-                        damage:
-                            cars[0].condition
-                                ?.primary_damage ?? null,
-
-                        odometer:
-                            cars[0].odometer
-                                ?.mi ?? null
-                    }
-                    : null
+            matched:
+                matched
 
         });
 
@@ -373,7 +661,7 @@ export async function onRequestPost(context) {
 
                 message:
                     error.message ||
-                    "حدث خطأ أثناء الاتصال بـ Apibara"
+                    "حدث خطأ أثناء جلب سيارات المزاد"
             },
             {
                 status: 500
