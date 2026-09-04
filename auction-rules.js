@@ -488,19 +488,17 @@ async function deleteAuctionRule(id) {
     }
 
 }
-
-
 // =====================================
 // تشغيل مهمة الآن
 // =====================================
+
 async function runRuleNow(id) {
 
     try {
 
-        const buttonMessage =
-            "جاري الاتصال بـ Bid.Cars...";
-
-        console.log(buttonMessage);
+        console.log(
+            "جاري الاتصال بـ Apibara..."
+        );
 
 
         const response =
@@ -539,62 +537,109 @@ async function runRuleNow(id) {
         }
 
 
-let message =
-    "تم تشغيل المهمة ✅\n\n";
-
-message +=
-    result.message + "\n\n";
-
-message +=
-    "عدد السيارات المستلمة: " +
-    result.received_cars;
+        let message =
+            "تم تشغيل المهمة ✅\n\n";
 
 
-if (result.first_car) {
+        message +=
+            result.message + "\n\n";
 
-    message +=
-        "\n\nأول سيارة:\n";
 
-    message +=
-        (result.first_car.title || "-") +
-        "\n";
+        message +=
+            "عدد السيارات المستلمة: " +
+            (result.received_cars ?? 0);
 
-    message +=
-        "Lot: " +
-        (result.first_car.lot_number || "-") +
-        "\n";
 
-    message +=
-        "VIN: " +
-        (result.first_car.vin || "-") +
-        "\n";
+        if (result.first_car) {
 
-    message +=
-        "Buy Now: $" +
-        (
-            result.first_car.buy_now ??
-            "-"
+            message +=
+                "\n\nأول سيارة:\n";
+
+
+            message +=
+                (
+                    result.first_car.title ||
+                    "-"
+                ) +
+                "\n";
+
+
+            message +=
+                "Lot: " +
+                (
+                    result.first_car.lot_number ||
+                    "-"
+                ) +
+                "\n";
+
+
+            message +=
+                "VIN: " +
+                (
+                    result.first_car.vin ||
+                    "-"
+                ) +
+                "\n";
+
+
+            message +=
+                "Buy Now: $" +
+                (
+                    result.first_car.buy_now ??
+                    "-"
+                );
+
+        }
+
+
+        alert(message);
+
+
+        // تحديث المهام بعد التشغيل
+        await loadAuctionRules();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "خطأ تشغيل المهمة:",
+            error
         );
 
+
+        alert(
+            "حدث خطأ:\n" +
+            error.message
+        );
+
+    }
+
 }
-
-
-alert(message);
 
 
 // =====================================
 // تحميل المهام عند فتح الصفحة
 // =====================================
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+if (document.readyState === "loading") {
 
-        console.log(
-            "صفحة مهام المزاد جاهزة"
-        );
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
 
-        loadAuctionRules();
+            console.log(
+                "صفحة مهام المزاد جاهزة"
+            );
 
-    }
-);
+            loadAuctionRules();
+
+        }
+    );
+
+} else {
+
+    loadAuctionRules();
+
+}
+
