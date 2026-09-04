@@ -586,19 +586,15 @@ alert(message);
 // تحميل المهام عند فتح الصفحة
 // =====================================
 
-if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function() {
+        console.log(
+            "صفحة مهام المزاد جاهزة"
+        );
 
-            loadAuctionRules();
+        loadAuctionRules();
 
-        }
-    );
-
-} else {
-
-    loadAuctionRules();
-
-}
+    }
+);
