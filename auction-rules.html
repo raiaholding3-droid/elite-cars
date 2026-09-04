@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مهام جلب المزاد | رؤية النخبة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="main-header">
+
+    <a href="index.html" class="brand">
+        <span class="brand-mark">R</span>
+
+        <div>
+            <strong>رؤية النخبة</strong>
+            <small>للسيارات</small>
+        </div>
+    </a>
+
+    <nav class="main-nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="cars.html">السيارات</a>
+        <a href="admin.html">لوحة الإدارة</a>
+        <a href="auction-rules.html" class="active">مهام المزاد</a>
+    </nav>
+
+</header>
+
+
+<main class="auction-rules-page">
+
+    <section class="auction-rules-heading">
+
+        <div>
+
+            <span class="section-kicker">
+                نظام المزاد
+            </span>
+
+            <h1>
+                مهام جلب سيارات المزاد
+            </h1>
+
+            <p>
+                أنشئ عدة مهام بحث، وحدد الماركة والموديل والسنة والسعر.
+            </p>
+
+        </div>
+
+        <button
+            type="button"
+            id="openRuleFormButton"
+            class="primary-button"
+        >
+            + إضافة مهمة جديدة
+        </button>
+
+    </section>
+
+
+    <!-- نموذج إضافة المهمة -->
+
+    <section
+        id="auctionRuleFormSection"
+        class="auction-rule-form-section"
+        style="display: none;"
+    >
+
+        <h2>
+            إضافة مهمة جديدة
+        </h2>
+
+        <form id="auctionRuleForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>اسم المهمة</label>
+
+                    <input
+                        type="text"
+                        id="ruleName"
+                        placeholder="مثال: Sportage حديث"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>الماركة</label>
+
+                    <input
+                        type="text"
+                        id="ruleBrand"
+                        placeholder="KIA"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>الموديل</label>
+
+                    <input
+                        type="text"
+                        id="ruleModel"
+                        placeholder="Sportage"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>السنة من</label>
+
+                    <input
+                        type="number"
+                        id="ruleYearFrom"
+                        placeholder="2024"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>السنة إلى</label>
+
+                    <input
+                        type="number"
+                        id="ruleYearTo"
+                        placeholder="2026"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>السعر الأدنى</label>
+
+                    <input
+                        type="number"
+                        id="rulePriceMin"
+                        min="0"
+                        placeholder="0"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>السعر الأقصى</label>
+
+                    <input
+                        type="number"
+                        id="rulePriceMax"
+                        min="0"
+                        placeholder="12000"
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>شركة المزاد</label>
+
+                    <select id="ruleAuctionHouse">
+
+                        <option value="">
+                            الجميع
+                        </option>
+
+                        <option value="IAA">
+                            IAA
+                        </option>
+
+                        <option value="Copart">
+                            Copart
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>نوع البيع</label>
+
+                    <select id="ruleFastBuy">
+
+                        <option value="1">
+                            Fast Buy فقط
+                        </option>
+
+                        <option value="0">
+                            جميع السيارات
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>الحالة</label>
+
+                    <select id="ruleEnabled">
+
+                        <option value="1">
+                            مفعلة
+                        </option>
+
+                        <option value="0">
+                            متوقفة
+                        </option>
+
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    حفظ المهمة
+                </button>
+
+                <button
+                    type="button"
+                    id="cancelRuleButton"
+                    class="secondary-button"
+                >
+                    إلغاء
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- قائمة المهام -->
+
+    <section class="auction-rules-list-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-kicker">
+                    المهام
+                </span>
+
+                <h2>
+                    مهام البحث الحالية
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div
+            id="auctionRulesContainer"
+            class="auction-rules-container"
+        >
+            جاري تحميل المهام...
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="auction-rules.js"></script>
+
+</body>
+</html>
