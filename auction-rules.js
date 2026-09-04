@@ -62,31 +62,37 @@ if (cancelRuleButton) {
 
 async function loadAuctionRules() {
 
+    console.log("بدء تحميل المهام...");
+
     try {
- if (auctionRulesContainer) {
-
-            auctionRulesContainer.innerHTML =
-                "جاري تحميل المهام...";
-
-        }
 
         const response =
             await fetch(
-                "/api/auction-rules",
+                "/api/auction-rules?t=" + Date.now(),
                 {
                     method: "GET",
-
                     headers: {
-                        "Accept":
-                            "application/json"
+                        "Accept": "application/json"
                     },
-
                     cache: "no-store"
                 }
             );
 
+
+        console.log(
+            "HTTP:",
+            response.status
+        );
+
+
         const data =
             await response.json();
+
+
+        console.log(
+            "بيانات المهام:",
+            data
+        );
 
 
         if (
@@ -102,8 +108,19 @@ async function loadAuctionRules() {
         }
 
 
+        if (!auctionRulesContainer) {
+
+            console.error(
+                "auctionRulesContainer غير موجود"
+            );
+
+            return;
+
+        }
+
+
         displayAuctionRules(
-            data.rules
+            data.rules || []
         );
 
     }
@@ -118,9 +135,17 @@ async function loadAuctionRules() {
 
         if (auctionRulesContainer) {
 
-            auctionRulesContainer.innerHTML =
-                "حدث خطأ أثناء تحميل المهام: " +
-                error.message;
+            auctionRulesContainer.innerHTML = `
+                <div style="
+                    background:#fff0f0;
+                    padding:20px;
+                    border-radius:12px;
+                    color:#a52020;
+                ">
+                    حدث خطأ أثناء تحميل المهام:
+                    ${error.message}
+                </div>
+            `;
 
         }
 
@@ -557,7 +582,7 @@ if (result.first_car) {
 alert(message);
 
 
-    // =====================================
+// =====================================
 // تحميل المهام عند فتح الصفحة
 // =====================================
 
@@ -575,21 +600,5 @@ if (document.readyState === "loading") {
 } else {
 
     loadAuctionRules();
-
-}
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-
-        alert(
-            "حدث خطأ:\n" +
-            error.message
-        );
-
-    }
 
 }
