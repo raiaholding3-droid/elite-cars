@@ -2,12 +2,11 @@ export async function onRequestPost(context) {
 
     try {
 
-        const data =
+        const body =
             await context.request.json();
 
-
         const ruleId =
-            Number(data.rule_id);
+            Number(body.rule_id);
 
 
         if (!ruleId) {
@@ -15,18 +14,16 @@ export async function onRequestPost(context) {
             return Response.json(
                 {
                     success: false,
-                    message: "رقم المهمة غير موجود"
+                    message: "رقم المهمة غير صحيح"
                 },
-                {
-                    status: 400
-                }
+                { status: 400 }
             );
 
         }
 
 
         // =====================================
-        // جلب المهمة من D1
+        // جلب المهمة
         // =====================================
 
         const rule =
@@ -47,9 +44,7 @@ export async function onRequestPost(context) {
                     success: false,
                     message: "المهمة غير موجودة"
                 },
-                {
-                    status: 404
-                }
+                { status: 404 }
             );
 
         }
@@ -62,99 +57,101 @@ export async function onRequestPost(context) {
                     success: false,
                     message: "المهمة متوقفة"
                 },
-                {
-                    status: 400
-                }
+                { status: 400 }
             );
 
         }
 
 
         // =====================================
-        // تكوين بحث Bid.Cars
+        // إنشاء عبارة البحث
         // =====================================
-
-        const searchTerms = [];
-
-        if (rule.brand) {
-            searchTerms.push(rule.brand);
-        }
-
-        if (rule.model) {
-            searchTerms.push(rule.model);
-        }
-
 
         const searchText =
-            searchTerms.join(" ");
+            [
+                rule.brand,
+                rule.model
+            ]
+            .filter(Boolean)
+            .join(" ");
 
+
+        /*
+            نستخدم صفحة البحث كبداية.
+
+            ملاحظة:
+            Bid.Cars قد يغير طريقة تمرير الفلاتر،
+            لذلك importer منفصل عن بقية الموقع.
+        */
 
         const searchUrl =
-            new URL(
-                "https://bid.cars/en/search"
-            );
+            "https://bid.cars/en/search";
 
 
-        if (searchText) {
-
-            searchUrl.searchParams.set(
-                "search",
-                searchText
-            );
-
-        }
-
-
-        // =====================================
-        // طلب صفحة البحث
-        // =====================================
-
-        const response =
+        const searchResponse =
             await fetch(
-                searchUrl.toString(),
+                searchUrl,
                 {
                     headers: {
                         "User-Agent":
-                            "Mozilla/5.0"
+                            "Mozilla/5.0 (compatible; EliteCarsImporter/1.0)",
+                        "Accept":
+                            "text/html"
                     }
                 }
             );
 
 
-        if (!response.ok) {
+        if (!searchResponse.ok) {
 
             throw new Error(
-                "فشل الوصول إلى Bid.Cars"
+                "تعذر الوصول إلى صفحة بحث Bid.Cars"
             );
 
         }
 
 
         const html =
-            await response.text();
+            await searchResponse.text();
 
 
         // =====================================
-        // في هذه النسخة لا نحفظ النتائج بعد
-        // فقط نتأكد أن الاتصال يعمل
+        // استخراج روابط السيارات
         // =====================================
 
-        const hasFastBuy =
-            html.includes("Fast Buy");
+        const lotRegex =
+            /href=["'](\/en\/lot\/[^"'?#]+)["']/gi;
 
 
-        const hasBrand =
-            rule.brand
-                ? html
-                    .toLowerCase()
-                    .includes(
-                        rule.brand
-                            .toLowerCase()
-                    )
-                : true;
+        const links =
+            new Set();
 
 
-        // تحديث آخر تشغيل
+        let match;
+
+
+        while (
+            (
+                match =
+                    lotRegex.exec(html)
+            ) !== null
+        ) {
+
+            links.add(
+                "https://bid.cars" +
+                match[1]
+            );
+
+        }
+
+
+        const lotLinks =
+            Array.from(links);
+
+
+        // =====================================
+        // نتيجة الاختبار
+        // =====================================
 
         await context.env.DB
             .prepare(`
@@ -163,6 +160,7 @@ export async function onRequestPost(context) {
                 SET
                     last_run_at =
                         CURRENT_TIMESTAMP,
+
                     updated_at =
                         CURRENT_TIMESTAMP
 
@@ -173,25 +171,27 @@ export async function onRequestPost(context) {
 
 
         return Response.json({
+
             success: true,
 
             message:
-                "تم الاتصال بـ Bid.Cars بنجاح",
+                lotLinks.length > 0
+                    ? "تم العثور على روابط سيارات."
+                    : "تم الاتصال بـ Bid.Cars ولكن لم نجد روابط سيارات في HTML صفحة البحث.",
 
             rule: {
                 id: rule.id,
                 name: rule.name,
                 brand: rule.brand,
-                model: rule.model
+                model: rule.model,
+                search_text: searchText
             },
 
-            checks: {
-                fast_buy_text_found:
-                    hasFastBuy,
+            found_links:
+                lotLinks.length,
 
-                brand_text_found:
-                    hasBrand
-            }
+            sample_links:
+                lotLinks.slice(0, 5)
 
         });
 
@@ -205,9 +205,10 @@ export async function onRequestPost(context) {
         return Response.json(
             {
                 success: false,
+
                 message:
                     error.message ||
-                    "حدث خطأ أثناء تشغيل المهمة"
+                    "حدث خطأ أثناء تشغيل مهمة المزاد"
             },
             {
                 status: 500
