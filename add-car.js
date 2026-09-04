@@ -34,6 +34,8 @@ const newCarImagesPreview =
 
 let selectedCarFiles = [];
 
+let selectedMainImageIndex = 0;
+
 
 // ==========================================
 // معاينة الصور
@@ -45,19 +47,98 @@ if (newCarImages) {
         "change",
         function() {
 
-            selectedCarFiles =
-                Array.from(
-                    newCarImages.files
+           selectedCarFiles =
+    Array.from(
+        newCarImages.files
+    );
+
+selectedMainImageIndex = 0;
+
+showSelectedImages();
+           function showSelectedImages() {
+
+    if (!newCarImagesPreview) {
+        return;
+    }
+
+
+    newCarImagesPreview.innerHTML = "";
+
+
+    selectedCarFiles.forEach(
+        function(file, index) {
+
+            const imageUrl =
+                URL.createObjectURL(file);
+
+
+            const box =
+                document.createElement(
+                    "div"
                 );
 
 
-            showSelectedImages();
+            box.className =
+                "preview-image-box";
+
+
+            if (
+                index ===
+                selectedMainImageIndex
+            ) {
+
+                box.classList.add(
+                    "selected-main-image"
+                );
+
+            }
+
+
+            box.innerHTML = `
+
+                <img
+                    src="${imageUrl}"
+                    alt="صورة السيارة"
+                >
+
+                <button
+                    type="button"
+                    class="select-main-image-button"
+                >
+                    ${
+                        index ===
+                        selectedMainImageIndex
+
+                        ? "⭐ الصورة الرئيسية"
+
+                        : "اجعلها الرئيسية"
+                    }
+                </button>
+
+            `;
+
+
+            box.addEventListener(
+                "click",
+                function() {
+
+                    selectedMainImageIndex =
+                        index;
+
+
+                    showSelectedImages();
+
+                }
+            );
+
+
+            newCarImagesPreview
+                .appendChild(box);
 
         }
     );
 
 }
-
 
 // ==========================================
 // عرض معاينة الصور
@@ -429,7 +510,12 @@ if (onlineAddCarForm) {
                         "imageOrder",
                         i
                     );
-
+formData.append(
+    "isMain",
+    i === selectedMainImageIndex
+        ? "1"
+        : "0"
+);
 
                     const uploadResponse =
                         await fetch(
