@@ -84,8 +84,8 @@ export async function onRequestPost(context) {
             لذلك importer منفصل عن بقية الموقع.
         */
 
-        const searchUrl =
-            "https://bid.cars/en/search";
+       const searchUrl =
+    "https://bid.cars/en/";
 
 
         const searchResponse =
