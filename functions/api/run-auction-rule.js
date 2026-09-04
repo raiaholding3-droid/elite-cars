@@ -84,13 +84,80 @@ export async function onRequestPost(context) {
             لذلك importer منفصل عن بقية الموقع.
         */
 
-       const searchUrl =
-    "https://bid.cars/en/";
+      const searchUrl =
+    new URL(
+        "https://bid.cars/en/search/results"
+    );
 
+
+searchUrl.searchParams.set(
+    "search-type",
+    "filters"
+);
+
+
+searchUrl.searchParams.set(
+    "status",
+    rule.fast_buy_only
+        ? "Fast-buy"
+        : "All"
+);
+
+
+searchUrl.searchParams.set(
+    "type",
+    "Automobile"
+);
+
+
+if (rule.brand) {
+
+    searchUrl.searchParams.set(
+        "make",
+        rule.brand
+    );
+
+}
+
+
+if (rule.model) {
+
+    searchUrl.searchParams.set(
+        "model",
+        rule.model
+    );
+
+}
+
+
+if (rule.year_from) {
+
+    searchUrl.searchParams.set(
+        "year-from",
+        rule.year_from
+    );
+
+}
+
+
+if (rule.year_to) {
+
+    searchUrl.searchParams.set(
+        "year-to",
+        rule.year_to
+    );
+
+}
+
+
+searchUrl.searchParams.set(
+    "auction-type",
+    rule.auction_house || "All"
+);
 
         const searchResponse =
     await fetch(
-        searchUrl,
+        searchUrl.toString()
         {
             method: "GET",
 
