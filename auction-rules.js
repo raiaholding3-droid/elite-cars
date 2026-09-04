@@ -444,10 +444,15 @@ async function deleteAuctionRule(id) {
 // =====================================
 // تشغيل مهمة الآن
 // =====================================
-
 async function runRuleNow(id) {
 
     try {
+
+        const buttonMessage =
+            "جاري الاتصال بـ Bid.Cars...";
+
+        console.log(buttonMessage);
+
 
         const response =
             await fetch(
@@ -485,10 +490,41 @@ async function runRuleNow(id) {
         }
 
 
-        alert(
-            "تم تشغيل المهمة بنجاح ✅\n\n" +
-            result.message
-        );
+        let message =
+            "تم تشغيل المهمة ✅\n\n";
+
+
+        message +=
+            result.message + "\n\n";
+
+
+        message +=
+            "عدد روابط السيارات المكتشفة: " +
+            result.found_links;
+
+
+        if (
+            result.sample_links &&
+            result.sample_links.length > 0
+        ) {
+
+            message +=
+                "\n\nأمثلة:\n";
+
+
+            result.sample_links.forEach(
+                function(link) {
+
+                    message +=
+                        "\n" + link;
+
+                }
+            );
+
+        }
+
+
+        alert(message);
 
 
         await loadAuctionRules();
@@ -496,6 +532,9 @@ async function runRuleNow(id) {
     }
 
     catch (error) {
+
+        console.error(error);
+
 
         alert(
             "حدث خطأ:\n" +
