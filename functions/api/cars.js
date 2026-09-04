@@ -1,24 +1,74 @@
 export async function onRequestGet(context) {
+
     try {
-        const { results } = await context.env.DB
-            .prepare(`
-                SELECT *
-                FROM cars
-                ORDER BY id DESC
-            `)
-            .all();
+
+        const { results: cars } =
+            await context.env.DB
+                .prepare(`
+                    SELECT *
+                    FROM cars
+                    ORDER BY id DESC
+                `)
+                .all();
+
+
+        // جلب صور كل سيارة
+        for (const car of cars) {
+
+            const { results: images } =
+                await context.env.DB
+                    .prepare(`
+                        SELECT
+                            id,
+                            image_url,
+                            image_order,
+                            is_main
+                        FROM car_images
+                        WHERE car_id = ?
+                        ORDER BY image_order ASC
+                    `)
+                    .bind(car.id)
+                    .all();
+
+
+            car.images =
+                images.map(
+                    function(image) {
+
+                        return image.image_url;
+
+                    }
+                );
+
+        }
+
 
         return Response.json({
             success: true,
-            cars: results
+            cars: cars
         });
 
-    } catch (error) {
-        return Response.json({
-            success: false,
-            message: error.message
-        }, { status: 500 });
     }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        return Response.json(
+            {
+                success: false,
+                message:
+                    error.message ||
+                    "حدث خطأ أثناء جلب السيارات"
+            },
+            {
+                status: 500
+            }
+        );
+
+    }
+
 }
 
 
