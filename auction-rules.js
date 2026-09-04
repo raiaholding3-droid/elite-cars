@@ -490,41 +490,47 @@ async function runRuleNow(id) {
         }
 
 
-        let message =
-            "تم تشغيل المهمة ✅\n\n";
+let message =
+    "تم تشغيل المهمة ✅\n\n";
+
+message +=
+    result.message + "\n\n";
+
+message +=
+    "عدد السيارات المستلمة: " +
+    result.received_cars;
 
 
-        message +=
-            result.message + "\n\n";
+if (result.first_car) {
+
+    message +=
+        "\n\nأول سيارة:\n";
+
+    message +=
+        (result.first_car.title || "-") +
+        "\n";
+
+    message +=
+        "Lot: " +
+        (result.first_car.lot_number || "-") +
+        "\n";
+
+    message +=
+        "VIN: " +
+        (result.first_car.vin || "-") +
+        "\n";
+
+    message +=
+        "Buy Now: $" +
+        (
+            result.first_car.buy_now ??
+            "-"
+        );
+
+}
 
 
-        message +=
-            "عدد روابط السيارات المكتشفة: " +
-            result.found_links;
-
-
-        if (
-            result.sample_links &&
-            result.sample_links.length > 0
-        ) {
-
-            message +=
-                "\n\nأمثلة:\n";
-
-
-            result.sample_links.forEach(
-                function(link) {
-
-                    message +=
-                        "\n" + link;
-
-                }
-            );
-
-        }
-
-
-        alert(message);
+alert(message);
 
 
         await loadAuctionRules();
