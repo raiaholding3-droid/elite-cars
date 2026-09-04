@@ -445,14 +445,63 @@ async function deleteAuctionRule(id) {
 // تشغيل مهمة الآن
 // =====================================
 
-function runRuleNow(id) {
+async function runRuleNow(id) {
 
-    alert(
-        "سنربط زر تشغيل المهمة بمحرك جلب Bid.Cars في الدرس التالي.\n\nرقم المهمة: " +
-        id
-    );
+    try {
+
+        const response =
+            await fetch(
+                "/api/run-auction-rule",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            rule_id: id
+                        })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "فشل تشغيل المهمة"
+            );
+
+        }
+
+
+        alert(
+            "تم تشغيل المهمة بنجاح ✅\n\n" +
+            result.message
+        );
+
+
+        await loadAuctionRules();
+
+    }
+
+    catch (error) {
+
+        alert(
+            "حدث خطأ:\n" +
+            error.message
+        );
+
+    }
 
 }
-
-
-loadAuctionRules();
