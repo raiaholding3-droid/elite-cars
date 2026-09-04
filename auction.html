@@ -1,1 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>سيارات المزاد | رؤية النخبة للسيارات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="main-header">
+
+    <a href="index.html" class="brand">
+
+        <span class="brand-mark">
+            R
+        </span>
+
+        <div>
+            <strong>
+                رؤية النخبة
+            </strong>
+
+            <small>
+                للسيارات
+            </small>
+        </div>
+
+    </a>
+
+
+    <nav class="main-nav">
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+        <a href="cars.html">
+            السيارات
+        </a>
+
+        <a href="auction.html" class="active">
+            المزاد
+        </a>
+
+        <a href="index.html#about">
+            من نحن
+        </a>
+
+        <a href="index.html#services">
+            خدماتنا
+        </a>
+
+        <a href="index.html#contact">
+            اتصل بنا
+        </a>
+
+    </nav>
+
+
+    <div class="header-actions">
+
+        <a
+            href="admin.html"
+            class="admin-link"
+        >
+            لوحة الإدارة
+        </a>
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<section class="auction-page-hero">
+
+    <div class="auction-page-hero-overlay"></div>
+
+    <div class="auction-page-hero-content">
+
+        <span class="section-kicker">
+            سيارات البيع المباشر
+        </span>
+
+        <h1>
+            سيارات المزاد
+        </h1>
+
+        <p>
+            سيارات مختارة من المزادات الأمريكية
+            مع معلومات البيع المباشر والسعر والموعد.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="auction-page-section">
+
+    <div class="auction-page-header">
+
+        <div>
+
+            <span class="section-kicker">
+                أحدث النتائج
+            </span>
+
+            <h2>
+                السيارات المتوفرة في المزاد
+            </h2>
+
+        </div>
+
+
+        <div class="auction-count-box">
+
+            <strong id="auctionCarsCount">
+                0
+            </strong>
+
+            <span>
+                سيارة
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="auction-filters">
+
+        <input
+            type="text"
+            id="auctionSearchInput"
+            placeholder="ابحث باسم السيارة أو الماركة..."
+        >
+
+
+        <select id="auctionHouseFilter">
+
+            <option value="">
+                جميع المزادات
+            </option>
+
+            <option value="IAA">
+                IAA
+            </option>
+
+            <option value="Copart">
+                Copart
+            </option>
+
+        </select>
+
+
+        <select id="auctionYearFilter">
+
+            <option value="">
+                جميع السنوات
+            </option>
+
+            <option value="2026">
+                2026
+            </option>
+
+            <option value="2025">
+                2025
+            </option>
+
+            <option value="2024">
+                2024
+            </option>
+
+            <option value="2023">
+                2023
+            </option>
+
+        </select>
+
+
+        <button
+            type="button"
+            id="auctionSearchButton"
+        >
+            بحث
+        </button>
+
+    </div>
+
+
+    <div
+        id="auctionCarsContainer"
+        class="auction-cars-grid"
+    >
+        جاري تحميل سيارات المزاد...
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer class="modern-footer">
+
+    <div class="footer-top">
+
+        <a
+            href="index.html"
+            class="brand footer-brand"
+        >
+
+            <span class="brand-mark">
+                R
+            </span>
+
+            <div>
+                <strong>
+                    رؤية النخبة
+                </strong>
+
+                <small>
+                    للسيارات
+                </small>
+            </div>
+
+        </a>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a href="auction.html">
+                المزاد
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 شركة رؤية النخبة للسيارات
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+<script src="auction.js"></script>
+
+</body>
+
+</html>
