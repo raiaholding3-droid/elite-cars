@@ -595,7 +595,6 @@ async function runRuleNow(id) {
         alert(message);
 
 
-        // تحديث المهام بعد التشغيل
         await loadAuctionRules();
 
     }
@@ -642,4 +641,3 @@ if (document.readyState === "loading") {
     loadAuctionRules();
 
 }
-
