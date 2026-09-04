@@ -85,9 +85,9 @@ export async function onRequestPost(context) {
                     (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 `)
                 .bind(
-                    data.name,
-                    "bid.cars",
-                    data.brand,
+    data.name,
+    "apibara",
+    data.brand,
                     data.model || null,
                     data.year_from || null,
                     data.year_to || null,
