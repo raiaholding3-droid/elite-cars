@@ -150,8 +150,7 @@ export async function onRequestPost(context) {
                     success: false,
 
                     message:
-                        "Bid.Cars أعاد حالة HTTP غير ناجحة",
-
+    `Bid.Cars أعاد HTTP ${bidResponse.status} ${bidResponse.statusText}`,
                     bid_status:
                         bidResponse.status,
 
