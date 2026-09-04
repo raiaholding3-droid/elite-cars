@@ -3352,3 +3352,96 @@ body {
     }
 
 }
+.auction-rules-page {
+    min-height: 100vh;
+    padding: 130px 6% 90px;
+    background: #f4f5f7;
+}
+
+.auction-rules-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.auction-rules-heading h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.auction-rule-form-section {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+}
+
+.auction-rules-container {
+    display: grid;
+    gap: 18px;
+}
+
+.auction-rule-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.auction-rule-main h3 {
+    margin: 0 0 10px;
+}
+
+.auction-rule-main p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.auction-rule-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 130px;
+}
+
+.auction-rule-actions button {
+    border: none;
+    border-radius: 9px;
+    padding: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+}
+
+.auction-rule-actions button:first-child {
+    background: #111820;
+    color: white;
+}
+
+.auction-rule-actions button:last-child {
+    background: #f4dddd;
+    color: #a52020;
+}
+
+@media (max-width: 700px) {
+
+    .auction-rules-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .auction-rule-card {
+        flex-direction: column;
+    }
+
+    .auction-rule-actions {
+        flex-direction: row;
+    }
+
+}
