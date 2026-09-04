@@ -1405,14 +1405,14 @@ if (adminSearchInput) {
 
 
 // =====================================
-// حذف سيارة
+// حذف السيارة من D1 و R2
 // =====================================
 
-function deleteCar(carId) {
+async function deleteCar(carId) {
 
     const confirmed =
         confirm(
-            "هل أنت متأكد من حذف هذه السيارة؟"
+            "هل أنت متأكد من حذف هذه السيارة نهائيًا؟\n\nسيتم حذف بيانات السيارة وصورها."
         );
 
 
@@ -1421,40 +1421,70 @@ function deleteCar(carId) {
     }
 
 
-    let savedCars =
-        getSavedCars();
+    try {
+
+        const response =
+            await fetch(
+                `/api/cars?id=${encodeURIComponent(carId)}`,
+                {
+                    method: "DELETE"
+                }
+            );
 
 
-    savedCars =
-        savedCars.filter(
-            function(car) {
+        const result =
+            await response.json();
 
-                return car.id !== carId;
 
-            }
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "لم يتم حذف السيارة"
+            );
+
+        }
+
+
+        alert(
+            "تم حذف السيارة بنجاح 🗑️"
         );
 
 
-    localStorage.setItem(
-        "eliteCars",
-        JSON.stringify(
-            savedCars
-        )
-    );
+        // إعادة جلب السيارات من السيرفر
+
+        allOnlineCars =
+            await getAllCars();
 
 
-    alert(
-        "تم حذف السيارة بنجاح 🗑️"
-    );
+        // تحديث لوحة الإدارة
+
+        displayAdminCars(
+            allOnlineCars
+        );
 
 
-    displayAdminCars(
-        getAllCars()
-    );
-    updateAdminStats();
+        // تحديث الإحصائيات
+
+        updateOnlineCarCounts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "حدث خطأ أثناء حذف السيارة:\n" +
+            error.message
+        );
+
+    }
 
 }
-
 
 // =====================================
 // تغيير حالة السيارة
