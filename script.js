@@ -592,6 +592,124 @@ async function loadCarDetails() {
             document.getElementById(
                 "carImage"
             );
+        let currentImageIndex = 0;
+
+
+const prevImageButton =
+    document.getElementById(
+        "prevImageButton"
+    );
+
+
+const nextImageButton =
+    document.getElementById(
+        "nextImageButton"
+    );
+
+
+function showCarImage(index) {
+
+    if (
+        !mainImage ||
+        carImages.length === 0
+    ) {
+        return;
+    }
+
+
+    // إذا تجاوزنا آخر صورة
+    if (index >= carImages.length) {
+        index = 0;
+    }
+
+
+    // إذا رجعنا قبل أول صورة
+    if (index < 0) {
+        index = carImages.length - 1;
+    }
+
+
+    currentImageIndex = index;
+
+
+    mainImage.src =
+        carImages[currentImageIndex];
+
+
+    // تحديث الصورة المصغرة النشطة
+
+    const thumbnails =
+        document.querySelectorAll(
+            ".car-thumbnail"
+        );
+
+
+    thumbnails.forEach(
+        function(thumbnail) {
+
+            thumbnail.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    if (thumbnails[currentImageIndex]) {
+
+        thumbnails[
+            currentImageIndex
+        ].classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+// =====================================
+// السهم الأيسر
+// =====================================
+
+if (prevImageButton) {
+
+    prevImageButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            showCarImage(
+                currentImageIndex - 1
+            );
+
+        }
+    );
+
+}
+
+
+// =====================================
+// السهم الأيمن
+// =====================================
+
+if (nextImageButton) {
+
+    nextImageButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            showCarImage(
+                currentImageIndex + 1
+            );
+
+        }
+    );
+
+}
 
 
         const thumbnails =
