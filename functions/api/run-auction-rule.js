@@ -2,12 +2,13 @@ export async function onRequestPost(context) {
 
     try {
 
-        const body =
-            await context.request.json();
+        // =========================================
+        // قراءة رقم المهمة
+        // =========================================
 
-        const ruleId =
-            Number(body.rule_id);
+        const body = await context.request.json();
 
+        const ruleId = Number(body.rule_id);
 
         if (!ruleId) {
 
@@ -22,19 +23,18 @@ export async function onRequestPost(context) {
         }
 
 
-        // =====================================
-        // جلب المهمة
-        // =====================================
+        // =========================================
+        // جلب المهمة من D1
+        // =========================================
 
-        const rule =
-            await context.env.DB
-                .prepare(`
-                    SELECT *
-                    FROM auction_watch_rules
-                    WHERE id = ?
-                `)
-                .bind(ruleId)
-                .first();
+        const rule = await context.env.DB
+            .prepare(`
+                SELECT *
+                FROM auction_watch_rules
+                WHERE id = ?
+            `)
+            .bind(ruleId)
+            .first();
 
 
         if (!rule) {
@@ -63,181 +63,138 @@ export async function onRequestPost(context) {
         }
 
 
-        // =====================================
-        // إنشاء عبارة البحث
-        // =====================================
+        // =========================================
+        // بناء رابط Bid.Cars الحقيقي
+        // =========================================
 
-        const searchText =
-            [
-                rule.brand,
-                rule.model
-            ]
-            .filter(Boolean)
-            .join(" ");
+        const url = new URL(
+            "https://bid.cars/app/search/request"
+        );
 
 
-        /*
-            نستخدم صفحة البحث كبداية.
-
-            ملاحظة:
-            Bid.Cars قد يغير طريقة تمرير الفلاتر،
-            لذلك importer منفصل عن بقية الموقع.
-        */
-
-      const searchUrl =
-    new URL(
-        "https://bid.cars/en/search/results"
-    );
+        url.searchParams.set(
+            "search-type",
+            "filters"
+        );
 
 
-searchUrl.searchParams.set(
-    "search-type",
-    "filters"
-);
+        url.searchParams.set(
+            "status",
+            rule.fast_buy_only
+                ? "Fast-buy"
+                : "All"
+        );
 
 
-searchUrl.searchParams.set(
-    "status",
-    rule.fast_buy_only
-        ? "Fast-buy"
-        : "All"
-);
+        url.searchParams.set(
+            "type",
+            "Automobile"
+        );
 
 
-searchUrl.searchParams.set(
-    "type",
-    "Automobile"
-);
+        url.searchParams.set(
+            "make",
+            rule.brand || "All"
+        );
 
 
-if (rule.brand) {
-
-    searchUrl.searchParams.set(
-        "make",
-        rule.brand
-    );
-
-}
+        url.searchParams.set(
+            "model",
+            rule.model || "All"
+        );
 
 
-if (rule.model) {
-
-    searchUrl.searchParams.set(
-        "model",
-        rule.model
-    );
-
-}
+        url.searchParams.set(
+            "year-from",
+            rule.year_from || "1900"
+        );
 
 
-if (rule.year_from) {
-
-    searchUrl.searchParams.set(
-        "year-from",
-        rule.year_from
-    );
-
-}
+        url.searchParams.set(
+            "year-to",
+            rule.year_to || "2027"
+        );
 
 
-if (rule.year_to) {
-
-    searchUrl.searchParams.set(
-        "year-to",
-        rule.year_to
-    );
-
-}
+        url.searchParams.set(
+            "auction-type",
+            rule.auction_house || "All"
+        );
 
 
-searchUrl.searchParams.set(
-    "auction-type",
-    rule.auction_house || "All"
-);
+        // =========================================
+        // الاتصال بـ Bid.Cars
+        // =========================================
 
-        const searchResponse =
-    await fetch(
-        searchUrl.toString()
-        {
-            method: "GET",
+        const bidResponse = await fetch(
+            url.toString(),
+            {
+                method: "GET",
 
-            headers: {
-                "Accept":
-                    "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-
-                "Accept-Language":
-                    "en-US,en;q=0.9",
-
-                "User-Agent":
-                    "Mozilla/5.0"
-            },
-
-            redirect: "follow"
-        }
-    );
+                headers: {
+                    "Accept": "application/json, text/plain, */*",
+                    "User-Agent": "Mozilla/5.0"
+                }
+            }
+        );
 
 
-        if (!searchResponse.ok) {
+        // =========================================
+        // فحص حالة الاتصال
+        // =========================================
 
-            throw new Error(
-                "تعذر الوصول إلى صفحة بحث Bid.Cars"
+        if (!bidResponse.ok) {
+
+            return Response.json(
+                {
+                    success: false,
+
+                    message:
+                        "Bid.Cars أعاد حالة HTTP غير ناجحة",
+
+                    bid_status:
+                        bidResponse.status,
+
+                    bid_status_text:
+                        bidResponse.statusText,
+
+                    request_url:
+                        url.toString()
+                },
+                {
+                    status: 502
+                }
             );
 
         }
 
 
-        const html =
-            await searchResponse.text();
+        // =========================================
+        // قراءة JSON
+        // =========================================
+
+        const bidData =
+            await bidResponse.json();
 
 
-        // =====================================
-        // استخراج روابط السيارات
-        // =====================================
-
-        const lotRegex =
-            /href=["'](\/en\/lot\/[^"'?#]+)["']/gi;
+        const cars =
+            Array.isArray(bidData.data)
+                ? bidData.data
+                : [];
 
 
-        const links =
-            new Set();
-
-
-        let match;
-
-
-        while (
-            (
-                match =
-                    lotRegex.exec(html)
-            ) !== null
-        ) {
-
-            links.add(
-                "https://bid.cars" +
-                match[1]
-            );
-
-        }
-
-
-        const lotLinks =
-            Array.from(links);
-
-
-        // =====================================
-        // نتيجة الاختبار
-        // =====================================
+        // =========================================
+        // تحديث وقت آخر تشغيل فقط
+        // لا نحفظ السيارات الآن
+        // =========================================
 
         await context.env.DB
             .prepare(`
                 UPDATE auction_watch_rules
 
                 SET
-                    last_run_at =
-                        CURRENT_TIMESTAMP,
-
-                    updated_at =
-                        CURRENT_TIMESTAMP
+                    last_run_at = CURRENT_TIMESTAMP,
+                    updated_at = CURRENT_TIMESTAMP
 
                 WHERE id = ?
             `)
@@ -245,28 +202,57 @@ searchUrl.searchParams.set(
             .run();
 
 
+        // =========================================
+        // إرسال نتيجة الاختبار
+        // =========================================
+
         return Response.json({
 
             success: true,
 
             message:
-                lotLinks.length > 0
-                    ? "تم العثور على روابط سيارات."
-                    : "تم الاتصال بـ Bid.Cars ولكن لم نجد روابط سيارات في HTML صفحة البحث.",
+                "تم الاتصال بـ Bid.Cars وقراءة JSON بنجاح",
 
             rule: {
                 id: rule.id,
                 name: rule.name,
                 brand: rule.brand,
                 model: rule.model,
-                search_text: searchText
+                year_from: rule.year_from,
+                year_to: rule.year_to
             },
 
-            found_links:
-                lotLinks.length,
+            request_url:
+                url.toString(),
 
-            sample_links:
-                lotLinks.slice(0, 5)
+            current_page:
+                bidData.current_page ?? null,
+
+            total:
+                bidData.total ?? null,
+
+            received_cars:
+                cars.length,
+
+            first_car:
+                cars.length > 0
+                    ? {
+                        name:
+                            cars[0].name_long ?? null,
+
+                        vin:
+                            cars[0].vin ?? null,
+
+                        lot:
+                            cars[0].lot ?? null,
+
+                        buy_now_price:
+                            cars[0].buy_now_price ?? null,
+
+                        prebid_price:
+                            cars[0].prebid_price ?? null
+                    }
+                    : null
 
         });
 
@@ -283,7 +269,7 @@ searchUrl.searchParams.set(
 
                 message:
                     error.message ||
-                    "حدث خطأ أثناء تشغيل مهمة المزاد"
+                    "حدث خطأ أثناء اختبار Bid.Cars"
             },
             {
                 status: 500
