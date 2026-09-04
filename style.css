@@ -3120,3 +3120,42 @@ body {
     border-radius: 12px;
     cursor: pointer;
 }
+.select-main-image-button {
+    position: absolute;
+
+    bottom: 8px;
+    right: 8px;
+    left: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px;
+
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.preview-image-box {
+    cursor: pointer;
+}
+
+
+.preview-image-box.selected-main-image {
+    outline: 4px solid #d8a94c;
+    outline-offset: 2px;
+}
+
+
+.preview-image-box.selected-main-image
+.select-main-image-button {
+    background: #d8a94c;
+    color: #111;
+}
