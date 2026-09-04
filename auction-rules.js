@@ -63,12 +63,27 @@ if (cancelRuleButton) {
 async function loadAuctionRules() {
 
     try {
+ if (auctionRulesContainer) {
+
+            auctionRulesContainer.innerHTML =
+                "جاري تحميل المهام...";
+
+        }
 
         const response =
             await fetch(
-                "/api/auction-rules"
-            );
+                "/api/auction-rules",
+                {
+                    method: "GET",
 
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    },
+
+                    cache: "no-store"
+                }
+            );
 
         const data =
             await response.json();
@@ -95,14 +110,23 @@ async function loadAuctionRules() {
 
     catch (error) {
 
-        auctionRulesContainer.textContent =
-            "حدث خطأ: " +
-            error.message;
+        console.error(
+            "خطأ تحميل المهام:",
+            error
+        );
+
+
+        if (auctionRulesContainer) {
+
+            auctionRulesContainer.innerHTML =
+                "حدث خطأ أثناء تحميل المهام: " +
+                error.message;
+
+        }
 
     }
 
 }
-
 
 // =====================================
 // عرض المهام
@@ -533,7 +557,26 @@ if (result.first_car) {
 alert(message);
 
 
-        await loadAuctionRules();
+    // =====================================
+// تحميل المهام عند فتح الصفحة
+// =====================================
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            loadAuctionRules();
+
+        }
+    );
+
+} else {
+
+    loadAuctionRules();
+
+}
 
     }
 
