@@ -538,61 +538,32 @@ async function runRuleNow(id) {
 
 
         let message =
-            "تم تشغيل المهمة ✅\n\n";
+    "تم تشغيل المهمة ✅\n\n";
+
+message +=
+    result.message + "\n\n";
+
+message +=
+    "السيارات المستلمة: " +
+    (result.received_cars ?? 0) +
+    "\n";
+
+message +=
+    "سيارات جديدة: " +
+    (result.inserted ?? 0) +
+    "\n";
+
+message +=
+    "سيارات تم تحديثها: " +
+    (result.updated ?? 0) +
+    "\n";
+
+message +=
+    "تم ربطها بالمهمة: " +
+    (result.matched ?? 0);
 
 
-        message +=
-            result.message + "\n\n";
-
-
-        message +=
-            "عدد السيارات المستلمة: " +
-            (result.received_cars ?? 0);
-
-
-        if (result.first_car) {
-
-            message +=
-                "\n\nأول سيارة:\n";
-
-
-            message +=
-                (
-                    result.first_car.title ||
-                    "-"
-                ) +
-                "\n";
-
-
-            message +=
-                "Lot: " +
-                (
-                    result.first_car.lot_number ||
-                    "-"
-                ) +
-                "\n";
-
-
-            message +=
-                "VIN: " +
-                (
-                    result.first_car.vin ||
-                    "-"
-                ) +
-                "\n";
-
-
-            message +=
-                "Buy Now: $" +
-                (
-                    result.first_car.buy_now ??
-                    "-"
-                );
-
-        }
-
-
-        alert(message);
+alert(message);
 
 
         await loadAuctionRules();
