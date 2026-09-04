@@ -18,6 +18,10 @@ export async function onRequestPost(context) {
             Number(
                 formData.get("imageOrder") || 0
             );
+        const isMain =
+    formData.get("isMain") === "1"
+        ? 1
+        : 0;
 
 
         if (!file) {
@@ -139,12 +143,6 @@ export async function onRequestPost(context) {
         // =====================================
         // تسجيل الصورة في D1
         // =====================================
-
-        const isMain =
-            imageOrder === 0
-                ? 1
-                : 0;
-
 
         await context.env.DB
             .prepare(`
