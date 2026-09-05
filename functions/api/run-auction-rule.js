@@ -543,7 +543,7 @@ catch (imageError) {
                 // =====================================
                 // تحديث السيارة الموجودة
                 // =====================================
-
+if (existingCar) {
                 await context.env.DB
                     .prepare(`
                         UPDATE auction_cars
