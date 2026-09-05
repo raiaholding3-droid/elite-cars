@@ -794,27 +794,32 @@ catch (imageError) {
             .run();
 
 
-        return Response.json({
+       return Response.json({
 
-            success: true,
+    success: true,
 
-            message:
-                "تم جلب وحفظ سيارات المزاد بنجاح",
+    message:
+        "تم جلب وحفظ سيارات المزاد بنجاح",
 
-            received_cars:
-                cars.length,
+    received_cars:
+        cars.length,
 
-            inserted:
-                inserted,
+    inserted:
+        inserted,
 
-            updated:
-                updated,
+    updated:
+        updated,
 
-            matched:
-                matched
-            media_test:
-                mediaTest
-        });
+    matched:
+        matched,
+
+    debug_version:
+        "media-test-1",
+
+    media_test:
+        mediaTest
+
+});
 
     }
 
