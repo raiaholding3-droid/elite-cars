@@ -1,4 +1,79 @@
 export async function onRequestPost(context) {
+    // =====================================
+// البحث عن روابط الصور داخل JSON
+// =====================================
+
+function findImageUrls(value, results = []) {
+
+    if (!value) {
+        return results;
+    }
+
+
+    if (typeof value === "string") {
+
+        const isUrl =
+            value.startsWith("http://") ||
+            value.startsWith("https://");
+
+
+        const looksLikeImage =
+            /\.(jpg|jpeg|png|webp)(\?|$)/i
+                .test(value);
+
+
+        if (
+            isUrl &&
+            looksLikeImage &&
+            !results.includes(value)
+        ) {
+
+            results.push(value);
+
+        }
+
+
+        return results;
+    }
+
+
+    if (Array.isArray(value)) {
+
+        value.forEach(
+            function(item) {
+
+                findImageUrls(
+                    item,
+                    results
+                );
+
+            }
+        );
+
+
+        return results;
+    }
+
+
+    if (typeof value === "object") {
+
+        Object.values(value)
+            .forEach(
+                function(item) {
+
+                    findImageUrls(
+                        item,
+                        results
+                    );
+
+                }
+            );
+
+    }
+
+
+    return results;
+}
 
     try {
 
@@ -189,7 +264,7 @@ export async function onRequestPost(context) {
         // نبدأ بـ 20 سيارة لكل مهمة
        url.searchParams.set(
     "per_page",
-    "5"
+    "2"
 );
 
         // =====================================
@@ -312,27 +387,37 @@ export async function onRequestPost(context) {
 
 let mainImage = null;
 
+let vehicleImages = [];
+
+
 try {
 
-    const vehicleIdentifier =
-        car.lot_number ||
-        car.vin;
+    const identifier =
+        car.vin ||
+        car.lot_number;
 
 
-    if (vehicleIdentifier) {
+    if (identifier) {
+
+        const detailsUrl =
+            "https://apibara.tech/api/v1/vehicle-auction/vehicles/" +
+            encodeURIComponent(identifier);
+
 
         const detailsResponse =
             await fetch(
-                `https://apibara.tech/api/v1/vehicle-auction/vehicles/${encodeURIComponent(vehicleIdentifier)}`,
+                detailsUrl,
                 {
                     method: "GET",
 
                     headers: {
+
                         "Accept":
                             "application/json",
 
                         "X-API-Key":
                             apiKey
+
                     }
                 }
             );
@@ -348,42 +433,38 @@ try {
                 detailsData.data || {};
 
 
-            // نحاول قراءة الصور من media
+            // البحث عن جميع روابط الصور
+            vehicleImages =
+                findImageUrls(
+                    detailsCar
+                );
+
+
             if (
-                detailsCar.media &&
-                Array.isArray(
-                    detailsCar.media.images
-                ) &&
-                detailsCar.media.images.length > 0
+                vehicleImages.length > 0
             ) {
 
                 mainImage =
-                    detailsCar.media.images[0];
+                    vehicleImages[0];
 
             }
 
-            else if (
-                detailsCar.media &&
-                Array.isArray(
-                    detailsCar.media.photos
-                ) &&
-                detailsCar.media.photos.length > 0
-            ) {
 
-                mainImage =
-                    detailsCar.media.photos[0];
+            console.log(
+                "صور السيارة:",
+                identifier,
+                vehicleImages
+            );
 
-            }
+        }
 
-            else if (
-                detailsCar.media &&
-                detailsCar.media.main_image
-            ) {
+        else {
 
-                mainImage =
-                    detailsCar.media.main_image;
-
-            }
+            console.error(
+                "فشل جلب تفاصيل السيارة:",
+                identifier,
+                detailsResponse.status
+            );
 
         }
 
@@ -394,69 +475,11 @@ try {
 catch (imageError) {
 
     console.error(
-        "تعذر جلب صورة السيارة:",
+        "خطأ جلب الصور:",
         imageError
     );
 
 }
-
-
-            const currentBid =
-                car.pricing
-                    ?.current_bid_usd ??
-                car.current_bid ??
-                null;
-
-
-            const buyNowPrice =
-                car.pricing
-                    ?.buy_now_usd ??
-                car.buy_now ??
-                null;
-
-
-            const odometer =
-                car.odometer?.mi ??
-                car.odometer ??
-                null;
-
-
-            const primaryDamage =
-                car.condition
-                    ?.primary_damage ??
-                car.primary_damage ??
-                null;
-
-
-            const secondaryDamage =
-                car.condition
-                    ?.secondary_damage ??
-                null;
-
-
-            const damage =
-                [
-                    primaryDamage,
-                    secondaryDamage
-                ]
-                .filter(Boolean)
-                .join(" / ") ||
-                null;
-
-
-            const sourceUrl =
-                car.url ||
-                car.source_url ||
-                null;
-
-
-            const auctionDate =
-                car.auction_date ||
-                car.sale_date ||
-                null;
-
-
-            if (existingCar) {
 
                 // =====================================
                 // تحديث السيارة الموجودة
