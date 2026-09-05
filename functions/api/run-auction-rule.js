@@ -316,7 +316,66 @@ function findImageUrls(value, results = []) {
             Array.isArray(data.data)
                 ? data.data
                 : [];
+// =====================================
+// اختبار media لأول سيارة فقط
+// =====================================
 
+let mediaTest = null;
+
+if (cars.length > 0) {
+
+    const firstCar = cars[0];
+
+    const identifier =
+        firstCar.vin ||
+        firstCar.lot_number;
+
+    if (identifier) {
+
+        const detailsResponse =
+            await fetch(
+                "https://apibara.tech/api/v1/vehicle-auction/vehicles/" +
+                encodeURIComponent(identifier),
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json",
+
+                        "X-API-Key":
+                            apiKey
+                    }
+                }
+            );
+
+
+        if (detailsResponse.ok) {
+
+            const detailsData =
+                await detailsResponse.json();
+
+            const detailsCar =
+                detailsData.data || {};
+
+            mediaTest =
+                detailsCar.media ?? null;
+
+        }
+
+        else {
+
+            mediaTest = {
+                error: true,
+                status:
+                    detailsResponse.status
+            };
+
+        }
+
+    }
+
+}
 
         let inserted = 0;
         let updated = 0;
@@ -753,7 +812,8 @@ catch (imageError) {
 
             matched:
                 matched
-
+            media_test:
+                mediaTest
         });
 
     }
