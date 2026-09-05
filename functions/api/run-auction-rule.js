@@ -187,11 +187,10 @@ export async function onRequestPost(context) {
 
 
         // نبدأ بـ 20 سيارة لكل مهمة
-        url.searchParams.set(
-            "per_page",
-            "20"
-        );
-
+       url.searchParams.set(
+    "per_page",
+    "5"
+);
 
         // =====================================
         // جلب السيارات من Apibara
@@ -307,13 +306,99 @@ export async function onRequestPost(context) {
                 .join(" ");
 
 
-            const mainImage =
-                car.images &&
-                Array.isArray(car.images) &&
-                car.images.length > 0
-                    ? car.images[0]
-                    : car.main_image ||
-                      null;
+// =====================================
+// جلب تفاصيل السيارة والصور
+// =====================================
+
+let mainImage = null;
+
+try {
+
+    const vehicleIdentifier =
+        car.lot_number ||
+        car.vin;
+
+
+    if (vehicleIdentifier) {
+
+        const detailsResponse =
+            await fetch(
+                `https://apibara.tech/api/v1/vehicle-auction/vehicles/${encodeURIComponent(vehicleIdentifier)}`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json",
+
+                        "X-API-Key":
+                            apiKey
+                    }
+                }
+            );
+
+
+        if (detailsResponse.ok) {
+
+            const detailsData =
+                await detailsResponse.json();
+
+
+            const detailsCar =
+                detailsData.data || {};
+
+
+            // نحاول قراءة الصور من media
+            if (
+                detailsCar.media &&
+                Array.isArray(
+                    detailsCar.media.images
+                ) &&
+                detailsCar.media.images.length > 0
+            ) {
+
+                mainImage =
+                    detailsCar.media.images[0];
+
+            }
+
+            else if (
+                detailsCar.media &&
+                Array.isArray(
+                    detailsCar.media.photos
+                ) &&
+                detailsCar.media.photos.length > 0
+            ) {
+
+                mainImage =
+                    detailsCar.media.photos[0];
+
+            }
+
+            else if (
+                detailsCar.media &&
+                detailsCar.media.main_image
+            ) {
+
+                mainImage =
+                    detailsCar.media.main_image;
+
+            }
+
+        }
+
+    }
+
+}
+
+catch (imageError) {
+
+    console.error(
+        "تعذر جلب صورة السيارة:",
+        imageError
+    );
+
+}
 
 
             const currentBid =
