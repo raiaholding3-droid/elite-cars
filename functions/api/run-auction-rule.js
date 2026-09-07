@@ -439,8 +439,56 @@ if (cars.length > 0) {
                 .filter(Boolean)
                 .join(" ");
 const odometer =
+    car.odometer?.mi ??
     car.odometer ??
     car.mileage ??
+    null;
+
+
+const currentBid =
+    car.pricing?.current_bid_usd ??
+    car.current_bid ??
+    null;
+
+
+const buyNowPrice =
+    car.pricing?.buy_now_usd ??
+    car.buy_now_price ??
+    car.buy_now ??
+    null;
+
+
+const primaryDamage =
+    car.condition?.primary_damage ??
+    car.primary_damage ??
+    null;
+
+
+const secondaryDamage =
+    car.condition?.secondary_damage ??
+    car.secondary_damage ??
+    null;
+
+
+const damage =
+    [
+        primaryDamage,
+        secondaryDamage
+    ]
+    .filter(Boolean)
+    .join(" / ") ||
+    null;
+
+
+const auctionDate =
+    car.auction_date ??
+    car.sale_date ??
+    null;
+
+
+const sourceUrl =
+    car.url ??
+    car.source_url ??
     null;
 
 // =====================================
