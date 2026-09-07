@@ -438,7 +438,10 @@ if (cars.length > 0) {
                 ]
                 .filter(Boolean)
                 .join(" ");
-
+const odometer =
+    car.odometer ??
+    car.mileage ??
+    null;
 
 // =====================================
 // جلب تفاصيل السيارة والصور
