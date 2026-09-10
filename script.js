@@ -1693,43 +1693,50 @@ let carToEdit = null;
 
 
 // =====================================
-// تحميل بيانات السيارة
+// تحميل بيانات السيارة من D1
 // =====================================
 
-if (
-    editCarId &&
-    document.getElementById("editCarForm")
-) {
+async function loadEditCarData() {
 
-    const savedCars =
-        getSavedCars();
-
-
-    carToEdit =
-        savedCars.find(
-            function(car) {
-
-                return car.id === editCarId;
-
-            }
-        );
-
-
-    if (!carToEdit) {
-
-        alert(
-            "السيارة غير موجودة"
-        );
-
-        window.location.href =
-            "admin.html";
-
+    if (
+        !editCarId ||
+        !document.getElementById("editCarForm")
+    ) {
+        return;
     }
 
-    else {
+
+    try {
+
+        const cars =
+            await getAllCars();
+
+
+        carToEdit =
+            cars.find(
+                function(car) {
+
+                    return String(car.id) ===
+                        String(editCarId);
+
+                }
+            );
+
+
+        if (!carToEdit) {
+
+            alert(
+                "السيارة غير موجودة"
+            );
+
+            window.location.href =
+                "admin.html";
+
+            return;
+        }
+
 
         // الاسم
-
         document.getElementById(
             "editCarName"
         ).value =
@@ -1737,7 +1744,6 @@ if (
 
 
         // الماركة
-
         document.getElementById(
             "editCarBrand"
         ).value =
@@ -1745,7 +1751,6 @@ if (
 
 
         // الموديل
-
         document.getElementById(
             "editCarModel"
         ).value =
@@ -1753,23 +1758,21 @@ if (
 
 
         // السنة
-
         document.getElementById(
             "editCarYear"
         ).value =
             carToEdit.year || "";
 
 
-        // النوع
-
+        // نوع الهيكل
         document.getElementById(
             "editCarType"
         ).value =
-            carToEdit.type || "SUV";
+            carToEdit.body_type ||
+            "SUV";
 
 
         // المحرك
-
         document.getElementById(
             "editCarEngine"
         ).value =
@@ -1777,7 +1780,6 @@ if (
 
 
         // ناقل الحركة
-
         document.getElementById(
             "editCarTransmission"
         ).value =
@@ -1785,7 +1787,6 @@ if (
 
 
         // السعر
-
         document.getElementById(
             "editCarPrice"
         ).value =
@@ -1793,7 +1794,6 @@ if (
 
 
         // الوصف
-
         document.getElementById(
             "editCarDescription"
         ).value =
@@ -1801,14 +1801,29 @@ if (
 
 
         // عرض الصور الحالية
-
         showCurrentEditImages();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "خطأ تحميل السيارة:",
+            error
+        );
+
+
+        alert(
+            "حدث خطأ أثناء تحميل بيانات السيارة"
+        );
 
     }
 
 }
 
 
+// تشغيل تحميل السيارة
+loadEditCarData();
 // =====================================
 // الصور الحالية
 // =====================================
