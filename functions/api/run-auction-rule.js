@@ -320,35 +320,6 @@ function findImageUrls(value, results = []) {
 // اختبار media لأول سيارة فقط
 // =====================================
 
-let mediaTest = null;
-
-if (cars.length > 0) {
-
-    const firstCar = cars[0];
-
-    const identifier =
-        firstCar.vin ||
-        firstCar.lot_number;
-
-    if (identifier) {
-
-        const detailsResponse =
-            await fetch(
-                "https://apibara.tech/api/v1/vehicle-auction/vehicles/" +
-                encodeURIComponent(identifier),
-                {
-                    method: "GET",
-
-                    headers: {
-                        "Accept":
-                            "application/json",
-
-                        "X-API-Key":
-                            apiKey
-                    }
-                }
-            );
-
 
         if (detailsResponse.ok) {
 
