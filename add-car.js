@@ -7,24 +7,20 @@ const onlineAddCarForm =
         "onlineAddCarForm"
     );
 
-
 const addCarMessage =
     document.getElementById(
         "addCarMessage"
     );
-
 
 const saveCarButton =
     document.getElementById(
         "saveCarButton"
     );
 
-
 const newCarImages =
     document.getElementById(
         "newCarImages"
     );
-
 
 const newCarImagesPreview =
     document.getElementById(
@@ -32,13 +28,17 @@ const newCarImagesPreview =
     );
 
 
+// ==========================================
+// الصور المختارة
+// ==========================================
+
 let selectedCarFiles = [];
 
 let selectedMainImageIndex = 0;
 
 
 // ==========================================
-// معاينة الصور
+// اختيار الصور
 // ==========================================
 
 if (newCarImages) {
@@ -47,15 +47,26 @@ if (newCarImages) {
         "change",
         function() {
 
-           selectedCarFiles =
-    Array.from(
-        newCarImages.files
+            selectedCarFiles =
+                Array.from(
+                    newCarImages.files
+                );
+
+            selectedMainImageIndex = 0;
+
+            showSelectedImages();
+
+        }
     );
 
-selectedMainImageIndex = 0;
+}
 
-showSelectedImages();
-           function showSelectedImages() {
+
+// ==========================================
+// عرض معاينة الصور
+// ==========================================
+
+function showSelectedImages() {
 
     if (!newCarImagesPreview) {
         return;
@@ -65,11 +76,22 @@ showSelectedImages();
     newCarImagesPreview.innerHTML = "";
 
 
+    if (
+        selectedCarFiles.length === 0
+    ) {
+
+        return;
+
+    }
+
+
     selectedCarFiles.forEach(
         function(file, index) {
 
             const imageUrl =
-                URL.createObjectURL(file);
+                URL.createObjectURL(
+                    file
+                );
 
 
             const box =
@@ -125,7 +147,6 @@ showSelectedImages();
                     selectedMainImageIndex =
                         index;
 
-
                     showSelectedImages();
 
                 }
@@ -133,72 +154,9 @@ showSelectedImages();
 
 
             newCarImagesPreview
-                .appendChild(box);
-
-        }
-    );
-
-}
-
-// ==========================================
-// عرض معاينة الصور
-// ==========================================
-
-function showSelectedImages() {
-
-    if (!newCarImagesPreview) {
-        return;
-    }
-
-
-    newCarImagesPreview.innerHTML = "";
-
-
-    selectedCarFiles.forEach(
-        function(file, index) {
-
-            const imageUrl =
-                URL.createObjectURL(file);
-
-
-            const box =
-                document.createElement(
-                    "div"
+                .appendChild(
+                    box
                 );
-
-
-            box.className =
-                "preview-image-box";
-
-
-            box.innerHTML = `
-
-                <img
-                    src="${imageUrl}"
-                    alt="صورة السيارة"
-                >
-
-                ${
-                    index === 0
-
-                    ? `
-                        <span class="main-image-label">
-                            ⭐ الصورة الرئيسية
-                        </span>
-                    `
-
-                    : `
-                        <span class="image-number">
-                            صورة ${index + 1}
-                        </span>
-                    `
-                }
-
-            `;
-
-
-            newCarImagesPreview
-                .appendChild(box);
 
         }
     );
@@ -219,9 +177,9 @@ if (onlineAddCarForm) {
             event.preventDefault();
 
 
-            // =================================
-            // التأكد من وجود صورة
-            // =================================
+            // ==================================
+            // التأكد من اختيار صورة
+            // ==================================
 
             if (
                 selectedCarFiles.length === 0
@@ -236,10 +194,19 @@ if (onlineAddCarForm) {
             }
 
 
-            saveCarButton.disabled = true;
+            // ==================================
+            // تعطيل الزر أثناء الحفظ
+            // ==================================
 
-            saveCarButton.textContent =
-                "جاري حفظ السيارة...";
+            if (saveCarButton) {
+
+                saveCarButton.disabled =
+                    true;
+
+                saveCarButton.textContent =
+                    "جاري حفظ السيارة...";
+
+            }
 
 
             if (addCarMessage) {
@@ -250,9 +217,9 @@ if (onlineAddCarForm) {
             }
 
 
-            // =================================
-            // بيانات السيارة
-            // =================================
+            // ==================================
+            // قراءة البيانات
+            // ==================================
 
             const carData = {
 
@@ -264,7 +231,6 @@ if (onlineAddCarForm) {
                         .value
                         .trim(),
 
-
                 brand:
                     document
                         .getElementById(
@@ -273,7 +239,6 @@ if (onlineAddCarForm) {
                         .value
                         .trim(),
 
-
                 model:
                     document
                         .getElementById(
@@ -281,7 +246,6 @@ if (onlineAddCarForm) {
                         )
                         .value
                         .trim(),
-
 
                 year:
                     Number(
@@ -292,7 +256,6 @@ if (onlineAddCarForm) {
                             .value
                     ),
 
-
                 vin:
                     document
                         .getElementById(
@@ -301,7 +264,6 @@ if (onlineAddCarForm) {
                         .value
                         .trim()
                         .toUpperCase(),
-
 
                 mileage:
                     document
@@ -320,7 +282,6 @@ if (onlineAddCarForm) {
 
                     : null,
 
-
                 color:
                     document
                         .getElementById(
@@ -329,7 +290,6 @@ if (onlineAddCarForm) {
                         .value
                         .trim(),
 
-
                 fuel_type:
                     document
                         .getElementById(
@@ -337,14 +297,12 @@ if (onlineAddCarForm) {
                         )
                         .value,
 
-
                 body_type:
                     document
                         .getElementById(
                             "newCarBodyType"
                         )
                         .value,
-
 
                 engine:
                     document
@@ -354,7 +312,6 @@ if (onlineAddCarForm) {
                         .value
                         .trim(),
 
-
                 transmission:
                     document
                         .getElementById(
@@ -362,7 +319,6 @@ if (onlineAddCarForm) {
                         )
                         .value
                         .trim(),
-
 
                 price:
                     Number(
@@ -373,14 +329,12 @@ if (onlineAddCarForm) {
                             .value
                     ),
 
-
                 status:
                     document
                         .getElementById(
                             "newCarStatus"
                         )
                         .value,
-
 
                 description:
                     document
@@ -390,17 +344,74 @@ if (onlineAddCarForm) {
                         .value
                         .trim(),
 
-
-                main_image: null
+                main_image:
+                    null
 
             };
 
 
+            // ==================================
+            // التحقق من البيانات الأساسية
+            // ==================================
+
+            if (
+                !carData.name ||
+                !carData.brand ||
+                !carData.model
+            ) {
+
+                alert(
+                    "يرجى إدخال اسم السيارة والماركة والموديل"
+                );
+
+                resetSaveButton();
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(
+                    carData.year
+                ) ||
+                carData.year <= 0
+            ) {
+
+                alert(
+                    "يرجى إدخال سنة صحيحة"
+                );
+
+                resetSaveButton();
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(
+                    carData.price
+                ) ||
+                carData.price < 0
+            ) {
+
+                alert(
+                    "يرجى إدخال سعر صحيح"
+                );
+
+                resetSaveButton();
+
+                return;
+
+            }
+
+
             try {
 
-                // =================================
-                // 1- إنشاء السيارة في D1
-                // =================================
+                // ==================================
+                // 1- حفظ السيارة في D1
+                // ==================================
 
                 const carResponse =
                     await fetch(
@@ -426,8 +437,23 @@ if (onlineAddCarForm) {
                     );
 
 
-                const carResult =
-                    await carResponse.json();
+                let carResult;
+
+
+                try {
+
+                    carResult =
+                        await carResponse.json();
+
+                }
+
+                catch (jsonError) {
+
+                    throw new Error(
+                        "رد الخادم غير صالح أثناء حفظ السيارة"
+                    );
+
+                }
 
 
                 if (
@@ -437,7 +463,7 @@ if (onlineAddCarForm) {
 
                     throw new Error(
                         carResult.message ||
-                        "فشل حفظ السيارة"
+                        "فشل حفظ السيارة في قاعدة البيانات"
                     );
 
                 }
@@ -450,19 +476,20 @@ if (onlineAddCarForm) {
                 if (!carId) {
 
                     throw new Error(
-                        "لم يتم الحصول على رقم السيارة"
+                        "تم حفظ الطلب ولكن لم يتم الحصول على رقم السيارة"
                     );
 
                 }
 
 
-                // =================================
-                // 2- رفع الصور
-                // =================================
+                // ==================================
+                // 2- رفع الصور إلى R2
+                // ==================================
 
                 for (
                     let i = 0;
-                    i < selectedCarFiles.length;
+                    i <
+                    selectedCarFiles.length;
                     i++
                 ) {
 
@@ -482,12 +509,16 @@ if (onlineAddCarForm) {
                     }
 
 
-                    saveCarButton.textContent =
-                        `رفع الصور ${
-                            i + 1
-                        } / ${
-                            selectedCarFiles.length
-                        }`;
+                    if (saveCarButton) {
+
+                        saveCarButton.textContent =
+                            `رفع الصور ${
+                                i + 1
+                            } / ${
+                                selectedCarFiles.length
+                            }`;
+
+                    }
 
 
                     const formData =
@@ -502,20 +533,30 @@ if (onlineAddCarForm) {
 
                     formData.append(
                         "carId",
-                        carId
+                        String(
+                            carId
+                        )
                     );
 
 
                     formData.append(
                         "imageOrder",
-                        i
+                        String(
+                            i
+                        )
                     );
-formData.append(
-    "isMain",
-    i === selectedMainImageIndex
-        ? "1"
-        : "0"
-);
+
+
+                    formData.append(
+                        "isMain",
+                        i ===
+                        selectedMainImageIndex
+
+                        ? "1"
+
+                        : "0"
+                    );
+
 
                     const uploadResponse =
                         await fetch(
@@ -532,8 +573,25 @@ formData.append(
                         );
 
 
-                    const uploadResult =
-                        await uploadResponse.json();
+                    let uploadResult;
+
+
+                    try {
+
+                        uploadResult =
+                            await uploadResponse.json();
+
+                    }
+
+                    catch (jsonError) {
+
+                        throw new Error(
+                            `رد الخادم غير صالح أثناء رفع الصورة ${
+                                i + 1
+                            }`
+                        );
+
+                    }
 
 
                     if (
@@ -553,9 +611,9 @@ formData.append(
                 }
 
 
-                // =================================
-                // نجاح العملية كاملة
-                // =================================
+                // ==================================
+                // نجاح العملية
+                // ==================================
 
                 if (addCarMessage) {
 
@@ -565,8 +623,12 @@ formData.append(
                 }
 
 
-                saveCarButton.textContent =
-                    "تم الحفظ ✅";
+                if (saveCarButton) {
+
+                    saveCarButton.textContent =
+                        "تم الحفظ ✅";
+
+                }
 
 
                 onlineAddCarForm.reset();
@@ -574,8 +636,12 @@ formData.append(
 
                 selectedCarFiles = [];
 
+                selectedMainImageIndex = 0;
 
-                if (newCarImagesPreview) {
+
+                if (
+                    newCarImagesPreview
+                ) {
 
                     newCarImagesPreview.innerHTML =
                         "";
@@ -590,14 +656,17 @@ formData.append(
                             "cars.html";
 
                     },
-                    1500
+                    1200
                 );
 
             }
 
             catch (error) {
 
-                console.error(error);
+                console.error(
+                    "خطأ إضافة السيارة:",
+                    error
+                );
 
 
                 if (addCarMessage) {
@@ -614,27 +683,33 @@ formData.append(
                     error.message
                 );
 
-            }
 
-            finally {
-
-                saveCarButton.disabled =
-                    false;
-
-
-                if (
-                    saveCarButton.textContent !==
-                    "تم الحفظ ✅"
-                ) {
-
-                    saveCarButton.textContent =
-                        "حفظ السيارة";
-
-                }
+                resetSaveButton();
 
             }
 
         }
     );
+
+}
+
+
+// ==========================================
+// إعادة زر الحفظ إلى حالته الطبيعية
+// ==========================================
+
+function resetSaveButton() {
+
+    if (!saveCarButton) {
+        return;
+    }
+
+
+    saveCarButton.disabled =
+        false;
+
+
+    saveCarButton.textContent =
+        "حفظ السيارة";
 
 }
