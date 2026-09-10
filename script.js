@@ -1486,44 +1486,16 @@ async function deleteCar(carId) {
 
 }
 
+
 // =====================================
 // تغيير حالة السيارة في D1
 // =====================================
 
 async function changeCarStatus(carId) {
 
-    const car =
-        allOnlineCars.find(
-            function(car) {
-
-                return String(car.id) ===
-                    String(carId);
-
-            }
-        );
-
-
-    if (!car) {
-
-        alert(
-            "السيارة غير موجودة"
-        );
-
-        return;
-
-    }
-
-
-    const currentStatus =
-        car.status || "متوفرة";
-
-
     const newStatus =
         prompt(
-            "الحالة الحالية: " +
-            currentStatus +
-            "\n\n" +
-            "اكتب الحالة الجديدة:\n\n" +
+            "اكتب حالة السيارة الجديدة:\n\n" +
             "متوفرة\n" +
             "محجوزة\n" +
             "مباعة"
@@ -1531,9 +1503,7 @@ async function changeCarStatus(carId) {
 
 
     if (!newStatus) {
-
         return;
-
     }
 
 
@@ -1549,9 +1519,7 @@ async function changeCarStatus(carId) {
 
 
     if (
-        !allowedStatuses.includes(
-            status
-        )
+        !allowedStatuses.includes(status)
     ) {
 
         alert(
@@ -1563,21 +1531,6 @@ async function changeCarStatus(carId) {
         );
 
         return;
-
-    }
-
-
-    if (
-        status === currentStatus
-    ) {
-
-        alert(
-            "السيارة بالفعل حالتها: " +
-            currentStatus
-        );
-
-        return;
-
     }
 
 
@@ -1596,11 +1549,8 @@ async function changeCarStatus(carId) {
 
                     body:
                         JSON.stringify({
-                            id:
-                                Number(carId),
-
-                            status:
-                                status
+                            id: Number(carId),
+                            status: status
                         })
                 }
             );
@@ -1619,10 +1569,47 @@ async function changeCarStatus(carId) {
                 result.message ||
                 "فشل تغيير حالة السيارة"
             );
-
         }
 
 
+        // إعادة جلب السيارات من D1
+        allOnlineCars =
+            await getAllCars();
+
+
+        // تحديث لوحة الإدارة
+        displayAdminCars(
+            allOnlineCars
+        );
+
+
+        // تحديث الإحصائيات
+        updateOnlineCarCounts();
+
+
+        alert(
+            "تم تغيير حالة السيارة إلى: " +
+            status +
+            " ✅"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "خطأ تغيير الحالة:",
+            error
+        );
+
+
+        alert(
+            "حدث خطأ أثناء تغيير حالة السيارة:\n" +
+            error.message
+        );
+    }
+
+}
         // =====================================
         // تحديث البيانات من D1
         // =====================================
