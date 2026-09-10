@@ -1487,20 +1487,17 @@ async function deleteCar(carId) {
 }
 
 // =====================================
-// تغيير حالة السيارة
+// تغيير حالة السيارة في D1
 // =====================================
 
-function changeCarStatus(carId) {
-
-    let savedCars =
-        getSavedCars();
-
+async function changeCarStatus(carId) {
 
     const car =
-        savedCars.find(
+        allOnlineCars.find(
             function(car) {
 
-                return car.id === carId;
+                return String(car.id) ===
+                    String(carId);
 
             }
         );
@@ -1509,7 +1506,7 @@ function changeCarStatus(carId) {
     if (!car) {
 
         alert(
-            "هذه السيارة الأساسية لا يمكن تغيير حالتها حاليًا."
+            "السيارة غير موجودة"
         );
 
         return;
@@ -1517,9 +1514,16 @@ function changeCarStatus(carId) {
     }
 
 
+    const currentStatus =
+        car.status || "متوفرة";
+
+
     const newStatus =
         prompt(
-            "اكتب حالة السيارة:\n\n" +
+            "الحالة الحالية: " +
+            currentStatus +
+            "\n\n" +
+            "اكتب الحالة الجديدة:\n\n" +
             "متوفرة\n" +
             "محجوزة\n" +
             "مباعة"
@@ -1527,7 +1531,9 @@ function changeCarStatus(carId) {
 
 
     if (!newStatus) {
+
         return;
+
     }
 
 
@@ -1550,7 +1556,7 @@ function changeCarStatus(carId) {
 
         alert(
             "الحالة غير صحيحة.\n\n" +
-            "استخدم:\n" +
+            "استخدم فقط:\n" +
             "متوفرة\n" +
             "محجوزة\n" +
             "مباعة"
@@ -1561,27 +1567,108 @@ function changeCarStatus(carId) {
     }
 
 
-    car.status =
-        status;
+    if (
+        status === currentStatus
+    ) {
+
+        alert(
+            "السيارة بالفعل حالتها: " +
+            currentStatus
+        );
+
+        return;
+
+    }
 
 
-    localStorage.setItem(
-        "eliteCars",
-        JSON.stringify(
-            savedCars
-        )
-    );
+    try {
+
+        const response =
+            await fetch(
+                "/api/cars",
+                {
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            id:
+                                Number(carId),
+
+                            status:
+                                status
+                        })
+                }
+            );
 
 
-    alert(
-        "تم تغيير حالة السيارة بنجاح"
-    );
+        const result =
+            await response.json();
 
 
-    displayAdminCars(
-        getAllCars()
-    );
-    updateAdminStats();
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "فشل تغيير حالة السيارة"
+            );
+
+        }
+
+
+        // =====================================
+        // تحديث البيانات من D1
+        // =====================================
+
+        allOnlineCars =
+            await getAllCars();
+
+
+        // =====================================
+        // تحديث السيارات في لوحة الإدارة
+        // =====================================
+
+        displayAdminCars(
+            allOnlineCars
+        );
+
+
+        // =====================================
+        // تحديث الإحصائيات
+        // =====================================
+
+        updateOnlineCarCounts();
+
+
+        alert(
+            "تم تغيير حالة السيارة إلى: " +
+            status +
+            " ✅"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "خطأ تغيير الحالة:",
+            error
+        );
+
+
+        alert(
+            "حدث خطأ أثناء تغيير حالة السيارة:\n" +
+            error.message
+        );
+
+    }
 
 }
 // =====================================
