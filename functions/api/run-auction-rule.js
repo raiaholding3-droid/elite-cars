@@ -1,79 +1,4 @@
 export async function onRequestPost(context) {
-// =====================================
-// البحث عن روابط الصور داخل JSON
-// =====================================
-
-function findImageUrls(value, results = []) {
-
-    if (!value) {
-        return results;
-    }
-
-
-    if (typeof value === "string") {
-
-        const isUrl =
-            value.startsWith("http://") ||
-            value.startsWith("https://");
-
-
-        const looksLikeImage =
-            /\.(jpg|jpeg|png|webp)(\?|$)/i
-                .test(value);
-
-
-        if (
-            isUrl &&
-            looksLikeImage &&
-            !results.includes(value)
-        ) {
-
-            results.push(value);
-
-        }
-
-
-        return results;
-    }
-
-
-    if (Array.isArray(value)) {
-
-        value.forEach(
-            function(item) {
-
-                findImageUrls(
-                    item,
-                    results
-                );
-
-            }
-        );
-
-
-        return results;
-    }
-
-
-    if (typeof value === "object") {
-
-        Object.values(value)
-            .forEach(
-                function(item) {
-
-                    findImageUrls(
-                        item,
-                        results
-                    );
-
-                }
-            );
-
-    }
-
-
-    return results;
-}
 
     try {
 
@@ -91,14 +16,16 @@ function findImageUrls(value, results = []) {
                     success: false,
                     message: "رقم المهمة غير صحيح"
                 },
-                { status: 400 }
+                {
+                    status: 400
+                }
             );
 
         }
 
 
         // =====================================
-        // جلب المهمة
+        // جلب المهمة من D1
         // =====================================
 
         const rule =
@@ -119,7 +46,9 @@ function findImageUrls(value, results = []) {
                     success: false,
                     message: "المهمة غير موجودة"
                 },
-                { status: 404 }
+                {
+                    status: 404
+                }
             );
 
         }
@@ -132,11 +61,17 @@ function findImageUrls(value, results = []) {
                     success: false,
                     message: "المهمة متوقفة"
                 },
-                { status: 400 }
+                {
+                    status: 400
+                }
             );
 
         }
 
+
+        // =====================================
+        // مفتاح Apibara
+        // =====================================
 
         const apiKey =
             context.env.APIBARA_API_KEY;
@@ -150,14 +85,16 @@ function findImageUrls(value, results = []) {
                     message:
                         "APIBARA_API_KEY غير موجود"
                 },
-                { status: 500 }
+                {
+                    status: 500
+                }
             );
 
         }
 
 
         // =====================================
-        // إنشاء رابط Apibara
+        // بناء رابط البحث
         // =====================================
 
         const url =
@@ -261,14 +198,16 @@ function findImageUrls(value, results = []) {
         }
 
 
-        // نبدأ بـ 20 سيارة لكل مهمة
-       url.searchParams.set(
-    "per_page",
-    "2"
-);
+        // مؤقتًا سيارتان فقط
+        // لتقليل استهلاك API
+        url.searchParams.set(
+            "per_page",
+            "2"
+        );
+
 
         // =====================================
-        // جلب السيارات من Apibara
+        // طلب واحد فقط من Apibara
         // =====================================
 
         const response =
@@ -278,18 +217,36 @@ function findImageUrls(value, results = []) {
                     method: "GET",
 
                     headers: {
+
                         "Accept":
                             "application/json",
 
                         "X-API-Key":
                             apiKey
+
                     }
+
                 }
             );
 
 
-        const data =
-            await response.json();
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+
+        catch {
+
+            throw new Error(
+                `استجابة Apibara ليست JSON - HTTP ${response.status}`
+            );
+
+        }
 
 
         if (!response.ok) {
@@ -316,37 +273,7 @@ function findImageUrls(value, results = []) {
             Array.isArray(data.data)
                 ? data.data
                 : [];
-// =====================================
-// اختبار media لأول سيارة فقط
-// =====================================
 
-
-        if (detailsResponse.ok) {
-
-            const detailsData =
-                await detailsResponse.json();
-
-            const detailsCar =
-                detailsData.data || {};
-
-            mediaTest =
-                detailsCar.media ?? null;
-
-        }
-
-        else {
-
-            mediaTest = {
-                error: true,
-                status:
-                    detailsResponse.status
-            };
-
-        }
-
-    }
-
-}
 
         let inserted = 0;
         let updated = 0;
@@ -354,7 +281,7 @@ function findImageUrls(value, results = []) {
 
 
         // =====================================
-        // حفظ السيارات
+        // حفظ / تحديث السيارات
         // =====================================
 
         for (const car of cars) {
@@ -366,13 +293,16 @@ function findImageUrls(value, results = []) {
 
             const lotNumber =
                 car.lot_number
-                    ? String(car.lot_number)
+                    ? String(
+                        car.lot_number
+                    )
                     : null;
 
 
-            // بدون Lot لا نحفظ
             if (!lotNumber) {
+
                 continue;
+
             }
 
 
@@ -387,7 +317,9 @@ function findImageUrls(value, results = []) {
             const existingCar =
                 await context.env.DB
                     .prepare(`
-                        SELECT id
+                        SELECT
+                            id,
+                            main_image
                         FROM auction_cars
                         WHERE
                             auction_house = ?
@@ -409,163 +341,81 @@ function findImageUrls(value, results = []) {
                 ]
                 .filter(Boolean)
                 .join(" ");
-const odometer =
-    car.odometer?.mi ??
-    car.odometer ??
-    car.mileage ??
-    null;
 
 
-const currentBid =
-    car.pricing?.current_bid_usd ??
-    car.current_bid ??
-    null;
+            const odometer =
+                car.odometer?.mi ??
+                car.odometer ??
+                car.mileage ??
+                null;
 
 
-const buyNowPrice =
-    car.pricing?.buy_now_usd ??
-    car.buy_now_price ??
-    car.buy_now ??
-    null;
+            const currentBid =
+                car.pricing?.current_bid_usd ??
+                car.current_bid ??
+                null;
 
 
-const primaryDamage =
-    car.condition?.primary_damage ??
-    car.primary_damage ??
-    null;
+            const buyNowPrice =
+                car.pricing?.buy_now_usd ??
+                car.buy_now_price ??
+                car.buy_now ??
+                null;
 
 
-const secondaryDamage =
-    car.condition?.secondary_damage ??
-    car.secondary_damage ??
-    null;
+            const primaryDamage =
+                car.condition?.primary_damage ??
+                car.primary_damage ??
+                null;
 
 
-const damage =
-    [
-        primaryDamage,
-        secondaryDamage
-    ]
-    .filter(Boolean)
-    .join(" / ") ||
-    null;
+            const secondaryDamage =
+                car.condition?.secondary_damage ??
+                car.secondary_damage ??
+                null;
 
 
-const auctionDate =
-    car.auction_date ??
-    car.sale_date ??
-    null;
+            const damage =
+                [
+                    primaryDamage,
+                    secondaryDamage
+                ]
+                .filter(Boolean)
+                .join(" / ") ||
+                null;
 
 
-const sourceUrl =
-    car.url ??
-    car.source_url ??
-    null;
-
-// =====================================
-// جلب تفاصيل السيارة والصور
-// =====================================
-
-let mainImage = null;
-
-let vehicleImages = [];
+            const auctionDate =
+                car.auction_date ??
+                car.sale_date ??
+                null;
 
 
-try {
-
-    const identifier =
-        car.vin ||
-        car.lot_number;
-
-
-    if (identifier) {
-
-        const detailsUrl =
-            "https://apibara.tech/api/v1/vehicle-auction/vehicles/" +
-            encodeURIComponent(identifier);
+            const sourceUrl =
+                car.url ??
+                car.source_url ??
+                null;
 
 
-        const detailsResponse =
-            await fetch(
-                detailsUrl,
-                {
-                    method: "GET",
+            // =====================================
+            // الصور
+            // =====================================
+            // حاليًا لا نرسل طلب إضافي للصور
+            // حتى لا نستهلك حصة Apibara.
+            // إذا كانت السيارة لديها صورة محفوظة
+            // سابقًا نحافظ عليها.
 
-                    headers: {
-
-                        "Accept":
-                            "application/json",
-
-                        "X-API-Key":
-                            apiKey
-
-                    }
-                }
-            );
+            const mainImage =
+                existingCar?.main_image ??
+                null;
 
 
-        if (detailsResponse.ok) {
+            // =====================================
+            // تحديث سيارة موجودة
+            // =====================================
 
-            const detailsData =
-                await detailsResponse.json();
+            if (existingCar) {
 
-
-            const detailsCar =
-                detailsData.data || {};
-
-
-            // البحث عن جميع روابط الصور
-            vehicleImages =
-                findImageUrls(
-                    detailsCar
-                );
-
-
-            if (
-                vehicleImages.length > 0
-            ) {
-
-                mainImage =
-                    vehicleImages[0];
-
-            }
-
-
-            console.log(
-                "صور السيارة:",
-                identifier,
-                vehicleImages
-            );
-
-        }
-
-        else {
-
-            console.error(
-                "فشل جلب تفاصيل السيارة:",
-                identifier,
-                detailsResponse.status
-            );
-
-        }
-
-    }
-
-}
-
-catch (imageError) {
-
-    console.error(
-        "خطأ جلب الصور:",
-        imageError
-    );
-
-}
-
-                // =====================================
-                // تحديث السيارة الموجودة
-                // =====================================
-if (existingCar) {
                 await context.env.DB
                     .prepare(`
                         UPDATE auction_cars
@@ -593,8 +443,10 @@ if (existingCar) {
                             source_url = ?,
                             main_image = ?,
                             status = 'active',
-                            last_seen_at = CURRENT_TIMESTAMP,
-                            updated_at = CURRENT_TIMESTAMP
+                            last_seen_at =
+                                CURRENT_TIMESTAMP,
+                            updated_at =
+                                CURRENT_TIMESTAMP
 
                         WHERE id = ?
                     `)
@@ -602,7 +454,8 @@ if (existingCar) {
                         "apibara",
                         car.id || null,
                         car.vin || null,
-                        title || "Auction Vehicle",
+                        title ||
+                            "Auction Vehicle",
                         car.make || null,
                         car.model || null,
                         car.trim || null,
@@ -614,8 +467,10 @@ if (existingCar) {
                         car.engine ||
                             car.engine_description ||
                             null,
-                        car.transmission || null,
-                        car.drivetrain || null,
+                        car.transmission ||
+                            null,
+                        car.drivetrain ||
+                            null,
                         damage,
                         currentBid,
                         buyNowPrice,
@@ -629,13 +484,35 @@ if (existingCar) {
 
                 updated++;
 
+
+                await context.env.DB
+                    .prepare(`
+                        INSERT OR IGNORE INTO
+                        auction_car_matches
+                        (
+                            car_id,
+                            rule_id
+                        )
+
+                        VALUES (?, ?)
+                    `)
+                    .bind(
+                        existingCar.id,
+                        ruleId
+                    )
+                    .run();
+
+
+                matched++;
+
             }
 
-            else {
 
-                // =====================================
-                // إضافة سيارة جديدة
-                // =====================================
+            // =====================================
+            // إضافة سيارة جديدة
+            // =====================================
+
+            else {
 
                 const insertResult =
                     await context.env.DB
@@ -689,7 +566,8 @@ if (existingCar) {
                             auctionHouse,
                             lotNumber,
                             car.vin || null,
-                            title || "Auction Vehicle",
+                            title ||
+                                "Auction Vehicle",
                             car.make || null,
                             car.model || null,
                             car.trim || null,
@@ -701,14 +579,16 @@ if (existingCar) {
                             car.engine ||
                                 car.engine_description ||
                                 null,
-                            car.transmission || null,
-                            car.drivetrain || null,
+                            car.transmission ||
+                                null,
+                            car.drivetrain ||
+                                null,
                             damage,
                             currentBid,
                             buyNowPrice,
                             auctionDate,
                             sourceUrl,
-                            mainImage
+                            null
                         )
                         .run();
 
@@ -720,10 +600,6 @@ if (existingCar) {
 
                 inserted++;
 
-
-                // =====================================
-                // ربط السيارة بالمهمة
-                // =====================================
 
                 await context.env.DB
                     .prepare(`
@@ -738,53 +614,6 @@ if (existingCar) {
                     `)
                     .bind(
                         newCarId,
-                        ruleId
-                    )
-                    .run();
-
-
-                matched++;
-
-                continue;
-
-            }
-
-
-            // =====================================
-            // ربط السيارة الموجودة بالمهمة
-            // =====================================
-
-            const savedCar =
-                await context.env.DB
-                    .prepare(`
-                        SELECT id
-                        FROM auction_cars
-                        WHERE
-                            auction_house = ?
-                            AND lot_number = ?
-                    `)
-                    .bind(
-                        auctionHouse,
-                        lotNumber
-                    )
-                    .first();
-
-
-            if (savedCar) {
-
-                await context.env.DB
-                    .prepare(`
-                        INSERT OR IGNORE INTO
-                        auction_car_matches
-                        (
-                            car_id,
-                            rule_id
-                        )
-
-                        VALUES (?, ?)
-                    `)
-                    .bind(
-                        savedCar.id,
                         ruleId
                     )
                     .run();
@@ -807,8 +636,10 @@ if (existingCar) {
 
                 SET
                     source_site = 'apibara',
-                    last_run_at = CURRENT_TIMESTAMP,
-                    updated_at = CURRENT_TIMESTAMP
+                    last_run_at =
+                        CURRENT_TIMESTAMP,
+                    updated_at =
+                        CURRENT_TIMESTAMP
 
                 WHERE id = ?
             `)
@@ -816,32 +647,29 @@ if (existingCar) {
             .run();
 
 
-       return Response.json({
+        return Response.json({
 
-    success: true,
+            success: true,
 
-    message:
-        "تم جلب وحفظ سيارات المزاد بنجاح",
+            message:
+                "تم جلب وحفظ سيارات المزاد بنجاح",
 
-    received_cars:
-        cars.length,
+            received_cars:
+                cars.length,
 
-    inserted:
-        inserted,
+            inserted:
+                inserted,
 
-    updated:
-        updated,
+            updated:
+                updated,
 
-    matched:
-        matched,
+            matched:
+                matched,
 
-    debug_version:
-        "media-test-1",
+            api_requests_used:
+                1
 
-    media_test:
-        mediaTest
-
-});
+        });
 
     }
 
