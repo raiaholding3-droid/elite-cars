@@ -515,6 +515,41 @@ async function loadCarDetails() {
             Number(
                 selectedCar.price || 0
             ).toLocaleString();
+        // =====================================
+// ملاحظة السعر للسيارات التي في الطريق
+// =====================================
+
+const portPriceNote =
+    document.getElementById(
+        "portPriceNote"
+    );
+
+if (portPriceNote) {
+
+    if (
+        selectedCar.status ===
+        "في الطريق"
+    ) {
+
+        portPriceNote.textContent =
+            "🚢 السعر المذكور إلى الميناء";
+
+        portPriceNote.style.display =
+            "block";
+
+    }
+
+    else {
+
+        portPriceNote.textContent =
+            "";
+
+        portPriceNote.style.display =
+            "none";
+
+    }
+
+}
 
 
         document.getElementById(
