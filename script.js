@@ -125,6 +125,10 @@ function getStatusClass(status) {
         return "status-reserved";
     }
 
+    if (status === "في الطريق") {
+        return "status-in-transit";
+    }
+
     return "status-available";
 
 }
@@ -217,13 +221,23 @@ function displayCars(carsToDisplay) {
                         ${car.status || "متوفرة"}
                     </p>
 
-                    <strong>
-                        $${Number(
-                            car.price || 0
-                        ).toLocaleString()}
-                    </strong>
+                   <strong>
+    $${Number(
+        car.price || 0
+    ).toLocaleString()}
+</strong>
 
-                    <button
+${
+    car.status === "في الطريق"
+    ? `
+        <p class="port-price-note">
+            🚢 السعر المذكور إلى الميناء
+        </p>
+    `
+    : ""
+}
+
+<button
                         onclick="
                             openCarDetails(
                                 '${car.id}'
@@ -1319,12 +1333,13 @@ async function deleteCar(carId) {
 async function changeCarStatus(carId) {
 
     const newStatus =
-        prompt(
-            "اكتب حالة السيارة الجديدة:\n\n" +
-            "متوفرة\n" +
-            "محجوزة\n" +
-            "مباعة"
-        );
+    prompt(
+        "اكتب حالة السيارة الجديدة:\n\n" +
+        "متوفرة\n" +
+        "في الطريق\n" +
+        "محجوزة\n" +
+        "مباعة"
+    );
 
 
     if (!newStatus) {
@@ -1337,10 +1352,11 @@ async function changeCarStatus(carId) {
 
 
     const allowedStatuses = [
-        "متوفرة",
-        "محجوزة",
-        "مباعة"
-    ];
+    "متوفرة",
+    "في الطريق",
+    "محجوزة",
+    "مباعة"
+];
 
 
     if (
@@ -1350,12 +1366,13 @@ async function changeCarStatus(carId) {
     ) {
 
         alert(
-            "الحالة غير صحيحة.\n\n" +
-            "استخدم فقط:\n" +
-            "متوفرة\n" +
-            "محجوزة\n" +
-            "مباعة"
-        );
+    "الحالة غير صحيحة.\n\n" +
+    "استخدم فقط:\n" +
+    "متوفرة\n" +
+    "في الطريق\n" +
+    "محجوزة\n" +
+    "مباعة"
+);
 
         return;
 
