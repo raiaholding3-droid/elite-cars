@@ -8054,3 +8054,1139 @@ textarea {
     }
 
 }
+/* =========================================================
+   صفحة خدماتنا - رؤية النخبة للسيارات
+========================================================= */
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.services-page-hero {
+    position: relative;
+
+    min-height: 470px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 90px 7%;
+
+    overflow: hidden;
+
+    color: #fff;
+
+    background:
+        url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1900&q=90")
+        center center / cover
+        no-repeat;
+}
+
+
+.services-page-hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 6, 8, 0.38),
+            rgba(5, 6, 8, 0.90)
+        );
+}
+
+
+.services-page-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+}
+
+
+.services-page-hero h1 {
+    margin: 10px 0 18px;
+
+    max-width: 800px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(44px, 6vw, 72px);
+
+    line-height: 1.18;
+}
+
+
+.services-page-hero-content > p {
+    max-width: 650px;
+
+    margin: 0 0 25px;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 16px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   مقدمة الخدمات
+========================================================= */
+
+.services-intro-section {
+    padding:
+        100px 7% 65px;
+
+    background: #fff;
+}
+
+
+.services-intro-inner {
+    max-width: 900px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+.services-intro-inner h2 {
+    margin: 8px 0 20px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(36px, 4.5vw, 54px);
+
+    line-height: 1.3;
+}
+
+
+.services-intro-inner p {
+    max-width: 760px;
+
+    margin: auto;
+
+    color: #6e7278;
+
+    font-size: 15px;
+
+    line-height: 2.1;
+}
+
+
+/* =========================================================
+   بطاقات الخدمات
+========================================================= */
+
+.services-detail-section {
+    padding:
+        45px 7% 115px;
+
+    background: #fff;
+}
+
+
+.services-detail-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.service-detail-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 320px;
+
+    padding: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    border:
+        1px solid
+        #e8e8e4;
+
+    border-radius: 22px;
+
+    background: #f8f8f6;
+
+    transition:
+        0.35s ease;
+}
+
+
+.service-detail-card:hover {
+    transform:
+        translateY(-6px);
+
+    background: #fff;
+
+    border-color:
+        rgba(216, 182, 92, 0.75);
+
+    box-shadow:
+        0 20px 55px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+.service-detail-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+
+    height: 210px;
+
+    border-radius: 50%;
+
+    left: -140px;
+
+    bottom: -140px;
+
+    background:
+        rgba(216, 182, 92, 0.07);
+}
+
+
+.service-detail-top {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+
+.service-detail-icon {
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 17px;
+
+    background:
+        #efe5c8;
+
+    font-size: 27px;
+}
+
+
+.service-detail-number {
+    color: #b6b6b1;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.service-detail-card h2 {
+    margin:
+        0 0 12px;
+
+    color: #191b20;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size: 26px;
+}
+
+
+.service-detail-card > p {
+    max-width: 520px;
+
+    margin:
+        0 0 25px;
+
+    color: #74787e;
+
+    font-size: 14px;
+
+    line-height: 2;
+}
+
+
+.service-detail-card > a {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color:
+        var(--elite-gold-dark);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition: 0.3s;
+}
+
+
+.service-detail-card > a:hover {
+    gap: 28px;
+
+    color: #17191d;
+}
+
+
+/* بطاقة CARFAX المميزة */
+
+.service-detail-featured {
+    background:
+        linear-gradient(
+            145deg,
+            #101217,
+            #1b1f26
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.07);
+
+    color: #fff;
+}
+
+
+.service-detail-featured:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #101217,
+            #1b1f26
+        );
+}
+
+
+.service-detail-featured h2 {
+    color: #fff;
+}
+
+
+.service-detail-featured > p {
+    color:
+        rgba(255, 255, 255, 0.60);
+}
+
+
+.service-detail-featured
+.service-detail-icon {
+    background:
+        rgba(216, 182, 92, 0.14);
+}
+
+
+.service-detail-featured
+.service-detail-number {
+    color:
+        rgba(255, 255, 255, 0.35);
+}
+
+
+.service-detail-featured > a {
+    color:
+        var(--elite-gold-light);
+}
+
+
+/* =========================================================
+   CARFAX
+========================================================= */
+
+.services-carfax-section {
+    padding:
+        115px 7%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a0b0e,
+            #171a20
+        );
+
+    color: #fff;
+}
+
+
+.services-carfax-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 0.85fr;
+
+    gap: 90px;
+
+    align-items: center;
+}
+
+
+.services-carfax-content h2 {
+    max-width: 650px;
+
+    margin:
+        9px 0 20px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(38px, 5vw, 58px);
+
+    line-height: 1.25;
+}
+
+
+.services-carfax-content > p {
+    max-width: 650px;
+
+    margin:
+        0 0 30px;
+
+    color:
+        rgba(255, 255, 255, 0.62);
+
+    line-height: 2;
+}
+
+
+.services-carfax-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 35px;
+}
+
+
+.services-carfax-list div {
+    min-height: 55px;
+
+    padding:
+        0 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+}
+
+
+.services-carfax-list div > span {
+    width: 27px;
+
+    height: 27px;
+
+    min-width: 27px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(216, 182, 92, 0.14);
+
+    color:
+        var(--elite-gold-light);
+
+    font-size: 11px;
+}
+
+
+.services-carfax-list strong {
+    color:
+        rgba(255, 255, 255, 0.85);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* البطاقة */
+
+.carfax-premium-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 35px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f1d57e,
+            #ae8027
+        );
+
+    color: #141518;
+
+    box-shadow:
+        0 35px 90px
+        rgba(0, 0, 0, 0.30);
+}
+
+
+.carfax-premium-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+
+    height: 320px;
+
+    border-radius: 50%;
+
+    left: -180px;
+
+    top: -190px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.40);
+}
+
+
+.carfax-premium-head {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-bottom: 25px;
+
+    margin-bottom: 25px;
+
+    border-bottom:
+        1px solid
+        rgba(0, 0, 0, 0.16);
+}
+
+
+.carfax-premium-head strong {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+.carfax-premium-head span {
+    font-size: 29px;
+
+    font-weight: 800;
+}
+
+
+.carfax-premium-vin {
+    padding: 21px;
+
+    margin-bottom: 23px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.25);
+}
+
+
+.carfax-premium-vin small {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.carfax-premium-vin b {
+    direction: ltr;
+
+    display: block;
+
+    text-align: left;
+
+    letter-spacing: 4px;
+
+    font-size: 16px;
+}
+
+
+.carfax-premium-data {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 9px;
+}
+
+
+.carfax-premium-data div {
+    min-height: 90px;
+
+    padding: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.20);
+}
+
+
+.carfax-premium-data span {
+    margin-bottom: 6px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    opacity: 0.65;
+}
+
+
+.carfax-premium-data strong {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   مراحل الخدمة
+========================================================= */
+
+.service-process-section {
+    padding:
+        110px 7%;
+
+    background: #f6f6f3;
+}
+
+
+.service-process-line {
+    position: relative;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+
+.service-process-line::before {
+    content: "";
+
+    position: absolute;
+
+    top: 58px;
+
+    right: 8%;
+
+    left: 8%;
+
+    height: 1px;
+
+    background:
+        #ddd8ca;
+}
+
+
+.service-process-line article {
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 270px;
+
+    padding:
+        25px 20px;
+
+    text-align: center;
+
+    border-radius: 17px;
+
+    background: #fff;
+
+    border:
+        1px solid
+        #e9e9e4;
+
+    transition: 0.3s;
+}
+
+
+.service-process-line article:hover {
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(216, 182, 92, 0.7);
+
+    box-shadow:
+        0 17px 45px
+        rgba(0, 0, 0, 0.07);
+}
+
+
+.service-process-number {
+    position: absolute;
+
+    left: 17px;
+
+    top: 14px;
+
+    color: #b4b4ae;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+
+.service-process-icon {
+    width: 65px;
+
+    height: 65px;
+
+    margin:
+        0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        #eee4c7;
+
+    font-size: 26px;
+
+    border:
+        8px solid
+        #f6f6f3;
+}
+
+
+.service-process-line h3 {
+    margin:
+        0 0 8px;
+
+    font-size: 17px;
+}
+
+
+.service-process-line p {
+    margin: 0;
+
+    color: #767a7f;
+
+    font-size: 12px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   CTA التواصل
+========================================================= */
+
+.service-contact-cta {
+    padding:
+        85px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 60px;
+
+    background: #fff;
+}
+
+
+.service-contact-cta-content {
+    max-width: 780px;
+}
+
+
+.service-contact-cta-content > span {
+    color:
+        var(--elite-gold-dark);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.service-contact-cta-content h2 {
+    margin:
+        8px 0 13px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(31px, 4vw, 47px);
+
+    line-height: 1.35;
+}
+
+
+.service-contact-cta-content p {
+    margin: 0;
+
+    color: #74787d;
+
+    line-height: 2;
+}
+
+
+.service-contact-actions {
+    min-width: 230px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.service-contact-actions
+.primary-button {
+    width: 100%;
+}
+
+
+.services-secondary-cta {
+    min-height: 52px;
+
+    padding:
+        0 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        #1b1d21;
+
+    color: #181a1e;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+
+.services-secondary-cta:hover {
+    background: #111318;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   Tablet
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .services-carfax-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+
+    .carfax-premium-card {
+        max-width: 650px;
+    }
+
+
+    .service-process-line {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .service-process-line::before {
+        display: none;
+    }
+
+
+    .service-contact-cta {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .service-contact-actions {
+        width: 100%;
+
+        min-width: 0;
+
+        flex-direction: row;
+    }
+
+
+    .service-contact-actions > a {
+        flex: 1;
+    }
+
+}
+
+
+/* =========================================================
+   الهاتف
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .services-page-hero {
+        min-height: 410px;
+
+        padding:
+            75px 18px;
+    }
+
+
+    .services-page-hero h1 {
+        font-size: 43px;
+    }
+
+
+    .services-page-hero-content > p {
+        font-size: 14px;
+    }
+
+
+    .services-intro-section {
+        padding:
+            75px 18px 45px;
+    }
+
+
+    .services-intro-inner h2 {
+        font-size: 36px;
+    }
+
+
+    .services-detail-section {
+        padding:
+            25px 18px 80px;
+    }
+
+
+    .services-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .service-detail-card {
+        min-height: auto;
+
+        padding: 26px 22px;
+    }
+
+
+    .service-detail-card h2 {
+        font-size: 23px;
+    }
+
+
+    .services-carfax-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .services-carfax-content h2 {
+        font-size: 38px;
+    }
+
+
+    .services-carfax-list {
+        grid-template-columns: 1fr;
+    }
+
+
+    .services-carfax-content
+    .primary-button {
+        width: 100%;
+    }
+
+
+    .carfax-premium-card {
+        padding:
+            25px 20px;
+    }
+
+
+    .carfax-premium-head span {
+        font-size: 24px;
+    }
+
+
+    .carfax-premium-vin b {
+        font-size: 12px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .service-process-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .service-process-line {
+        grid-template-columns: 1fr;
+    }
+
+
+    .service-process-line article {
+        min-height: auto;
+    }
+
+
+    .service-process-icon {
+        border:
+            none;
+    }
+
+
+    .service-contact-cta {
+        padding:
+            70px 18px;
+
+        gap: 30px;
+    }
+
+
+    .service-contact-cta-content h2 {
+        font-size: 35px;
+    }
+
+
+    .service-contact-actions {
+        flex-direction: column;
+    }
+
+
+    .service-contact-actions > a {
+        width: 100%;
+    }
+
+}
