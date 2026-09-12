@@ -1,9 +1,38 @@
+import {
+    requirePermission,
+    logAdminActivity
+} from "../_lib/admin-auth.js";
+
+
 export async function onRequestPost(context) {
 
     try {
 
+        // =====================================
+        // التحقق من صلاحية تشغيل مهمة المزاد
+        // =====================================
+
+        const permissionCheck =
+            await requirePermission(
+                context,
+                "auction_rules_run"
+            );
+
+
+        if (!permissionCheck.ok) {
+
+            return permissionCheck.response;
+
+        }
+
+
+        const adminAuth =
+            permissionCheck.auth;
+
+
         const body =
             await context.request.json();
+
 
         const ruleId =
             Number(body.rule_id);
@@ -200,6 +229,7 @@ export async function onRequestPost(context) {
 
         // مؤقتًا سيارتان فقط
         // لتقليل استهلاك API
+
         url.searchParams.set(
             "per_page",
             "2"
@@ -400,10 +430,6 @@ export async function onRequestPost(context) {
             // =====================================
             // الصور
             // =====================================
-            // حاليًا لا نرسل طلب إضافي للصور
-            // حتى لا نستهلك حصة Apibara.
-            // إذا كانت السيارة لديها صورة محفوظة
-            // سابقًا نحافظ عليها.
 
             const mainImage =
                 existingCar?.main_image ??
@@ -645,6 +671,51 @@ export async function onRequestPost(context) {
             `)
             .bind(ruleId)
             .run();
+
+
+        // =====================================
+        // تسجيل تشغيل مهمة المزاد
+        // =====================================
+
+        await logAdminActivity(
+            context,
+            adminAuth,
+            {
+                action:
+                    "auction_rule_run",
+
+                action_category:
+                    "auction",
+
+                entity_type:
+                    "auction_rule",
+
+                entity_id:
+                    ruleId,
+
+                description:
+                    `تشغيل مهمة المزاد: ${rule.name}`,
+
+                new_data: {
+
+                    received_cars:
+                        cars.length,
+
+                    inserted:
+                        inserted,
+
+                    updated:
+                        updated,
+
+                    matched:
+                        matched,
+
+                    api_requests_used:
+                        1
+
+                }
+            }
+        );
 
 
         return Response.json({
