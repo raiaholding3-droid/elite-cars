@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        تسجيل دخول الإدارة | رؤية النخبة
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #1b2430 0%,
+                    #0f141a 45%,
+                    #0a0d12 100%
+                );
+
+            color: #ffffff;
+        }
+
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 430px;
+        }
+
+
+        .login-card {
+            background:
+                rgba(
+                    20,
+                    26,
+                    34,
+                    0.96
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border-radius: 24px;
+
+            padding: 36px 30px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            backdrop-filter:
+                blur(16px);
+        }
+
+
+        .brand {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .brand-logo {
+            width: 70px;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin:
+                0 auto
+                18px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d9ab3d,
+                    #b7831e
+                );
+
+            color: #111;
+
+            font-size: 30px;
+            font-weight: 900;
+
+            box-shadow:
+                0 12px 30px
+                rgba(
+                    201,
+                    154,
+                    51,
+                    0.25
+                );
+        }
+
+
+        .brand h1 {
+            margin:
+                0 0 8px;
+
+            font-size: 26px;
+        }
+
+
+        .brand p {
+            margin: 0;
+
+            color: #9099a4;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            color: #dfe4ea;
+        }
+
+
+        .input-box {
+            position: relative;
+        }
+
+
+        input {
+            width: 100%;
+
+            height: 52px;
+
+            padding:
+                0 15px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                #303844;
+
+            background:
+                #0d1218;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+        }
+
+
+        input:focus {
+            border-color:
+                #c89b3c;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    200,
+                    155,
+                    60,
+                    0.12
+                );
+        }
+
+
+        .password-toggle {
+            position: absolute;
+
+            left: 10px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background:
+                transparent;
+
+            color: #9aa3ad;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            padding: 6px;
+        }
+
+
+        .login-button {
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            margin-top: 6px;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d7a838,
+                    #b98724
+                );
+
+            color: #111;
+
+            font-size: 16px;
+            font-weight: 900;
+
+            transition:
+                transform 0.2s,
+                opacity 0.2s;
+        }
+
+
+        .login-button:hover {
+            transform:
+                translateY(-1px);
+        }
+
+
+        .login-button:disabled {
+            opacity: 0.6;
+
+            cursor:
+                not-allowed;
+
+            transform: none;
+        }
+
+
+        .message {
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        .message.error {
+            display: block;
+
+            background:
+                rgba(
+                    248,
+                    81,
+                    73,
+                    0.1
+                );
+
+            border:
+                1px solid
+                rgba(
+                    248,
+                    81,
+                    73,
+                    0.55
+                );
+
+            color:
+                #ff8a84;
+        }
+
+
+        .message.success {
+            display: block;
+
+            background:
+                rgba(
+                    46,
+                    160,
+                    67,
+                    0.12
+                );
+
+            border:
+                1px solid
+                rgba(
+                    46,
+                    160,
+                    67,
+                    0.55
+                );
+
+            color:
+                #7ee787;
+        }
+
+
+        .footer-note {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color:
+                #727c88;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+        }
+
+
+        @media (
+            max-width: 520px
+        ) {
+
+            body {
+                padding: 16px;
+            }
+
+
+            .login-card {
+                padding:
+                    30px 20px;
+            }
+
+
+            .brand h1 {
+                font-size:
+                    23px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-wrapper">
+
+        <div class="login-card">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    R
+                </div>
+
+                <h1>
+                    لوحة إدارة رؤية النخبة
+                </h1>
+
+                <p>
+                    تسجيل الدخول للموظفين والإدارة فقط
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="username">
+                        اسم المستخدم
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        كلمة المرور
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                        >
+                            إظهار
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+                    تسجيل الدخول
+                </button>
+
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+            </form>
+
+
+            <div class="footer-note">
+                هذه المنطقة مخصصة لموظفي الشركة فقط.
+                <br>
+                يتم تسجيل العمليات الإدارية لأغراض الأمان والمتابعة.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const passwordInput =
+            document.getElementById(
+                "password"
+            );
+
+
+        const passwordToggle =
+            document.getElementById(
+                "passwordToggle"
+            );
+
+
+        passwordToggle.addEventListener(
+            "click",
+            function() {
+
+                if (
+                    passwordInput.type ===
+                    "password"
+                ) {
+
+                    passwordInput.type =
+                        "text";
+
+                    passwordToggle.textContent =
+                        "إخفاء";
+
+                }
+
+                else {
+
+                    passwordInput.type =
+                        "password";
+
+                    passwordToggle.textContent =
+                        "إظهار";
+
+                }
+
+            }
+        );
+
+
+        loginForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    document
+                    .getElementById(
+                        "username"
+                    )
+                    .value
+                    .trim();
+
+
+                const password =
+                    passwordInput.value;
+
+
+                message.className =
+                    "message";
+
+                message.textContent =
+                    "";
+
+
+                loginButton.disabled =
+                    true;
+
+                loginButton.textContent =
+                    "جاري تسجيل الدخول...";
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/admin-login",
+                            {
+                                method:
+                                    "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                credentials:
+                                    "same-origin",
+
+                                body:
+                                    JSON.stringify({
+                                        username:
+                                            username,
+
+                                        password:
+                                            password
+                                    })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !response.ok ||
+                        !data.success
+                    ) {
+
+                        throw new Error(
+                            data.message ||
+                            "فشل تسجيل الدخول"
+                        );
+
+                    }
+
+
+                    message.className =
+                        "message success";
+
+                    message.textContent =
+                        "تم تسجيل الدخول بنجاح";
+
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "/admin.html";
+
+                        },
+                        500
+                    );
+
+                }
+
+                catch (error) {
+
+                    message.className =
+                        "message error";
+
+                    message.textContent =
+                        error.message;
+
+                }
+
+                finally {
+
+                    loginButton.disabled =
+                        false;
+
+                    loginButton.textContent =
+                        "تسجيل الدخول";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
