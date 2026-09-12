@@ -3858,3 +3858,3178 @@ body {
     color: #8a5a00;
     line-height: 1.7;
 }
+/* =========================================================
+   رؤية النخبة للسيارات
+   تحسين الواجهة العامة - الإصدار الاحترافي
+   يوضع هذا القسم في نهاية style.css
+========================================================= */
+
+:root {
+    --elite-dark: #090a0c;
+    --elite-dark-2: #111318;
+    --elite-dark-3: #171a20;
+
+    --elite-gold: #d8b65c;
+    --elite-gold-dark: #a87b20;
+    --elite-gold-light: #f1d98f;
+
+    --elite-bg: #f5f5f2;
+    --elite-bg-2: #f8f8f6;
+
+    --elite-white: #ffffff;
+    --elite-text: #16181c;
+    --elite-muted: #70747a;
+
+    --elite-border: #e7e7e2;
+
+    --elite-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.08);
+
+    --elite-shadow-dark:
+        0 25px 70px
+        rgba(0, 0, 0, 0.28);
+
+    --elite-radius: 22px;
+}
+
+
+/* =========================================================
+   أساس الصفحة
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background: var(--elite-bg);
+    color: var(--elite-text);
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family:
+        "Cairo",
+        "Tajawal",
+        sans-serif;
+}
+
+
+/* =========================================================
+   الهيدر
+========================================================= */
+
+.main-header {
+    min-height: 82px;
+
+    padding:
+        0 6%;
+
+    background:
+        rgba(7, 8, 10, 0.93);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.brand-mark {
+    box-shadow:
+        0 7px 24px
+        rgba(216, 182, 92, 0.22);
+}
+
+
+.main-nav {
+    gap: 29px;
+}
+
+
+.main-nav a {
+    font-size: 14px;
+}
+
+
+/* زر الإدارة المصغر */
+
+.admin-icon-link {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(216, 182, 92, 0.32);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color: var(--elite-gold);
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    transition:
+        0.3s ease;
+}
+
+
+.admin-icon-link:hover {
+    background:
+        var(--elite-gold);
+
+    border-color:
+        var(--elite-gold);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(216, 182, 92, 0.22);
+}
+
+
+/* =========================================================
+   Hero
+========================================================= */
+
+.hero-new {
+    min-height:
+        calc(100vh - 82px);
+
+    padding:
+        80px 7% 115px;
+}
+
+
+.hero-overlay {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 5, 7, 0.40) 0%,
+            rgba(4, 5, 7, 0.56) 45%,
+            rgba(4, 5, 7, 0.82) 100%
+        );
+}
+
+
+.hero-content {
+    max-width: 790px;
+}
+
+
+.hero-badge {
+    color:
+        var(--elite-gold-light);
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+.hero-content h1 {
+    letter-spacing:
+        -1px;
+}
+
+
+.hero-content h1 span {
+    color:
+        var(--elite-gold);
+}
+
+
+.hero-content > p {
+    max-width:
+        680px;
+
+    color:
+        rgba(255, 255, 255, 0.83);
+}
+
+
+.primary-button {
+    background:
+        linear-gradient(
+            135deg,
+            #e1bf65,
+            #bd8f2d
+        );
+
+    color:
+        #111;
+
+    box-shadow:
+        0 12px 30px
+        rgba(190, 144, 45, 0.23);
+}
+
+
+.primary-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #f0d27d,
+            #d4a642
+        );
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 17px 38px
+        rgba(190, 144, 45, 0.30);
+}
+
+
+.secondary-button {
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+}
+
+
+.hero-stats {
+    margin-top:
+        50px;
+
+    padding-top:
+        27px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.13);
+
+    max-width:
+        620px;
+}
+
+
+.hero-stats strong {
+    color:
+        var(--elite-gold-light);
+}
+
+
+.hero-dots {
+    bottom:
+        46px;
+}
+
+
+.hero-dot.active {
+    background:
+        var(--elite-gold);
+}
+
+
+/* =========================================================
+   شريط الثقة
+========================================================= */
+
+.trust-strip {
+    position: relative;
+
+    z-index: 30;
+
+    background:
+        var(--elite-bg);
+
+    padding:
+        0 6%;
+}
+
+
+.trust-strip-inner {
+    max-width:
+        1250px;
+
+    margin:
+        -52px auto 0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    background:
+        #fff;
+
+    border-radius:
+        22px;
+
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.06);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.10);
+
+    overflow:
+        hidden;
+}
+
+
+.trust-item {
+    min-height:
+        125px;
+
+    padding:
+        28px 24px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    position:
+        relative;
+}
+
+
+.trust-item:not(:last-child)::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        25%;
+
+    width:
+        1px;
+
+    height:
+        50%;
+
+    background:
+        #ededeb;
+}
+
+
+.trust-icon {
+    width:
+        52px;
+
+    height:
+        52px;
+
+    min-width:
+        52px;
+
+    border-radius:
+        16px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    background:
+        #f4ecd6;
+
+    font-size:
+        23px;
+}
+
+
+.trust-item strong {
+    display:
+        block;
+
+    font-size:
+        15px;
+
+    margin-bottom:
+        6px;
+
+    color:
+        #15171a;
+}
+
+
+.trust-item span {
+    display:
+        block;
+
+    color:
+        #7b7d80;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   عنوان الأقسام
+========================================================= */
+
+.section-kicker {
+    letter-spacing:
+        0.2px;
+
+    color:
+        var(--elite-gold-dark);
+}
+
+
+.section-heading h2,
+.about-content h2 {
+    color:
+        #111318;
+
+    line-height:
+        1.3;
+}
+
+
+.section-heading > p {
+    color:
+        #71757b;
+}
+
+
+/* =========================================================
+   قسم السيارات
+========================================================= */
+
+.cars-section-new {
+    padding:
+        120px 6% 105px;
+
+    background:
+        var(--elite-bg);
+}
+
+
+.modern-search-box {
+    padding:
+        14px;
+
+    border:
+        1px solid
+        #e9e9e6;
+
+    box-shadow:
+        0 16px 45px
+        rgba(0, 0, 0, 0.055);
+}
+
+
+.search-main,
+.modern-search-box select {
+    background:
+        #fafafa;
+
+    border-color:
+        #e5e5e1;
+}
+
+
+.search-main:focus-within {
+    background:
+        #fff;
+
+    border-color:
+        var(--elite-gold);
+}
+
+
+.modern-search-box select:focus {
+    outline:
+        none;
+
+    border-color:
+        var(--elite-gold);
+}
+
+
+.search-button {
+    background:
+        #111318;
+
+    font-weight:
+        700;
+
+    min-height:
+        48px;
+}
+
+
+.search-button:hover {
+    background:
+        var(--elite-gold-dark);
+}
+
+
+/* بطاقات السيارات */
+
+.cars-section-new
+.car-card {
+    overflow:
+        hidden;
+
+    background:
+        #fff;
+
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.06);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        0 13px 40px
+        rgba(0, 0, 0, 0.065);
+}
+
+
+.cars-section-new
+.car-card:hover {
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 24px 60px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.cars-section-new
+.car-card img {
+    height:
+        265px;
+}
+
+
+.cars-section-new
+.car-info {
+    padding:
+        24px;
+}
+
+
+.cars-section-new
+.car-info strong {
+    color:
+        var(--elite-gold-dark);
+}
+
+
+.home-all-cars {
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin-top:
+        48px;
+}
+
+
+/* =========================================================
+   من نحن
+========================================================= */
+
+.elite-about-section {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        115px 7%;
+
+    background:
+        #fff;
+}
+
+
+.elite-about-section::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        430px;
+
+    height:
+        430px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(216, 182, 92, 0.08);
+
+    left:
+        -190px;
+
+    bottom:
+        -180px;
+}
+
+
+.about-content {
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+.about-content > p {
+    color:
+        #6c7075;
+
+    font-size:
+        15px;
+
+    line-height:
+        2.05;
+}
+
+
+.about-points {
+    margin-top:
+        28px;
+}
+
+
+.about-points div {
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid
+        #eeeeeb;
+}
+
+
+.about-points span {
+    background:
+        #f3e9cc;
+
+    color:
+        #846315;
+}
+
+
+.about-actions {
+    margin-top:
+        32px;
+}
+
+
+.dark-outline-button {
+    min-height:
+        52px;
+
+    padding:
+        0 22px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        20px;
+
+    border-radius:
+        11px;
+
+    border:
+        1px solid
+        #1b1d21;
+
+    color:
+        #17191d;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        0.3s;
+}
+
+
+.dark-outline-button:hover {
+    color:
+        #fff;
+
+    background:
+        #111318;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.about-image-main {
+    position:
+        relative;
+}
+
+
+.about-image-main::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        16px -16px -16px 16px;
+
+    border:
+        1px solid
+        rgba(216, 182, 92, 0.55);
+
+    border-radius:
+        22px;
+
+    z-index:
+        -1;
+}
+
+
+.about-image-main img {
+    border-radius:
+        22px;
+
+    box-shadow:
+        var(--elite-shadow);
+}
+
+
+.about-floating-card {
+    right:
+        -30px;
+
+    bottom:
+        35px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(12, 13, 16, 0.96);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+/* =========================================================
+   الخدمات
+========================================================= */
+
+.services-section {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b0c0f,
+            #14171c
+        );
+
+    padding:
+        110px 7%;
+}
+
+
+.services-section::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        500px;
+
+    height:
+        500px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(216, 182, 92, 0.06);
+
+    top:
+        -250px;
+
+    right:
+        -160px;
+}
+
+
+.services-heading {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin-bottom:
+        52px;
+}
+
+
+.services-heading h2 {
+    color:
+        #fff;
+}
+
+
+.service-kicker {
+    color:
+        var(--elite-gold-light);
+}
+
+
+.services-intro {
+    max-width:
+        650px;
+
+    margin:
+        18px auto 0;
+
+    line-height:
+        2;
+
+    color:
+        rgba(255, 255, 255, 0.62);
+
+    font-size:
+        14px;
+}
+
+
+.premium-services-grid {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        1250px;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        16px;
+}
+
+
+.premium-services-grid article {
+    min-height:
+        255px;
+
+    padding:
+        30px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.085);
+
+    border-radius:
+        18px;
+
+    transition:
+        0.35s ease;
+}
+
+
+.premium-services-grid article:hover {
+    background:
+        rgba(216, 182, 92, 0.07);
+
+    border-color:
+        rgba(216, 182, 92, 0.5);
+
+    transform:
+        translateY(-7px);
+}
+
+
+.premium-services-grid
+.service-icon {
+    width:
+        53px;
+
+    height:
+        53px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    border-radius:
+        15px;
+
+    margin-bottom:
+        8px;
+
+    background:
+        rgba(216, 182, 92, 0.12);
+
+    color:
+        #fff;
+
+    font-size:
+        24px;
+}
+
+
+.premium-services-grid h3 {
+    font-size:
+        19px;
+
+    margin:
+        14px 0 9px;
+
+    color:
+        #fff;
+}
+
+
+.premium-services-grid p {
+    margin:
+        0;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.95;
+}
+
+
+.services-more {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    margin-top:
+        45px;
+}
+
+
+/* =========================================================
+   CARFAX
+========================================================= */
+
+.carfax-home-section {
+    padding:
+        115px 7%;
+
+    background:
+        #fff;
+}
+
+
+.carfax-home-inner {
+    max-width:
+        1250px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 0.85fr;
+
+    gap:
+        85px;
+
+    align-items:
+        center;
+}
+
+
+.carfax-home-content h2 {
+    max-width:
+        680px;
+
+    margin:
+        8px 0 22px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(34px, 4vw, 52px);
+
+    line-height:
+        1.25;
+}
+
+
+.carfax-home-content > p {
+    max-width:
+        650px;
+
+    color:
+        #70747a;
+
+    line-height:
+        2;
+
+    margin-bottom:
+        30px;
+}
+
+
+.carfax-list {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        13px;
+
+    margin-bottom:
+        35px;
+}
+
+
+.carfax-list div {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        #35383c;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+}
+
+
+.carfax-list span {
+    width:
+        27px;
+
+    height:
+        27px;
+
+    min-width:
+        27px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        #f3ead0;
+
+    color:
+        #8f6917;
+
+    font-size:
+        12px;
+}
+
+
+.carfax-card {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        35px;
+
+    border-radius:
+        26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101217,
+            #1c2027
+        );
+
+    color:
+        #fff;
+
+    box-shadow:
+        var(--elite-shadow-dark);
+}
+
+
+.carfax-card::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        230px;
+
+    height:
+        230px;
+
+    border-radius:
+        50%;
+
+    right:
+        -120px;
+
+    top:
+        -110px;
+
+    background:
+        rgba(216, 182, 92, 0.12);
+}
+
+
+.carfax-card-top {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding-bottom:
+        25px;
+
+    margin-bottom:
+        25px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+}
+
+
+.carfax-card-top span {
+    color:
+        var(--elite-gold);
+
+    font-size:
+        27px;
+
+    font-weight:
+        800;
+}
+
+
+.carfax-card-top b {
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.carfax-vin-example {
+    padding:
+        20px;
+
+    margin-bottom:
+        25px;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+
+.carfax-vin-example small {
+    display:
+        block;
+
+    color:
+        #92979f;
+
+    margin-bottom:
+        9px;
+
+    font-size:
+        11px;
+}
+
+
+.carfax-vin-example strong {
+    direction:
+        ltr;
+
+    display:
+        block;
+
+    text-align:
+        left;
+
+    letter-spacing:
+        4px;
+
+    color:
+        #fff;
+
+    font-size:
+        17px;
+}
+
+
+.carfax-mini-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:
+        10px;
+}
+
+
+.carfax-mini-grid div {
+    min-height:
+        90px;
+
+    padding:
+        17px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+}
+
+
+.carfax-mini-grid b {
+    color:
+        var(--elite-gold);
+
+    font-size:
+        12px;
+
+    margin-bottom:
+        5px;
+}
+
+
+.carfax-mini-grid span {
+    color:
+        #d5d6d8;
+
+    font-size:
+        13px;
+}
+
+
+/* =========================================================
+   قسم المزادات في الرئيسية
+========================================================= */
+
+.auction-home-section {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    min-height:
+        650px;
+
+    background:
+        #f1f1ee;
+}
+
+
+.auction-home-image {
+    min-height:
+        650px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+}
+
+
+.auction-home-image img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+}
+
+
+.auction-home-image::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.08),
+            rgba(0, 0, 0, 0.42)
+        );
+}
+
+
+.auction-image-badge {
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    top:
+        35px;
+
+    left:
+        35px;
+
+    padding:
+        9px 17px;
+
+    border-radius:
+        40px;
+
+    background:
+        rgba(10, 11, 14, 0.78);
+
+    color:
+        #fff;
+
+    backdrop-filter:
+        blur(10px);
+
+    font-weight:
+        800;
+}
+
+
+.auction-home-content {
+    padding:
+        90px 10%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+}
+
+
+.auction-home-content h2 {
+    margin:
+        8px 0 20px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(34px, 4vw, 52px);
+
+    line-height:
+        1.3;
+}
+
+
+.auction-home-content > p {
+    color:
+        #70747a;
+
+    line-height:
+        2;
+
+    margin-bottom:
+        30px;
+}
+
+
+.auction-home-points {
+    margin-bottom:
+        35px;
+}
+
+
+.auction-home-points div {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    min-height:
+        65px;
+
+    border-bottom:
+        1px solid
+        #deded9;
+}
+
+
+.auction-home-points span {
+    width:
+        38px;
+
+    color:
+        var(--elite-gold-dark);
+
+    font-weight:
+        800;
+}
+
+
+.auction-home-points p {
+    margin:
+        0;
+
+    color:
+        #393b40;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+}
+
+
+.dark-button {
+    min-height:
+        54px;
+
+    padding:
+        0 24px;
+
+    display:
+        inline-flex;
+
+    width:
+        max-content;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        22px;
+
+    border-radius:
+        11px;
+
+    background:
+        #111318;
+
+    color:
+        #fff;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        0.3s;
+}
+
+
+.dark-button:hover {
+    background:
+        var(--elite-gold-dark);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   خطوات الاستيراد
+========================================================= */
+
+.import-process-section {
+    padding:
+        110px 6%;
+
+    background:
+        #fff;
+}
+
+
+.process-heading {
+    max-width:
+        700px;
+
+    margin:
+        0 auto 55px;
+
+    text-align:
+        center;
+}
+
+
+.process-heading h2 {
+    margin:
+        8px 0 6px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(35px, 4vw, 52px);
+}
+
+
+.process-heading p {
+    color:
+        #777b80;
+}
+
+
+.process-grid {
+    max-width:
+        1250px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap:
+        13px;
+}
+
+
+.process-card {
+    position:
+        relative;
+
+    min-height:
+        245px;
+
+    padding:
+        27px 22px;
+
+    background:
+        #f6f6f3;
+
+    border:
+        1px solid
+        #e9e9e4;
+
+    border-radius:
+        18px;
+
+    transition:
+        0.3s;
+}
+
+
+.process-card:hover {
+    transform:
+        translateY(-7px);
+
+    background:
+        #fff;
+
+    border-color:
+        rgba(216, 182, 92, 0.7);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.075);
+}
+
+
+.process-number {
+    position:
+        absolute;
+
+    left:
+        20px;
+
+    top:
+        18px;
+
+    color:
+        #b4b4ae;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+}
+
+
+.process-icon {
+    width:
+        52px;
+
+    height:
+        52px;
+
+    margin-bottom:
+        25px;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    border-radius:
+        15px;
+
+    background:
+        #eee5cb;
+
+    font-size:
+        23px;
+}
+
+
+.process-card h3 {
+    margin:
+        0 0 8px;
+
+    font-size:
+        19px;
+}
+
+
+.process-card p {
+    color:
+        #75787c;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.9;
+}
+
+
+/* =========================================================
+   التواصل
+========================================================= */
+
+.premium-contact-section {
+    padding:
+        110px 7%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b0c0f,
+            #16191f
+        );
+
+    color:
+        #fff;
+}
+
+
+.premium-contact-inner {
+    max-width:
+        1250px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.1fr 0.9fr;
+
+    gap:
+        70px;
+
+    align-items:
+        center;
+}
+
+
+.contact-main-info h2 {
+    margin:
+        10px 0 18px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(35px, 4vw, 54px);
+
+    line-height:
+        1.3;
+}
+
+
+.contact-main-info > p {
+    max-width:
+        680px;
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    line-height:
+        2;
+
+    margin-bottom:
+        32px;
+}
+
+
+.contact-action-buttons {
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        12px;
+}
+
+
+.whatsapp-contact-button {
+    min-height:
+        54px;
+
+    padding:
+        0 20px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        10px;
+
+    border-radius:
+        11px;
+
+    background:
+        #fff;
+
+    color:
+        #17191d;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        0.3s;
+}
+
+
+.whatsapp-contact-button:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        #e8e0c8;
+}
+
+
+.contact-details-card {
+    padding:
+        34px;
+
+    border-radius:
+        23px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.095);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+.contact-detail-row {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        16px;
+
+    padding:
+        18px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.contact-detail-icon {
+    width:
+        45px;
+
+    height:
+        45px;
+
+    min-width:
+        45px;
+
+    border-radius:
+        13px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        rgba(216, 182, 92, 0.13);
+
+    color:
+        var(--elite-gold-light);
+}
+
+
+.contact-detail-row small {
+    display:
+        block;
+
+    margin-bottom:
+        3px;
+
+    color:
+        #92969d;
+
+    font-size:
+        11px;
+}
+
+
+.contact-detail-row a,
+.contact-detail-row strong {
+    color:
+        #fff;
+
+    text-decoration:
+        none;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.8;
+}
+
+
+.contact-detail-row a:hover {
+    color:
+        var(--elite-gold);
+}
+
+
+.contact-socials {
+    display:
+        grid;
+
+    gap:
+        8px;
+
+    margin-top:
+        22px;
+}
+
+
+.contact-socials a,
+.social-display-only {
+    min-height:
+        52px;
+
+    padding:
+        0 15px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color:
+        #fff;
+
+    text-decoration:
+        none;
+
+    font-size:
+        12px;
+
+    transition:
+        0.3s;
+}
+
+
+.contact-socials a:hover {
+    background:
+        rgba(216, 182, 92, 0.12);
+}
+
+
+.contact-socials span {
+    color:
+        var(--elite-gold-light);
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================================
+   CTA الأخير
+========================================================= */
+
+.final-cta-section {
+    padding:
+        65px 7%;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b38629,
+            #e2c36d
+        );
+
+    color:
+        #111;
+}
+
+
+.final-cta-section > div > span {
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    opacity:
+        0.75;
+}
+
+
+.final-cta-section h2 {
+    max-width:
+        760px;
+
+    margin:
+        8px 0 0;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(28px, 4vw, 43px);
+
+    line-height:
+        1.35;
+}
+
+
+.final-cta-button {
+    min-width:
+        245px;
+
+    min-height:
+        58px;
+
+    padding:
+        0 22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    border-radius:
+        11px;
+
+    background:
+        #111318;
+
+    color:
+        #fff;
+
+    text-decoration:
+        none;
+
+    font-weight:
+        700;
+
+    transition:
+        0.3s;
+}
+
+
+.final-cta-button:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   Footer الجديد
+========================================================= */
+
+.elite-footer {
+    padding:
+        75px 7% 25px;
+
+    background:
+        #07080a;
+}
+
+
+.footer-main-grid {
+    max-width:
+        1250px;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.5fr 1fr 1fr 1.2fr;
+
+    gap:
+        60px;
+
+    padding-bottom:
+        50px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.footer-company p {
+    max-width:
+        350px;
+
+    margin-top:
+        22px;
+
+    color:
+        #85888d;
+
+    font-size:
+        13px;
+
+    line-height:
+        2;
+}
+
+
+.footer-column {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        11px;
+}
+
+
+.footer-column h3 {
+    color:
+        #fff;
+
+    font-size:
+        15px;
+
+    margin:
+        0 0 8px;
+}
+
+
+.footer-column a,
+.footer-column > span {
+    color:
+        #85888d;
+
+    text-decoration:
+        none;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+
+    transition:
+        0.25s;
+}
+
+
+.footer-column a:hover {
+    color:
+        var(--elite-gold);
+}
+
+
+.elite-footer
+.footer-bottom {
+    max-width:
+        1250px;
+
+    margin:
+        auto;
+
+    padding-top:
+        24px;
+}
+
+
+/* =========================================================
+   الحركة البسيطة
+========================================================= */
+
+.trust-item,
+.process-card,
+.premium-services-grid article,
+.carfax-card,
+.contact-details-card {
+    will-change:
+        transform;
+}
+
+
+/* =========================================================
+   أجهزة التابلت
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .trust-strip-inner {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .trust-item:nth-child(2)::after {
+        display:
+            none;
+    }
+
+
+    .premium-services-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .process-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .footer-main-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   أقل من 1000px
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .main-header {
+        min-height:
+            76px;
+    }
+
+
+    .main-nav {
+        top:
+            76px;
+
+        z-index:
+            1001;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.08);
+
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.30);
+    }
+
+
+    .admin-icon-link {
+        display:
+            inline-flex;
+    }
+
+
+    .hero-new {
+        min-height:
+            calc(100vh - 76px);
+    }
+
+
+    .carfax-home-inner {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            55px;
+    }
+
+
+    .premium-contact-inner {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            50px;
+    }
+
+
+    .auction-home-section {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .auction-home-image {
+        min-height:
+            450px;
+    }
+
+
+    .auction-home-content {
+        padding:
+            75px 7%;
+    }
+
+}
+
+
+/* =========================================================
+   الهاتف
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .main-header {
+        padding:
+            0 16px;
+    }
+
+
+    .brand-mark {
+        width:
+            41px;
+
+        height:
+            41px;
+
+        border-radius:
+            11px;
+
+        font-size:
+            21px;
+    }
+
+
+    .brand strong {
+        font-size:
+            15px;
+    }
+
+
+    .brand small {
+        font-size:
+            10px;
+    }
+
+
+    .admin-icon-link {
+        width:
+            39px;
+
+        height:
+            39px;
+
+        border-radius:
+            10px;
+
+        font-size:
+            16px;
+    }
+
+
+    .mobile-menu-button {
+        width:
+            39px;
+
+        height:
+            39px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+
+    .main-nav {
+        right:
+            15px;
+
+        left:
+            15px;
+
+        padding:
+            20px;
+
+        gap:
+            0;
+    }
+
+
+    .main-nav a {
+        padding:
+            13px 5px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.07);
+    }
+
+
+    .main-nav a:last-child {
+        border-bottom:
+            none;
+    }
+
+
+    .main-nav a::after {
+        display:
+            none;
+    }
+
+
+    /* Hero */
+
+    .hero-new {
+        min-height:
+            720px;
+
+        padding:
+            75px 20px 105px;
+
+        align-items:
+            center;
+    }
+
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(5, 6, 8, 0.42),
+                rgba(5, 6, 8, 0.78)
+            );
+    }
+
+
+    .hero-badge {
+        font-size:
+            11px;
+
+        margin-bottom:
+            17px;
+    }
+
+
+    .hero-content h1 {
+        font-size:
+            clamp(38px, 12vw, 55px);
+
+        line-height:
+            1.22;
+
+        margin-bottom:
+            18px;
+    }
+
+
+    .hero-content > p {
+        font-size:
+            14px;
+
+        line-height:
+            1.9;
+
+        margin-bottom:
+            27px;
+    }
+
+
+    .hero-buttons {
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr;
+
+        width:
+            100%;
+    }
+
+
+    .hero-buttons a {
+        width:
+            100%;
+    }
+
+
+    .hero-stats {
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap:
+            9px;
+
+        margin-top:
+            34px;
+    }
+
+
+    .hero-stats div {
+        text-align:
+            center;
+
+        align-items:
+            center;
+    }
+
+
+    .hero-stats strong {
+        font-size:
+            17px;
+    }
+
+
+    .hero-stats span {
+        font-size:
+            9px;
+    }
+
+
+    .hero-dots {
+        right:
+            20px;
+
+        left:
+            auto;
+
+        bottom:
+            30px;
+    }
+
+
+    /* شريط الثقة */
+
+    .trust-strip {
+        padding:
+            0 17px;
+    }
+
+
+    .trust-strip-inner {
+        margin-top:
+            -28px;
+
+        grid-template-columns:
+            1fr;
+
+        border-radius:
+            18px;
+    }
+
+
+    .trust-item {
+        min-height:
+            auto;
+
+        padding:
+            20px;
+    }
+
+
+    .trust-item:not(:last-child)::after {
+        display:
+            block;
+
+        top:
+            auto;
+
+        bottom:
+            0;
+
+        right:
+            20px;
+
+        left:
+            20px;
+
+        width:
+            auto;
+
+        height:
+            1px;
+    }
+
+
+    .trust-icon {
+        width:
+            47px;
+
+        height:
+            47px;
+
+        min-width:
+            47px;
+    }
+
+
+    /* السيارات */
+
+    .cars-section-new {
+        padding:
+            80px 17px;
+    }
+
+
+    .section-heading h2 {
+        font-size:
+            34px;
+    }
+
+
+    .cars-section-new
+    .car-card img {
+        height:
+            235px;
+    }
+
+
+    .home-all-cars
+    .primary-button {
+        width:
+            100%;
+    }
+
+
+    /* من نحن */
+
+    .elite-about-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .about-image-main::after {
+        display:
+            none;
+    }
+
+
+    .about-floating-card {
+        right:
+            14px;
+
+        left:
+            14px;
+
+        bottom:
+            18px;
+    }
+
+
+    .dark-outline-button {
+        width:
+            100%;
+    }
+
+
+    /* الخدمات */
+
+    .services-section {
+        padding:
+            80px 17px;
+    }
+
+
+    .premium-services-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            12px;
+    }
+
+
+    .premium-services-grid article {
+        min-height:
+            auto;
+
+        padding:
+            25px;
+    }
+
+
+    .services-more
+    .primary-button {
+        width:
+            100%;
+    }
+
+
+    /* CARFAX */
+
+    .carfax-home-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .carfax-home-inner {
+        gap:
+            45px;
+    }
+
+
+    .carfax-home-content h2 {
+        font-size:
+            36px;
+    }
+
+
+    .carfax-list {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .carfax-home-content
+    .primary-button {
+        width:
+            100%;
+    }
+
+
+    .carfax-card {
+        padding:
+            25px 20px;
+    }
+
+
+    .carfax-card-top span {
+        font-size:
+            23px;
+    }
+
+
+    .carfax-vin-example strong {
+        font-size:
+            13px;
+
+        letter-spacing:
+            2px;
+    }
+
+
+    /* المزاد */
+
+    .auction-home-image {
+        min-height:
+            330px;
+    }
+
+
+    .auction-home-content {
+        padding:
+            70px 18px;
+    }
+
+
+    .auction-home-content h2 {
+        font-size:
+            36px;
+    }
+
+
+    .dark-button {
+        width:
+            100%;
+    }
+
+
+    /* المراحل */
+
+    .import-process-section {
+        padding:
+            80px 17px;
+    }
+
+
+    .process-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .process-card {
+        min-height:
+            auto;
+
+        padding:
+            23px;
+    }
+
+
+    /* التواصل */
+
+    .premium-contact-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .contact-main-info h2 {
+        font-size:
+            37px;
+    }
+
+
+    .contact-action-buttons {
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr;
+
+        width:
+            100%;
+    }
+
+
+    .whatsapp-contact-button {
+        width:
+            100%;
+    }
+
+
+    .contact-details-card {
+        padding:
+            22px 18px;
+    }
+
+
+    .contact-detail-row {
+        align-items:
+            flex-start;
+    }
+
+
+    .contact-detail-row strong {
+        font-size:
+            12px;
+    }
+
+
+    .contact-socials a,
+    .social-display-only {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        justify-content:
+            center;
+
+        padding:
+            12px 15px;
+    }
+
+
+    /* CTA */
+
+    .final-cta-section {
+        padding:
+            55px 18px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .final-cta-button {
+        width:
+            100%;
+
+        min-width:
+            0;
+    }
+
+
+    /* Footer */
+
+    .elite-footer {
+        padding:
+            60px 18px 25px;
+    }
+
+
+    .footer-main-grid {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            38px;
+
+        padding-bottom:
+            40px;
+    }
+
+
+    .footer-company p {
+        max-width:
+            none;
+    }
+
+
+    .elite-footer
+    .footer-bottom {
+        align-items:
+            flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   الشاشات الصغيرة جدًا
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .hero-content h1 {
+        font-size:
+            38px;
+    }
+
+
+    .hero-stats {
+        grid-template-columns:
+            1fr 1fr 1fr;
+    }
+
+
+    .hero-stats strong {
+        font-size:
+            14px;
+    }
+
+
+    .hero-stats span {
+        font-size:
+            8px;
+    }
+
+
+    .carfax-mini-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .contact-details-card {
+        border-radius:
+            18px;
+    }
+
+}
