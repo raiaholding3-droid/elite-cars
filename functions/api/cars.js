@@ -1,3 +1,7 @@
+import {
+    requirePermission,
+    logAdminActivity
+} from "../_lib/admin-auth.js";
 // ==========================================
 // API إدارة سيارات المعرض
 // /api/cars
@@ -105,6 +109,22 @@ export async function onRequestGet(context) {
 export async function onRequestPost(context) {
 
     try {
+        // =====================================
+// التحقق من صلاحية إضافة سيارة
+// =====================================
+
+const permissionCheck =
+    await requirePermission(
+        context,
+        "cars_add"
+    );
+
+if (!permissionCheck.ok) {
+    return permissionCheck.response;
+}
+
+const adminAuth =
+    permissionCheck.auth;
 
         const data =
             await context.request.json();
