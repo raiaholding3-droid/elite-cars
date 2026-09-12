@@ -3835,3 +3835,26 @@ body {
     }
 
 }
+/* =====================================
+   حالة السيارة: في الطريق
+===================================== */
+
+.status-in-transit {
+    background: #fff3cd;
+    color: #8a5a00;
+    border: 1px solid #e6c45c;
+}
+
+
+/* =====================================
+   ملاحظة السعر إلى الميناء
+===================================== */
+
+.port-price-note {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8a5a00;
+    line-height: 1.7;
+}
