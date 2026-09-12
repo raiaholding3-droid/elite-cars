@@ -269,6 +269,22 @@ const adminAuth =
 export async function onRequestPut(context) {
 
     try {
+        // =====================================
+// التحقق من صلاحية تعديل السيارة
+// =====================================
+
+const permissionCheck =
+    await requirePermission(
+        context,
+        "cars_edit"
+    );
+
+if (!permissionCheck.ok) {
+    return permissionCheck.response;
+}
+
+const adminAuth =
+    permissionCheck.auth;
 
         const data =
             await context.request.json();
@@ -545,6 +561,22 @@ export async function onRequestPut(context) {
 export async function onRequestPatch(context) {
 
     try {
+        // =====================================
+// التحقق من صلاحية تغيير حالة السيارة
+// =====================================
+
+const permissionCheck =
+    await requirePermission(
+        context,
+        "cars_change_status"
+    );
+
+if (!permissionCheck.ok) {
+    return permissionCheck.response;
+}
+
+const adminAuth =
+    permissionCheck.auth;
 
         const data =
             await context.request.json();
@@ -724,6 +756,22 @@ export async function onRequestPatch(context) {
 export async function onRequestDelete(context) {
 
     try {
+        // =====================================
+// التحقق من صلاحية حذف السيارة
+// =====================================
+
+const permissionCheck =
+    await requirePermission(
+        context,
+        "cars_delete"
+    );
+
+if (!permissionCheck.ok) {
+    return permissionCheck.response;
+}
+
+const adminAuth =
+    permissionCheck.auth;
 
         const url =
             new URL(
