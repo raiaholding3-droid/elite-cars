@@ -361,11 +361,11 @@ export async function onRequestPut(context) {
         // ======================================
 
         const allowedStatuses = [
-            "متوفرة",
-            "محجوزة",
-            "مباعة"
-        ];
-
+    "متوفرة",
+    "في الطريق",
+    "محجوزة",
+    "مباعة"
+];
 
         const status =
             data.status ||
@@ -578,11 +578,11 @@ export async function onRequestPatch(context) {
         // ======================================
 
         const allowedStatuses = [
-            "متوفرة",
-            "محجوزة",
-            "مباعة"
-        ];
-
+    "متوفرة",
+    "في الطريق",
+    "محجوزة",
+    "مباعة"
+];
 
         if (
             !allowedStatuses.includes(
