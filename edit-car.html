@@ -10,7 +10,20 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>تعديل السيارة - رؤية النخبة</title>
+    <title>تعديل السيارة | رؤية النخبة للسيارات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 
@@ -20,244 +33,432 @@
 <body>
 
 
-<header>
+<header class="main-header">
 
-    <div class="logo">
-        رؤية النخبة للسيارات
+    <div class="container header-content">
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <span class="brand-mark">
+                R
+            </span>
+
+            <div>
+
+                <strong>
+                    رؤية النخبة
+                </strong>
+
+                <small>
+                    للسيارات
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a href="admin.html">
+                لوحة الإدارة
+            </a>
+
+            <a
+                href="add-car.html"
+                class="admin-link"
+            >
+                إضافة سيارة
+            </a>
+
+        </nav>
+
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+        >
+            ☰
+        </button>
+
     </div>
-
-
-    <nav>
-
-        <a href="index.html">
-            الرئيسية
-        </a>
-
-        <a href="admin.html">
-            لوحة الإدارة
-        </a>
-
-        <a href="add-car.html">
-            إضافة سيارة
-        </a>
-
-    </nav>
 
 </header>
 
 
-<main>
+<main class="add-car-page">
 
-    <section class="add-car-section">
+    <div class="container">
 
-        <div class="section-title">
+
+        <div class="add-car-heading">
+
+            <span class="section-badge">
+                إدارة السيارات
+            </span>
 
             <h1>
-                تعديل السيارة
+                تعديل بيانات السيارة
             </h1>
 
             <p>
-                قم بتعديل بيانات السيارة ثم اضغط حفظ التعديلات
+                عدّل معلومات السيارة ثم اضغط حفظ التعديلات.
             </p>
 
         </div>
 
 
-        <form id="editCarForm">
+        <form
+            id="editCarForm"
+            class="modern-car-form"
+        >
 
 
-            <div class="form-group">
+            <div class="form-grid">
 
-                <label>
-                    اسم السيارة
-                </label>
 
-                <input
-                    type="text"
-                    id="editCarName"
-                    required
+                <div class="form-group">
+
+                    <label for="editCarName">
+                        اسم السيارة *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarBrand">
+                        الماركة *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarBrand"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarModel">
+                        الموديل *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarModel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarYear">
+                        السنة *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editCarYear"
+                        min="1900"
+                        max="2100"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarVin">
+                        رقم الشاصي VIN
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarVin"
+                        maxlength="17"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarMileage">
+                        العداد / ميل
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editCarMileage"
+                        min="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarColor">
+                        اللون
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarColor"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarFuel">
+                        نوع الوقود
+                    </label>
+
+                    <select id="editCarFuel">
+
+                        <option value="">
+                            اختر
+                        </option>
+
+                        <option value="بنزين">
+                            بنزين
+                        </option>
+
+                        <option value="ديزل">
+                            ديزل
+                        </option>
+
+                        <option value="هايبرد">
+                            هايبرد
+                        </option>
+
+                        <option value="Plug-in Hybrid">
+                            Plug-in Hybrid
+                        </option>
+
+                        <option value="كهربائي">
+                            كهربائي
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarType">
+                        نوع السيارة
+                    </label>
+
+                    <select id="editCarType">
+
+                        <option value="">
+                            اختر
+                        </option>
+
+                        <option value="SUV">
+                            SUV
+                        </option>
+
+                        <option value="Sedan">
+                            Sedan
+                        </option>
+
+                        <option value="Pickup">
+                            Pickup
+                        </option>
+
+                        <option value="Truck">
+                            Truck
+                        </option>
+
+                        <option value="Coupe">
+                            Coupe
+                        </option>
+
+                        <option value="Convertible">
+                            Convertible
+                        </option>
+
+                        <option value="Hatchback">
+                            Hatchback
+                        </option>
+
+                        <option value="Minivan">
+                            Minivan
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarEngine">
+                        المحرك
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarEngine"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarTransmission">
+                        ناقل الحركة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCarTransmission"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarPrice">
+                        السعر بالدولار *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editCarPrice"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCarStatus">
+                        حالة السيارة
+                    </label>
+
+                    <select id="editCarStatus">
+
+                        <option value="متوفرة">
+                            متوفرة
+                        </option>
+
+                        <option value="محجوزة">
+                            محجوزة
+                        </option>
+
+                        <option value="مباعة">
+                            مباعة
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group form-full">
+
+                    <label for="editCarDescription">
+                        وصف السيارة
+                    </label>
+
+                    <textarea
+                        id="editCarDescription"
+                        rows="6"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group form-full">
+
+                    <label for="editCarImages">
+                        صور جديدة
+                    </label>
+
+                    <input
+                        type="file"
+                        id="editCarImages"
+                        accept="image/*"
+                        multiple
+                    >
+
+                    <small>
+                        تعديل الصور سنربطه في الخطوة التالية.
+                        حاليًا اترك هذا الحقل فارغًا عند حفظ البيانات.
+                    </small>
+
+                </div>
+
+
+                <div
+                    id="editImagePreview"
+                    class="image-preview form-full"
+                ></div>
+
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="hero-button primary-button"
                 >
+                    💾 حفظ التعديلات
+                </button>
 
-            </div>
 
-
-            <div class="form-group">
-
-                <label>
-                    الماركة
-                </label>
-
-                <input
-                    type="text"
-                    id="editCarBrand"
-                    required
+                <a
+                    href="admin.html"
+                    class="hero-button secondary-button"
                 >
+                    إلغاء
+                </a>
 
             </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    الموديل
-                </label>
-
-                <input
-                    type="text"
-                    id="editCarModel"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    السنة
-                </label>
-
-                <input
-                    type="number"
-                    id="editCarYear"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    النوع
-                </label>
-
-                <select
-                    id="editCarType"
-                    required
-                >
-
-                    <option value="SUV">
-                        SUV
-                    </option>
-
-                    <option value="Sedan">
-                        Sedan
-                    </option>
-
-                    <option value="Truck">
-                        Truck
-                    </option>
-
-                    <option value="Coupe">
-                        Coupe
-                    </option>
-
-                    <option value="Convertible">
-                        Convertible
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    المحرك
-                </label>
-
-                <input
-                    type="text"
-                    id="editCarEngine"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    ناقل الحركة
-                </label>
-
-                <input
-                    type="text"
-                    id="editCarTransmission"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    السعر
-                </label>
-
-                <input
-                    type="text"
-                    id="editCarPrice"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    الصور الجديدة
-                </label>
-
-                <input
-                    type="file"
-                    id="editCarImages"
-                    accept="image/*"
-                    multiple
-                >
-
-                <p>
-                    إذا لم تختر صورًا جديدة، ستبقى الصور الحالية.
-                </p>
-
-            </div>
-
-
-            <div
-                id="editImagePreview"
-                class="image-preview"
-            ></div>
-
-
-            <div class="form-group">
-
-                <label>
-                    وصف السيارة
-                </label>
-
-                <textarea
-                    id="editCarDescription"
-                    rows="6"
-                ></textarea>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="add-car-button"
-            >
-                💾 حفظ التعديلات
-            </button>
 
 
         </form>
 
-    </section>
+
+    </div>
 
 </main>
 
@@ -272,6 +473,7 @@
 
 
 <script src="script.js"></script>
+
 
 </body>
 
