@@ -1,3 +1,7 @@
+import {
+    requirePermission,
+    logAdminActivity
+} from "../_lib/admin-auth.js";
 // =====================================
 // جلب سيارات المزاد
 // =====================================
@@ -56,6 +60,26 @@ export async function onRequestGet(context) {
 export async function onRequestDelete(context) {
 
     try {
+                // =====================================
+        // التحقق من صلاحية حذف سيارات المزاد
+        // =====================================
+
+        const permissionCheck =
+            await requirePermission(
+                context,
+                "auction_delete"
+            );
+
+
+        if (!permissionCheck.ok) {
+
+            return permissionCheck.response;
+
+        }
+
+
+        const adminAuth =
+            permissionCheck.auth;
 
         const url =
             new URL(
@@ -150,7 +174,23 @@ export async function onRequestDelete(context) {
             .bind(id)
             .run();
 
+        // =====================================
+        // تسجيل العملية في سجل الإدارة
+        // =====================================
 
+        await logAdminActivity(
+            context,
+            adminAuth,
+            {
+                action: "auction_car_delete",
+                action_category: "auction",
+                entity_type: "auction_car",
+                entity_id: id,
+                description:
+                    `حذف سيارة مزاد: ${car.name}`,
+                old_data: car
+            }
+        );
         return Response.json({
             success: true,
             message:
