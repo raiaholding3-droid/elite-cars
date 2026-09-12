@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        إدارة الموظفين | رؤية النخبة للسيارات
+    </title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                "Cairo",
+                sans-serif;
+
+            background:
+                #f4f6f9;
+
+            color:
+                #1e293b;
+
+        }
+
+
+        button,
+        input {
+
+            font-family:
+                inherit;
+
+        }
+
+
+        /* =====================================
+           الهيدر
+        ===================================== */
+
+        .topbar {
+
+            min-height: 72px;
+
+            background:
+                #101827;
+
+            color:
+                white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap: 20px;
+
+            padding:
+                14px 28px;
+
+            box-shadow:
+                0 3px 15px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .brand-logo {
+
+            width: 46px;
+
+            height: 46px;
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d4af37,
+                    #f1d675
+                );
+
+            color:
+                #111827;
+
+            display: flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            font-weight:
+                900;
+
+            font-size:
+                24px;
+
+        }
+
+
+        .brand-text strong {
+
+            display: block;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .brand-text span {
+
+            font-size:
+                12px;
+
+            color:
+                #aeb8c7;
+
+        }
+
+
+        .topbar-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items:
+                center;
+
+        }
+
+
+        .back-button {
+
+            border: 1px solid
+                rgba(255,255,255,.15);
+
+            background:
+                rgba(255,255,255,.06);
+
+            color:
+                white;
+
+            padding:
+                10px 16px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            text-decoration:
+                none;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .back-button:hover {
+
+            background:
+                rgba(255,255,255,.12);
+
+        }
+
+
+        /* =====================================
+           المحتوى
+        ===================================== */
+
+        .page {
+
+            max-width:
+                1400px;
+
+            margin:
+                0 auto;
+
+            padding:
+                30px 22px 70px;
+
+        }
+
+
+        .page-heading {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                25px;
+
+        }
+
+
+        .page-heading h1 {
+
+            margin:
+                0 0 6px;
+
+            font-size:
+                28px;
+
+        }
+
+
+        .page-heading p {
+
+            margin:
+                0;
+
+            color:
+                #64748b;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .primary-button {
+
+            border:
+                none;
+
+            background:
+                #c9a227;
+
+            color:
+                #111827;
+
+            border-radius:
+                10px;
+
+            padding:
+                12px 20px;
+
+            font-weight:
+                800;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .primary-button:hover {
+
+            background:
+                #d9b63a;
+
+        }
+
+
+        /* =====================================
+           الإحصائيات
+        ===================================== */
+
+        .stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                16px;
+
+            margin-bottom:
+                22px;
+
+        }
+
+
+        .stat-card {
+
+            background:
+                white;
+
+            border-radius:
+                14px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 4px 18px
+                rgba(15, 23, 42, 0.06);
+
+        }
+
+
+        .stat-label {
+
+            color:
+                #64748b;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .stat-number {
+
+            font-size:
+                28px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================
+           الجدول
+        ===================================== */
+
+        .panel {
+
+            background:
+                white;
+
+            border-radius:
+                15px;
+
+            box-shadow:
+                0 4px 20px
+                rgba(15, 23, 42, 0.06);
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .panel-header {
+
+            padding:
+                18px 20px;
+
+            border-bottom:
+                1px solid #e8edf3;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+        }
+
+
+        .panel-header h2 {
+
+            margin:
+                0;
+
+            font-size:
+                18px;
+
+        }
+
+
+        .search-input {
+
+            width:
+                min(330px, 100%);
+
+            padding:
+                10px 12px;
+
+            border:
+                1px solid #d8dee8;
+
+            border-radius:
+                9px;
+
+            outline:
+                none;
+
+        }
+
+
+        .search-input:focus {
+
+            border-color:
+                #c9a227;
+
+        }
+
+
+        .table-wrapper {
+
+            width:
+                100%;
+
+            overflow-x:
+                auto;
+
+        }
+
+
+        table {
+
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                850px;
+
+        }
+
+
+        th,
+        td {
+
+            text-align:
+                right;
+
+            padding:
+                15px 16px;
+
+            border-bottom:
+                1px solid #edf1f5;
+
+            vertical-align:
+                middle;
+
+        }
+
+
+        th {
+
+            background:
+                #f8fafc;
+
+            font-size:
+                13px;
+
+            color:
+                #64748b;
+
+        }
+
+
+        td {
+
+            font-size:
+                14px;
+
+        }
+
+
+        .employee-name {
+
+            font-weight:
+                700;
+
+        }
+
+
+        .username {
+
+            direction:
+                ltr;
+
+            display:
+                inline-block;
+
+            color:
+                #475569;
+
+        }
+
+
+        .badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            padding:
+                5px 10px;
+
+            border-radius:
+                999px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .badge-active {
+
+            color:
+                #166534;
+
+            background:
+                #dcfce7;
+
+        }
+
+
+        .badge-disabled {
+
+            color:
+                #991b1b;
+
+            background:
+                #fee2e2;
+
+        }
+
+
+        .actions {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+        }
+
+
+        .action-button {
+
+            border:
+                none;
+
+            padding:
+                7px 11px;
+
+            border-radius:
+                7px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .edit-button {
+
+            background:
+                #e0e7ff;
+
+            color:
+                #3730a3;
+
+        }
+
+
+        .status-button {
+
+            background:
+                #e2e8f0;
+
+            color:
+                #334155;
+
+        }
+
+
+        .delete-button {
+
+            background:
+                #fee2e2;
+
+            color:
+                #991b1b;
+
+        }
+
+
+        .empty-state {
+
+            text-align:
+                center;
+
+            padding:
+                45px 20px;
+
+            color:
+                #64748b;
+
+        }
+
+
+        /* =====================================
+           النافذة
+        ===================================== */
+
+        .modal-overlay {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            background:
+                rgba(15, 23, 42, .72);
+
+            display:
+                none;
+
+            justify-content:
+                center;
+
+            align-items:
+                flex-start;
+
+            padding:
+                35px 15px;
+
+            overflow-y:
+                auto;
+
+            z-index:
+                5000;
+
+        }
+
+
+        .modal-overlay.show {
+
+            display:
+                flex;
+
+        }
+
+
+        .modal {
+
+            width:
+                100%;
+
+            max-width:
+                850px;
+
+            background:
+                white;
+
+            border-radius:
+                16px;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.28);
+
+        }
+
+
+        .modal-header {
+
+            padding:
+                20px 22px;
+
+            border-bottom:
+                1px solid #e5e7eb;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+        }
+
+
+        .modal-header h3 {
+
+            margin:
+                0;
+
+        }
+
+
+        .close-button {
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border:
+                none;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                21px;
+
+            background:
+                #f1f5f9;
+
+        }
+
+
+        .modal-body {
+
+            padding:
+                22px;
+
+        }
+
+
+        .form-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                17px;
+
+        }
+
+
+        .field {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+
+        }
+
+
+        .field.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .field label {
+
+            font-weight:
+                700;
+
+            font-size:
+                13px;
+
+        }
+
+
+        .field input {
+
+            width:
+                100%;
+
+            padding:
+                11px 12px;
+
+            border:
+                1px solid #d7dee8;
+
+            border-radius:
+                9px;
+
+            outline:
+                none;
+
+        }
+
+
+        .field input:focus {
+
+            border-color:
+                #c9a227;
+
+        }
+
+
+        .help-text {
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .permissions-title {
+
+            margin:
+                27px 0 12px;
+
+            padding-top:
+                20px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+        }
+
+
+        .permission-groups {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                15px;
+
+        }
+
+
+        .permission-group {
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                12px;
+
+            padding:
+                15px;
+
+        }
+
+
+        .permission-group h4 {
+
+            margin:
+                0 0 12px;
+
+            font-size:
+                14px;
+
+        }
+
+
+        .permission-item {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            margin:
+                9px 0;
+
+            font-size:
+                13px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .permission-item input {
+
+            width:
+                17px;
+
+            height:
+                17px;
+
+            accent-color:
+                #c9a227;
+
+        }
+
+
+        .modal-footer {
+
+            padding:
+                17px 22px;
+
+            border-top:
+                1px solid #e5e7eb;
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                10px;
+
+        }
+
+
+        .cancel-button {
+
+            border:
+                none;
+
+            background:
+                #e2e8f0;
+
+            padding:
+                11px 18px;
+
+            border-radius:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================
+           الرسائل
+        ===================================== */
+
+        .message {
+
+            display:
+                none;
+
+            margin-bottom:
+                18px;
+
+            padding:
+                13px 16px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .message.show {
+
+            display:
+                block;
+
+        }
+
+
+        .message-success {
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+
+        }
+
+
+        .message-error {
+
+            background:
+                #fee2e2;
+
+            color:
+                #991b1b;
+
+        }
+
+
+        .loading {
+
+            padding:
+                40px;
+
+            text-align:
+                center;
+
+            color:
+                #64748b;
+
+        }
+
+
+        /* =====================================
+           الهاتف
+        ===================================== */
+
+        @media (
+            max-width: 800px
+        ) {
+
+            .topbar {
+
+                padding:
+                    13px 15px;
+
+            }
+
+
+            .brand-text span {
+
+                display:
+                    none;
+
+            }
+
+
+            .page {
+
+                padding:
+                    20px 13px 50px;
+
+            }
+
+
+            .page-heading {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .page-heading .primary-button {
+
+                width:
+                    100%;
+
+            }
+
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .panel-header {
+
+                align-items:
+                    stretch;
+
+                flex-direction:
+                    column;
+
+            }
+
+
+            .search-input {
+
+                width:
+                    100%;
+
+            }
+
+
+            .form-grid,
+            .permission-groups {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            R
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                رؤية النخبة
+            </strong>
+
+            <span>
+                لوحة الإدارة
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+        <a
+            href="/admin.html"
+            class="back-button"
+        >
+            العودة للوحة الإدارة
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="page">
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <h1>
+                إدارة الموظفين
+            </h1>
+
+            <p>
+                إنشاء حسابات الموظفين وتحديد صلاحيات كل حساب
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="addEmployeeButton"
+            type="button"
+        >
+            + إضافة موظف
+        </button>
+
+    </div>
+
+
+    <div
+        id="pageMessage"
+        class="message"
+    ></div>
+
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                إجمالي الموظفين
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalEmployees"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                الحسابات النشطة
+            </div>
+
+            <div
+                class="stat-number"
+                id="activeEmployees"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                الحسابات الموقوفة
+            </div>
+
+            <div
+                class="stat-number"
+                id="disabledEmployees"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <h2>
+                حسابات الموظفين
+            </h2>
+
+
+            <input
+                type="search"
+                id="employeeSearch"
+                class="search-input"
+                placeholder="ابحث بالاسم أو اسم المستخدم..."
+            >
+
+        </div>
+
+
+        <div
+            id="employeesContainer"
+            class="loading"
+        >
+            جاري تحميل الموظفين...
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================
+     نافذة إضافة / تعديل موظف
+===================================== -->
+
+<div
+    class="modal-overlay"
+    id="employeeModal"
+>
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <h3 id="modalTitle">
+                إضافة موظف
+            </h3>
+
+
+            <button
+                class="close-button"
+                id="closeModalButton"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="employeeForm">
+
+
+            <div class="modal-body">
+
+
+                <input
+                    type="hidden"
+                    id="employeeId"
+                >
+
+
+                <div
+                    id="modalMessage"
+                    class="message"
+                ></div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="field">
+
+                        <label for="fullName">
+                            اسم الموظف
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            required
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="username">
+                            اسم المستخدم
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            required
+                            autocomplete="off"
+                            dir="ltr"
+                        >
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label for="password">
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            autocomplete="new-password"
+                        >
+
+                        <div
+                            class="help-text"
+                            id="passwordHelp"
+                        >
+                            8 أحرف على الأقل
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <h3 class="permissions-title">
+                    صلاحيات الموظف
+                </h3>
+
+
+                <div class="permission-groups">
+
+
+                    <div class="permission-group">
+
+                        <h4>
+                            لوحة الإدارة
+                        </h4>
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="dashboard_view"
+                                class="permission-checkbox"
+                            >
+
+                            دخول لوحة الإدارة
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="permission-group">
+
+                        <h4>
+                            السيارات
+                        </h4>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="cars_view"
+                                class="permission-checkbox"
+                            >
+
+                            مشاهدة السيارات
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="cars_add"
+                                class="permission-checkbox"
+                            >
+
+                            إضافة سيارة
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="cars_edit"
+                                class="permission-checkbox"
+                            >
+
+                            تعديل السيارات
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="cars_change_status"
+                                class="permission-checkbox"
+                            >
+
+                            تغيير حالة السيارة
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="cars_delete"
+                                class="permission-checkbox"
+                            >
+
+                            حذف السيارات
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="permission-group">
+
+                        <h4>
+                            سيارات المزاد
+                        </h4>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_view"
+                                class="permission-checkbox"
+                            >
+
+                            مشاهدة قسم المزاد
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_delete"
+                                class="permission-checkbox"
+                            >
+
+                            حذف سيارة مزاد
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="permission-group">
+
+                        <h4>
+                            مهام البحث في المزاد
+                        </h4>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_rules_view"
+                                class="permission-checkbox"
+                            >
+
+                            مشاهدة المهام
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_rules_create"
+                                class="permission-checkbox"
+                            >
+
+                            إنشاء مهمة
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_rules_edit"
+                                class="permission-checkbox"
+                            >
+
+                            تعديل مهمة
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_rules_delete"
+                                class="permission-checkbox"
+                            >
+
+                            حذف مهمة
+
+                        </label>
+
+
+                        <label class="permission-item">
+
+                            <input
+                                type="checkbox"
+                                value="auction_rules_run"
+                                class="permission-checkbox"
+                            >
+
+                            تشغيل مهمة البحث
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelButton"
+                >
+                    إلغاء
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                    id="saveEmployeeButton"
+                >
+                    حفظ الموظف
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // المتغيرات
+    // ==========================================
+
+    let employees = [];
+
+    let editingEmployeeId = null;
+
+
+    const employeesContainer =
+        document.getElementById(
+            "employeesContainer"
+        );
+
+
+    const employeeModal =
+        document.getElementById(
+            "employeeModal"
+        );
+
+
+    const employeeForm =
+        document.getElementById(
+            "employeeForm"
+        );
+
+
+    const modalTitle =
+        document.getElementById(
+            "modalTitle"
+        );
+
+
+    const employeeIdInput =
+        document.getElementById(
+            "employeeId"
+        );
+
+
+    const fullNameInput =
+        document.getElementById(
+            "fullName"
+        );
+
+
+    const usernameInput =
+        document.getElementById(
+            "username"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const passwordHelp =
+        document.getElementById(
+            "passwordHelp"
+        );
+
+
+    const saveEmployeeButton =
+        document.getElementById(
+            "saveEmployeeButton"
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "employeeSearch"
+        );
+
+
+    // ==========================================
+    // التحقق من أن المستخدم Super Admin
+    // ==========================================
+
+    async function checkAccess() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-session",
+                    {
+                        credentials:
+                            "same-origin"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.authenticated
+            ) {
+
+                window.location.href =
+                    "/admin-login.html";
+
+                return false;
+
+            }
+
+
+            if (
+                data.user.role !==
+                "super_admin"
+            ) {
+
+                alert(
+                    "هذه الصفحة للمدير الرئيسي فقط"
+                );
+
+
+                window.location.href =
+                    "/admin.html";
+
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+
+            window.location.href =
+                "/admin-login.html";
+
+
+            return false;
+
+        }
+
+    }
+
+
+    // ==========================================
+    // تحميل الموظفين
+    // ==========================================
+
+    async function loadEmployees() {
+
+        employeesContainer.innerHTML =
+            "جاري تحميل الموظفين...";
+
+
+        employeesContainer.className =
+            "loading";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-users",
+                    {
+                        method:
+                            "GET",
+
+                        credentials:
+                            "same-origin"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "تعذر تحميل الموظفين"
+                );
+
+            }
+
+
+            employees =
+                Array.isArray(data.users)
+                    ? data.users
+                    : [];
+
+
+            updateStatistics();
+
+
+            displayEmployees(
+                employees
+            );
+
+        }
+
+        catch (error) {
+
+            employeesContainer.className =
+                "empty-state";
+
+
+            employeesContainer.textContent =
+                error.message;
+
+
+            showPageMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    // ==========================================
+    // عرض الموظفين
+    // ==========================================
+
+    function displayEmployees(list) {
+
+        employeesContainer.className =
+            "";
+
+
+        if (!list.length) {
+
+            employeesContainer.innerHTML = `
+                <div class="empty-state">
+                    لا توجد حسابات موظفين حتى الآن.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        const rows =
+            list.map(
+                employee => {
+
+                    const statusClass =
+                        employee.is_active
+                            ? "badge-active"
+                            : "badge-disabled";
+
+
+                    const statusText =
+                        employee.is_active
+                            ? "نشط"
+                            : "موقوف";
+
+
+                    const statusButtonText =
+                        employee.is_active
+                            ? "إيقاف"
+                            : "تفعيل";
+
+
+                    const lastLogin =
+                        employee.last_login_at
+                            ? escapeHtml(
+                                employee.last_login_at
+                            )
+                            : "لم يسجل الدخول";
+
+
+                    return `
+                        <tr>
+
+                            <td>
+                                <div class="employee-name">
+                                    ${escapeHtml(
+                                        employee.full_name
+                                    )}
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="username">
+                                    ${escapeHtml(
+                                        employee.username
+                                    )}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span
+                                    class="badge ${statusClass}"
+                                >
+                                    ${statusText}
+                                </span>
+                            </td>
+
+                            <td>
+                                ${
+                                    employee.permissions
+                                        .length
+                                }
+                            </td>
+
+                            <td>
+                                ${lastLogin}
+                            </td>
+
+                            <td>
+
+                                <div class="actions">
+
+                                    <button
+                                        type="button"
+                                        class="
+                                            action-button
+                                            edit-button
+                                        "
+                                        onclick="
+                                            editEmployee(
+                                                ${employee.id}
+                                            )
+                                        "
+                                    >
+                                        تعديل
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="
+                                            action-button
+                                            status-button
+                                        "
+                                        onclick="
+                                            toggleEmployeeStatus(
+                                                ${employee.id}
+                                            )
+                                        "
+                                    >
+                                        ${statusButtonText}
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="
+                                            action-button
+                                            delete-button
+                                        "
+                                        onclick="
+                                            deleteEmployee(
+                                                ${employee.id}
+                                            )
+                                        "
+                                    >
+                                        حذف
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    `;
+
+                }
+            )
+            .join("");
+
+
+        employeesContainer.innerHTML = `
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                الموظف
+                            </th>
+
+                            <th>
+                                اسم المستخدم
+                            </th>
+
+                            <th>
+                                الحالة
+                            </th>
+
+                            <th>
+                                عدد الصلاحيات
+                            </th>
+
+                            <th>
+                                آخر دخول
+                            </th>
+
+                            <th>
+                                الإجراءات
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+                        ${rows}
+                    </tbody>
+
+                </table>
+
+            </div>
+        `;
+
+    }
+
+
+    // ==========================================
+    // الإحصائيات
+    // ==========================================
+
+    function updateStatistics() {
+
+        const total =
+            employees.length;
+
+
+        const active =
+            employees.filter(
+                employee =>
+                    employee.is_active
+            ).length;
+
+
+        const disabled =
+            total - active;
+
+
+        document.getElementById(
+            "totalEmployees"
+        ).textContent =
+            total;
+
+
+        document.getElementById(
+            "activeEmployees"
+        ).textContent =
+            active;
+
+
+        document.getElementById(
+            "disabledEmployees"
+        ).textContent =
+            disabled;
+
+    }
+
+
+    // ==========================================
+    // فتح نافذة إضافة موظف
+    // ==========================================
+
+    function openAddEmployeeModal() {
+
+        editingEmployeeId =
+            null;
+
+
+        employeeForm.reset();
+
+
+        employeeIdInput.value =
+            "";
+
+
+        modalTitle.textContent =
+            "إضافة موظف جديد";
+
+
+        passwordInput.required =
+            true;
+
+
+        passwordHelp.textContent =
+            "كلمة المرور مطلوبة ويجب أن تكون 8 أحرف على الأقل";
+
+
+        clearPermissions();
+
+
+        clearModalMessage();
+
+
+        employeeModal.classList.add(
+            "show"
+        );
+
+
+        fullNameInput.focus();
+
+    }
+
+
+    // ==========================================
+    // تعديل موظف
+    // ==========================================
+
+    function editEmployee(id) {
+
+        const employee =
+            employees.find(
+                item =>
+                    Number(item.id) ===
+                    Number(id)
+            );
+
+
+        if (!employee) {
+
+            return;
+
+        }
+
+
+        editingEmployeeId =
+            employee.id;
+
+
+        employeeIdInput.value =
+            employee.id;
+
+
+        fullNameInput.value =
+            employee.full_name ||
+            "";
+
+
+        usernameInput.value =
+            employee.username ||
+            "";
+
+
+        passwordInput.value =
+            "";
+
+
+        passwordInput.required =
+            false;
+
+
+        passwordHelp.textContent =
+            "اترك كلمة المرور فارغة إذا كنت لا تريد تغييرها";
+
+
+        modalTitle.textContent =
+            `تعديل الموظف: ${employee.full_name}`;
+
+
+        clearPermissions();
+
+
+        const checkboxes =
+            document.querySelectorAll(
+                ".permission-checkbox"
+            );
+
+
+        checkboxes.forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    employee.permissions
+                        .includes(
+                            checkbox.value
+                        );
+
+            }
+        );
+
+
+        clearModalMessage();
+
+
+        employeeModal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    // ==========================================
+    // حفظ الموظف
+    // ==========================================
+
+    employeeForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            clearModalMessage();
+
+
+            const fullName =
+                fullNameInput.value.trim();
+
+
+            const username =
+                usernameInput.value.trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            const permissions =
+                getSelectedPermissions();
+
+
+            if (
+                !fullName ||
+                !username
+            ) {
+
+                showModalMessage(
+                    "يرجى إدخال اسم الموظف واسم المستخدم",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !editingEmployeeId &&
+                password.length < 8
+            ) {
+
+                showModalMessage(
+                    "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                editingEmployeeId &&
+                password.length > 0 &&
+                password.length < 8
+            ) {
+
+                showModalMessage(
+                    "كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            saveEmployeeButton.disabled =
+                true;
+
+
+            saveEmployeeButton.textContent =
+                "جاري الحفظ...";
+
+
+            try {
+
+                const payload = {
+
+                    full_name:
+                        fullName,
+
+                    username:
+                        username,
+
+                    permissions:
+                        permissions
+
+                };
+
+
+                if (password) {
+
+                    payload.password =
+                        password;
+
+                }
+
+
+                if (editingEmployeeId) {
+
+                    payload.id =
+                        editingEmployeeId;
+
+                }
+
+
+                const response =
+                    await fetch(
+                        "/api/admin-users",
+                        {
+                            method:
+                                editingEmployeeId
+                                    ? "PUT"
+                                    : "POST",
+
+                            credentials:
+                                "same-origin",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    payload
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "فشل حفظ الموظف"
+                    );
+
+                }
+
+
+                showPageMessage(
+                    data.message ||
+                    "تم حفظ الموظف بنجاح",
+                    "success"
+                );
+
+
+                closeEmployeeModal();
+
+
+                await loadEmployees();
+
+            }
+
+            catch (error) {
+
+                showModalMessage(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                saveEmployeeButton.disabled =
+                    false;
+
+
+                saveEmployeeButton.textContent =
+                    editingEmployeeId
+                        ? "حفظ التعديلات"
+                        : "حفظ الموظف";
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // تفعيل / إيقاف موظف
+    // ==========================================
+
+    async function toggleEmployeeStatus(id) {
+
+        const employee =
+            employees.find(
+                item =>
+                    Number(item.id) ===
+                    Number(id)
+            );
+
+
+        if (!employee) {
+
+            return;
+
+        }
+
+
+        const newStatus =
+            !employee.is_active;
+
+
+        const confirmation =
+            confirm(
+                newStatus
+                    ? `هل تريد تفعيل حساب ${employee.full_name}؟`
+                    : `هل تريد إيقاف حساب ${employee.full_name}؟`
+            );
+
+
+        if (!confirmation) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-users",
+                    {
+                        method:
+                            "PATCH",
+
+                        credentials:
+                            "same-origin",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                id:
+                                    employee.id,
+
+                                is_active:
+                                    newStatus
+                            })
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "تعذر تغيير حالة الموظف"
+                );
+
+            }
+
+
+            showPageMessage(
+                data.message,
+                "success"
+            );
+
+
+            await loadEmployees();
+
+        }
+
+        catch (error) {
+
+            showPageMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    // ==========================================
+    // حذف موظف
+    // ==========================================
+
+    async function deleteEmployee(id) {
+
+        const employee =
+            employees.find(
+                item =>
+                    Number(item.id) ===
+                    Number(id)
+            );
+
+
+        if (!employee) {
+
+            return;
+
+        }
+
+
+        const confirmation =
+            confirm(
+                `سيتم حذف حساب الموظف "${employee.full_name}" نهائيًا.\n\nهل أنت متأكد؟`
+            );
+
+
+        if (!confirmation) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/admin-users?id=${employee.id}`,
+                    {
+                        method:
+                            "DELETE",
+
+                        credentials:
+                            "same-origin"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "فشل حذف الموظف"
+                );
+
+            }
+
+
+            showPageMessage(
+                data.message ||
+                "تم حذف الموظف",
+                "success"
+            );
+
+
+            await loadEmployees();
+
+        }
+
+        catch (error) {
+
+            showPageMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    // ==========================================
+    // البحث
+    // ==========================================
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            const value =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!value) {
+
+                displayEmployees(
+                    employees
+                );
+
+                return;
+
+            }
+
+
+            const filtered =
+                employees.filter(
+                    employee => {
+
+                        return (
+                            String(
+                                employee.full_name ||
+                                ""
+                            )
+                            .toLowerCase()
+                            .includes(value)
+
+                            ||
+
+                            String(
+                                employee.username ||
+                                ""
+                            )
+                            .toLowerCase()
+                            .includes(value)
+                        );
+
+                    }
+                );
+
+
+            displayEmployees(
+                filtered
+            );
+
+        }
+    );
+
+
+    // ==========================================
+    // الصلاحيات
+    // ==========================================
+
+    function getSelectedPermissions() {
+
+        return Array.from(
+            document.querySelectorAll(
+                ".permission-checkbox:checked"
+            )
+        )
+        .map(
+            checkbox =>
+                checkbox.value
+        );
+
+    }
+
+
+    function clearPermissions() {
+
+        document.querySelectorAll(
+            ".permission-checkbox"
+        )
+        .forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    false;
+
+            }
+        );
+
+    }
+
+
+    // ==========================================
+    // إغلاق النافذة
+    // ==========================================
+
+    function closeEmployeeModal() {
+
+        employeeModal.classList.remove(
+            "show"
+        );
+
+
+        employeeForm.reset();
+
+
+        editingEmployeeId =
+            null;
+
+
+        clearPermissions();
+
+
+        clearModalMessage();
+
+    }
+
+
+    // ==========================================
+    // الرسائل
+    // ==========================================
+
+    function showPageMessage(
+        message,
+        type
+    ) {
+
+        const element =
+            document.getElementById(
+                "pageMessage"
+            );
+
+
+        element.textContent =
+            message;
+
+
+        element.className =
+            `message show ${
+                type === "success"
+                    ? "message-success"
+                    : "message-error"
+            }`;
+
+
+        setTimeout(
+            () => {
+
+                element.classList.remove(
+                    "show"
+                );
+
+            },
+            5000
+        );
+
+    }
+
+
+    function showModalMessage(
+        message,
+        type
+    ) {
+
+        const element =
+            document.getElementById(
+                "modalMessage"
+            );
+
+
+        element.textContent =
+            message;
+
+
+        element.className =
+            `message show ${
+                type === "success"
+                    ? "message-success"
+                    : "message-error"
+            }`;
+
+    }
+
+
+    function clearModalMessage() {
+
+        const element =
+            document.getElementById(
+                "modalMessage"
+            );
+
+
+        element.textContent =
+            "";
+
+
+        element.className =
+            "message";
+
+    }
+
+
+    // ==========================================
+    // حماية النصوص عند العرض
+    // ==========================================
+
+    function escapeHtml(value) {
+
+        return String(
+            value ?? ""
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+    }
+
+
+    // ==========================================
+    // الأحداث
+    // ==========================================
+
+    document.getElementById(
+        "addEmployeeButton"
+    )
+    .addEventListener(
+        "click",
+        openAddEmployeeModal
+    );
+
+
+    document.getElementById(
+        "closeModalButton"
+    )
+    .addEventListener(
+        "click",
+        closeEmployeeModal
+    );
+
+
+    document.getElementById(
+        "cancelButton"
+    )
+    .addEventListener(
+        "click",
+        closeEmployeeModal
+    );
+
+
+    employeeModal.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target ===
+                employeeModal
+            ) {
+
+                closeEmployeeModal();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                closeEmployeeModal();
+
+            }
+
+        }
+    );
+
+
+    // ==========================================
+    // تشغيل الصفحة
+    // ==========================================
+
+    async function startPage() {
+
+        const allowed =
+            await checkAccess();
+
+
+        if (!allowed) {
+
+            return;
+
+        }
+
+
+        await loadEmployees();
+
+    }
+
+
+    startPage();
+
+</script>
+
+
+</body>
+</html>
