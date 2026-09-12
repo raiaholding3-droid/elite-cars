@@ -264,7 +264,7 @@ async function hashPassword(
                     hexToUint8Array(
                         salt
                     ),
-                iterations: 210000,
+                iterations: 100000,
                 hash: "SHA-256"
             },
             keyMaterial,
