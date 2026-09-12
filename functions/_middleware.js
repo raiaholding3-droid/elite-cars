@@ -33,7 +33,10 @@ export async function onRequest(context) {
         "/edit-car",
 
         "/auction-rules.html",
-        "/auction-rules"
+        "/auction-rules",
+
+        "/admin-users.html",
+        "/admin-users"
 
     ];
 
@@ -153,11 +156,13 @@ export async function onRequest(context) {
 
     const expiresAt =
         new Date(
-            session.expires_at
-                .replace(
-                    " ",
-                    "T"
-                ) +
+            String(
+                session.expires_at
+            )
+            .replace(
+                " ",
+                "T"
+            ) +
             "Z"
         );
 
@@ -171,14 +176,14 @@ export async function onRequest(context) {
     ) {
 
         await env.DB
-        .prepare(`
-            DELETE FROM admin_sessions
-            WHERE id = ?
-        `)
-        .bind(
-            session.session_id
-        )
-        .run();
+            .prepare(`
+                DELETE FROM admin_sessions
+                WHERE id = ?
+            `)
+            .bind(
+                session.session_id
+            )
+            .run();
 
 
         return redirectToLogin(
@@ -193,17 +198,43 @@ export async function onRequest(context) {
     // =====================================
 
     await env.DB
-    .prepare(`
-        UPDATE admin_sessions
-        SET
-            last_seen_at =
-                CURRENT_TIMESTAMP
-        WHERE id = ?
-    `)
-    .bind(
-        session.session_id
-    )
-    .run();
+        .prepare(`
+            UPDATE admin_sessions
+
+            SET
+                last_seen_at =
+                    CURRENT_TIMESTAMP
+
+            WHERE id = ?
+        `)
+        .bind(
+            session.session_id
+        )
+        .run();
+
+
+    // =====================================
+    // حماية صفحة إدارة الموظفين
+    // Super Admin فقط
+    // =====================================
+
+    if (
+        pathname === "/admin-users.html" ||
+        pathname === "/admin-users"
+    ) {
+
+        if (
+            session.role !==
+            "super_admin"
+        ) {
+
+            return redirectToAdmin(
+                request.url
+            );
+
+        }
+
+    }
 
 
     // =====================================
@@ -232,6 +263,37 @@ function redirectToLogin(
 
     url.pathname =
         "/admin-login.html";
+
+
+    url.search =
+        "";
+
+
+    return Response.redirect(
+        url.toString(),
+        302
+    );
+
+}
+
+
+// =====================================
+// تحويل الموظف إلى لوحة الإدارة
+// عند محاولة فتح صفحة Super Admin
+// =====================================
+
+function redirectToAdmin(
+    requestUrl
+) {
+
+    const url =
+        new URL(
+            requestUrl
+        );
+
+
+    url.pathname =
+        "/admin.html";
 
 
     url.search =
@@ -331,11 +393,11 @@ function arrayBufferToHex(
     .map(
         byte =>
             byte
-            .toString(16)
-            .padStart(
-                2,
-                "0"
-            )
+                .toString(16)
+                .padStart(
+                    2,
+                    "0"
+                )
     )
     .join("");
 
