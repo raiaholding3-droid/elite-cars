@@ -541,7 +541,111 @@ async function loadCarDetails() {
         ).textContent =
             selectedCar.transmission ||
             "-";
+// =====================================
+// رقم الشاصي VIN
+// =====================================
 
+const vinElement =
+    document.getElementById(
+        "carVin"
+    );
+
+if (vinElement) {
+
+    vinElement.textContent =
+        selectedCar.vin ||
+        "-";
+
+}
+
+
+// =====================================
+// العداد
+// =====================================
+
+const mileageElement =
+    document.getElementById(
+        "carMileage"
+    );
+
+if (mileageElement) {
+
+    if (
+        selectedCar.mileage !== null &&
+        selectedCar.mileage !== undefined &&
+        selectedCar.mileage !== ""
+    ) {
+
+        mileageElement.textContent =
+            Number(
+                selectedCar.mileage
+            ).toLocaleString() +
+            " ميل";
+
+    }
+
+    else {
+
+        mileageElement.textContent =
+            "-";
+
+    }
+
+}
+
+
+// =====================================
+// اللون
+// =====================================
+
+const colorElement =
+    document.getElementById(
+        "carColor"
+    );
+
+if (colorElement) {
+
+    colorElement.textContent =
+        selectedCar.color ||
+        "-";
+
+}
+
+
+// =====================================
+// نوع الوقود
+// =====================================
+
+const fuelElement =
+    document.getElementById(
+        "carFuel"
+    );
+
+if (fuelElement) {
+
+    fuelElement.textContent =
+        selectedCar.fuel_type ||
+        "-";
+
+}
+
+
+// =====================================
+// حالة السيارة داخل المواصفات
+// =====================================
+
+const statusTextElement =
+    document.getElementById(
+        "carStatusText"
+    );
+
+if (statusTextElement) {
+
+    statusTextElement.textContent =
+        selectedCar.status ||
+        "متوفرة";
+
+}
 
         const descriptionElement =
             document.getElementById(
