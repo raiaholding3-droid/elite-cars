@@ -7033,3 +7033,1024 @@ textarea {
     }
 
 }
+/* =========================================================
+   صفحة من نحن - رؤية النخبة
+========================================================= */
+
+
+/* Hero */
+
+.about-page-hero {
+    position: relative;
+
+    min-height: 470px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 90px 7%;
+
+    overflow: hidden;
+
+    color: #fff;
+
+    background:
+        url("https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1900&q=90")
+        center center / cover
+        no-repeat;
+}
+
+
+.about-page-hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 6, 8, 0.44),
+            rgba(5, 6, 8, 0.86)
+        );
+}
+
+
+.about-page-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+}
+
+
+.about-page-hero h1 {
+    margin: 10px 0 12px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(45px, 6vw, 76px);
+
+    line-height: 1.15;
+}
+
+
+.about-page-hero-content > p {
+    margin: 0 0 24px;
+
+    color: rgba(255, 255, 255, 0.73);
+
+    font-size: 18px;
+}
+
+
+.page-breadcrumb {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 12px;
+}
+
+
+.page-breadcrumb a {
+    color: var(--elite-gold-light);
+
+    text-decoration: none;
+}
+
+
+.page-breadcrumb span {
+    color: rgba(255, 255, 255, 0.32);
+}
+
+
+.page-breadcrumb strong {
+    color: rgba(255, 255, 255, 0.72);
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   مقدمة من نحن
+========================================================= */
+
+.about-intro-section {
+    padding: 115px 7%;
+
+    background: #fff;
+}
+
+
+.about-intro-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 0.95fr;
+
+    gap: 90px;
+
+    align-items: center;
+}
+
+
+.about-intro-content h2 {
+    max-width: 680px;
+
+    margin: 9px 0 25px;
+
+    font-family:
+        "Tajawal",
+        "Cairo",
+        sans-serif;
+
+    font-size:
+        clamp(36px, 4.5vw, 55px);
+
+    line-height: 1.3;
+}
+
+
+.about-intro-content > p {
+    color: #686d73;
+
+    font-size: 15px;
+
+    line-height: 2.05;
+
+    margin: 0 0 17px;
+}
+
+
+.about-intro-content > p strong {
+    color: #1a1c20;
+}
+
+
+.about-intro-signature {
+    display: inline-flex;
+
+    flex-direction: column;
+
+    margin-top: 22px;
+
+    padding-right: 17px;
+
+    border-right:
+        3px solid
+        var(--elite-gold);
+}
+
+
+.about-intro-signature span {
+    color:
+        var(--elite-gold-dark);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+
+.about-intro-signature strong {
+    color: #202227;
+
+    font-size: 16px;
+}
+
+
+.about-intro-image {
+    position: relative;
+}
+
+
+.about-intro-image img {
+    width: 100%;
+
+    min-height: 550px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 28px 70px
+        rgba(0, 0, 0, 0.13);
+}
+
+
+.about-intro-image::before {
+    content: "";
+
+    position: absolute;
+
+    z-index: -1;
+
+    width: 70%;
+
+    height: 70%;
+
+    top: -20px;
+
+    left: -20px;
+
+    border-radius: 24px;
+
+    border:
+        1px solid
+        rgba(216, 182, 92, 0.7);
+}
+
+
+.about-intro-badge {
+    position: absolute;
+
+    right: -30px;
+
+    bottom: 35px;
+
+    min-width: 260px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(10, 11, 14, 0.94);
+
+    color: #fff;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.24);
+}
+
+
+.about-intro-badge > span {
+    font-size: 28px;
+}
+
+
+.about-intro-badge strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 14px;
+}
+
+
+.about-intro-badge small {
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   الرؤية
+========================================================= */
+
+.about-vision-section {
+    padding: 80px 7%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0a0b0e,
+            #171a20
+        );
+
+    color: #fff;
+}
+
+
+.about-vision-inner {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.9fr 1.1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+
+.about-vision-title {
+    padding-left: 70px;
+
+    border-left:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+}
+
+
+.about-vision-title h2 {
+    margin: 7px 0 0;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(34px, 4vw, 50px);
+
+    line-height: 1.3;
+}
+
+
+.about-vision-text p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-size: 16px;
+
+    line-height: 2.15;
+}
+
+
+/* =========================================================
+   ما نقدمه
+========================================================= */
+
+.about-offer-section {
+    padding: 110px 7%;
+
+    background: #f6f6f3;
+}
+
+
+.about-offer-grid {
+    max-width: 1250px;
+
+    margin: 50px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+
+.about-offer-card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 310px;
+
+    padding: 30px 26px;
+
+    border-radius: 20px;
+
+    border:
+        1px solid
+        #e7e7e2;
+
+    background: #fff;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.045);
+
+    transition:
+        0.35s ease;
+}
+
+
+.about-offer-card:hover {
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(216, 182, 92, 0.7);
+
+    box-shadow:
+        0 22px 55px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+.about-offer-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 150px;
+
+    border-radius: 50%;
+
+    left: -90px;
+
+    bottom: -90px;
+
+    background:
+        rgba(216, 182, 92, 0.08);
+}
+
+
+.about-offer-icon {
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 17px;
+
+    margin-bottom: 32px;
+
+    background:
+        #f3ead2;
+
+    font-size: 25px;
+}
+
+
+.about-card-number {
+    position: absolute;
+
+    left: 23px;
+
+    top: 24px;
+
+    color: #bebeb8;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+.about-offer-card h3 {
+    margin: 0 0 11px;
+
+    color: #191b1f;
+
+    font-size: 18px;
+}
+
+
+.about-offer-card p {
+    margin: 0;
+
+    color: #73777c;
+
+    font-size: 13px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   لماذا رؤية النخبة
+========================================================= */
+
+.why-elite-section {
+    padding: 110px 7%;
+
+    background: #fff;
+}
+
+
+.why-elite-grid {
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.85fr 1.15fr;
+
+    gap: 95px;
+
+    align-items: start;
+}
+
+
+.why-elite-content {
+    position: sticky;
+
+    top: 120px;
+
+    padding: 45px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d0e12,
+            #1c2027
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.19);
+}
+
+
+.why-elite-content h2 {
+    margin: 9px 0 20px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(34px, 4vw, 49px);
+
+    line-height: 1.3;
+}
+
+
+.why-elite-content > p {
+    margin-bottom: 30px;
+
+    color:
+        rgba(255, 255, 255, 0.63);
+
+    line-height: 2;
+}
+
+
+.why-elite-list {
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.why-elite-item {
+    display: grid;
+
+    grid-template-columns:
+        48px 1fr;
+
+    gap: 18px;
+
+    align-items: start;
+
+    padding: 24px;
+
+    border:
+        1px solid
+        #e8e8e3;
+
+    border-radius: 16px;
+
+    background: #fafaf8;
+
+    transition:
+        0.3s ease;
+}
+
+
+.why-elite-item:hover {
+    background: #fff;
+
+    border-color:
+        rgba(216, 182, 92, 0.65);
+
+    transform:
+        translateX(-5px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+.why-elite-item > span {
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        #f1e7ca;
+
+    color:
+        #8e6919;
+
+    font-weight: 800;
+}
+
+
+.why-elite-item strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #1e2024;
+
+    font-size: 16px;
+}
+
+
+.why-elite-item p {
+    margin: 0;
+
+    color: #767a80;
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   هدفنا
+========================================================= */
+
+.about-goal-section {
+    padding:
+        30px 7% 110px;
+
+    background: #fff;
+}
+
+
+.about-goal-card {
+    position: relative;
+
+    overflow: hidden;
+
+    max-width: 1250px;
+
+    min-height: 330px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        280px 1fr;
+
+    align-items: center;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e3c66f,
+            #ad8128
+        );
+
+    box-shadow:
+        0 25px 65px
+        rgba(164, 120, 36, 0.20);
+}
+
+
+.about-goal-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    border-radius: 50%;
+
+    left: -170px;
+
+    bottom: -190px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+}
+
+
+.about-goal-number {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 140px;
+
+    font-weight: 800;
+
+    color:
+        rgba(255, 255, 255, 0.22);
+}
+
+
+.about-goal-content {
+    max-width: 730px;
+
+    padding: 55px;
+}
+
+
+.about-goal-content .section-kicker {
+    color:
+        rgba(0, 0, 0, 0.65);
+}
+
+
+.about-goal-content h2 {
+    margin: 7px 0 15px;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    font-size:
+        clamp(33px, 4vw, 48px);
+}
+
+
+.about-goal-content p {
+    margin: 0;
+
+    color:
+        rgba(0, 0, 0, 0.70);
+
+    font-size: 15px;
+
+    line-height: 2;
+}
+
+
+/* =========================================================
+   Responsive - صفحة من نحن
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .about-intro-grid,
+    .about-vision-inner,
+    .why-elite-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-intro-grid {
+        gap: 55px;
+    }
+
+
+    .about-intro-image {
+        max-width: 700px;
+
+        margin: auto;
+
+        width: 100%;
+    }
+
+
+    .about-intro-badge {
+        right: 25px;
+    }
+
+
+    .about-vision-inner {
+        gap: 35px;
+    }
+
+
+    .about-vision-title {
+        padding-left: 0;
+
+        padding-bottom: 30px;
+
+        border-left: none;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.1);
+    }
+
+
+    .about-offer-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .why-elite-content {
+        position: static;
+    }
+
+
+    .about-goal-card {
+        grid-template-columns:
+            190px 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .about-page-hero {
+        min-height: 390px;
+
+        padding:
+            75px 18px;
+    }
+
+
+    .about-page-hero h1 {
+        font-size: 46px;
+    }
+
+
+    .about-page-hero-content > p {
+        font-size: 15px;
+    }
+
+
+    .about-intro-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .about-intro-content h2 {
+        font-size: 37px;
+    }
+
+
+    .about-intro-image img {
+        min-height: 400px;
+    }
+
+
+    .about-intro-image::before {
+        display: none;
+    }
+
+
+    .about-intro-badge {
+        right: 15px;
+
+        left: 15px;
+
+        bottom: 15px;
+
+        min-width: 0;
+    }
+
+
+    .about-vision-section {
+        padding:
+            70px 18px;
+    }
+
+
+    .about-vision-title h2 {
+        font-size: 36px;
+    }
+
+
+    .about-vision-text p {
+        font-size: 14px;
+    }
+
+
+    .about-offer-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .about-offer-grid {
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+    }
+
+
+    .about-offer-card {
+        min-height: auto;
+    }
+
+
+    .why-elite-section {
+        padding:
+            80px 18px;
+    }
+
+
+    .why-elite-grid {
+        gap: 35px;
+    }
+
+
+    .why-elite-content {
+        padding: 30px 24px;
+    }
+
+
+    .why-elite-content h2 {
+        font-size: 36px;
+    }
+
+
+    .why-elite-content .primary-button {
+        width: 100%;
+    }
+
+
+    .why-elite-item {
+        grid-template-columns:
+            43px 1fr;
+
+        padding:
+            19px 17px;
+
+        gap: 12px;
+    }
+
+
+    .why-elite-item > span {
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    .about-goal-section {
+        padding:
+            10px 18px 80px;
+    }
+
+
+    .about-goal-card {
+        min-height: 0;
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-goal-number {
+        display: none;
+    }
+
+
+    .about-goal-content {
+        padding:
+            45px 25px;
+    }
+
+
+    .about-goal-content h2 {
+        font-size: 35px;
+    }
+
+}
