@@ -1384,7 +1384,6 @@ let carToEdit = null;
 
 let editSelectedImages = [];
 
-
 // =====================================
 // تحميل بيانات السيارة من D1
 // =====================================
@@ -1396,14 +1395,11 @@ async function loadEditCarData() {
             "editCarForm"
         );
 
-
     if (
         !editCarId ||
         !editForm
     ) {
-
         return;
-
     }
 
 
@@ -1432,10 +1428,8 @@ async function loadEditCarData() {
                 "السيارة غير موجودة"
             );
 
-
             window.location.href =
                 "admin.html";
-
 
             return;
 
@@ -1443,14 +1437,13 @@ async function loadEditCarData() {
 
 
         // =====================================
-        // الاسم
+        // اسم السيارة
         // =====================================
 
         const nameInput =
             document.getElementById(
                 "editCarName"
             );
-
 
         if (nameInput) {
 
@@ -1469,7 +1462,6 @@ async function loadEditCarData() {
                 "editCarBrand"
             );
 
-
         if (brandInput) {
 
             brandInput.value =
@@ -1486,7 +1478,6 @@ async function loadEditCarData() {
             document.getElementById(
                 "editCarModel"
             );
-
 
         if (modelInput) {
 
@@ -1505,17 +1496,84 @@ async function loadEditCarData() {
                 "editCarYear"
             );
 
-
         if (yearInput) {
 
             yearInput.value =
-                carToEdit.year || "";
+                carToEdit.year ?? "";
 
         }
 
 
         // =====================================
-        // نوع الهيكل
+        // VIN رقم الشاصي
+        // =====================================
+
+        const vinInput =
+            document.getElementById(
+                "editCarVin"
+            );
+
+        if (vinInput) {
+
+            vinInput.value =
+                carToEdit.vin || "";
+
+        }
+
+
+        // =====================================
+        // العداد
+        // =====================================
+
+        const mileageInput =
+            document.getElementById(
+                "editCarMileage"
+            );
+
+        if (mileageInput) {
+
+            mileageInput.value =
+                carToEdit.mileage ?? "";
+
+        }
+
+
+        // =====================================
+        // اللون
+        // =====================================
+
+        const colorInput =
+            document.getElementById(
+                "editCarColor"
+            );
+
+        if (colorInput) {
+
+            colorInput.value =
+                carToEdit.color || "";
+
+        }
+
+
+        // =====================================
+        // الوقود
+        // =====================================
+
+        const fuelInput =
+            document.getElementById(
+                "editCarFuel"
+            );
+
+        if (fuelInput) {
+
+            fuelInput.value =
+                carToEdit.fuel_type || "";
+
+        }
+
+
+        // =====================================
+        // نوع السيارة
         // =====================================
 
         const typeInput =
@@ -1523,13 +1581,10 @@ async function loadEditCarData() {
                 "editCarType"
             );
 
-
         if (typeInput) {
 
             typeInput.value =
-                carToEdit.body_type ||
-                carToEdit.type ||
-                "SUV";
+                carToEdit.body_type || "";
 
         }
 
@@ -1542,7 +1597,6 @@ async function loadEditCarData() {
             document.getElementById(
                 "editCarEngine"
             );
-
 
         if (engineInput) {
 
@@ -1561,12 +1615,10 @@ async function loadEditCarData() {
                 "editCarTransmission"
             );
 
-
         if (transmissionInput) {
 
             transmissionInput.value =
-                carToEdit.transmission ||
-                "";
+                carToEdit.transmission || "";
 
         }
 
@@ -1580,11 +1632,28 @@ async function loadEditCarData() {
                 "editCarPrice"
             );
 
-
         if (priceInput) {
 
             priceInput.value =
                 carToEdit.price ?? "";
+
+        }
+
+
+        // =====================================
+        // حالة السيارة
+        // =====================================
+
+        const statusInput =
+            document.getElementById(
+                "editCarStatus"
+            );
+
+        if (statusInput) {
+
+            statusInput.value =
+                carToEdit.status ||
+                "متوفرة";
 
         }
 
@@ -1598,12 +1667,10 @@ async function loadEditCarData() {
                 "editCarDescription"
             );
 
-
         if (descriptionInput) {
 
             descriptionInput.value =
-                carToEdit.description ||
-                "";
+                carToEdit.description || "";
 
         }
 
@@ -1622,7 +1689,6 @@ async function loadEditCarData() {
             "خطأ تحميل السيارة:",
             error
         );
-
 
         alert(
             "حدث خطأ أثناء تحميل بيانات السيارة:\n" +
@@ -1685,7 +1751,7 @@ function getCarImages(car) {
 
 
 // =====================================
-// عرض الصور الحالية في صفحة التعديل
+// عرض الصور الحالية
 // =====================================
 
 function showCurrentEditImages() {
@@ -1700,9 +1766,7 @@ function showCurrentEditImages() {
         !preview ||
         !carToEdit
     ) {
-
         return;
-
     }
 
 
@@ -1764,7 +1828,13 @@ function showCurrentEditImages() {
                         </span>
                     `
                     :
-                    ""
+                    `
+                        <span
+                            class="image-number"
+                        >
+                            صورة ${index + 1}
+                        </span>
+                    `
                 }
 
             `;
@@ -1778,8 +1848,10 @@ function showCurrentEditImages() {
     );
 
 }
+
+
 // =====================================
-// اختيار صور جديدة في صفحة التعديل
+// اختيار صور جديدة
 // =====================================
 
 const editImagesInput =
@@ -1799,7 +1871,7 @@ if (editImagesInput) {
 
             const files =
                 Array.from(
-                    editImagesInput.files
+                    editImagesInput.files || []
                 );
 
 
@@ -1918,7 +1990,13 @@ function showNewEditImages() {
                         </span>
                     `
                     :
-                    ""
+                    `
+                        <span
+                            class="image-number"
+                        >
+                            صورة ${index + 1}
+                        </span>
+                    `
                 }
 
             `;
@@ -1964,7 +2042,359 @@ if (editCarForm) {
             }
 
 
+            // =====================================
+            // الصور الجديدة غير مفعلة في الحفظ بعد
+            // =====================================
+
+            if (
+                editImagesInput &&
+                editImagesInput.files &&
+                editImagesInput.files.length > 0
+            ) {
+
+                alert(
+                    "تعديل الصور سنفعّله في الخطوة التالية.\n\nاحذف اختيار الصور الجديدة ثم احفظ بيانات السيارة."
+                );
+
+                return;
+
+            }
+
+
             try {
+
+                // =====================================
+                // قراءة الحقول
+                // =====================================
+
+                const name =
+                    document
+                        .getElementById(
+                            "editCarName"
+                        )
+                        .value
+                        .trim();
+
+
+                const brand =
+                    document
+                        .getElementById(
+                            "editCarBrand"
+                        )
+                        .value
+                        .trim();
+
+
+                const model =
+                    document
+                        .getElementById(
+                            "editCarModel"
+                        )
+                        .value
+                        .trim();
+
+
+                const year =
+                    Number(
+                        document
+                            .getElementById(
+                                "editCarYear"
+                            )
+                            .value
+                    );
+
+
+                const vin =
+                    document
+                        .getElementById(
+                            "editCarVin"
+                        )
+                        .value
+                        .trim()
+                        .toUpperCase();
+
+
+                const mileageValue =
+                    document
+                        .getElementById(
+                            "editCarMileage"
+                        )
+                        .value;
+
+
+                const mileage =
+                    mileageValue !== ""
+                    ? Number(mileageValue)
+                    : null;
+
+
+                const color =
+                    document
+                        .getElementById(
+                            "editCarColor"
+                        )
+                        .value
+                        .trim();
+
+
+                const fuelType =
+                    document
+                        .getElementById(
+                            "editCarFuel"
+                        )
+                        .value;
+
+
+                const bodyType =
+                    document
+                        .getElementById(
+                            "editCarType"
+                        )
+                        .value;
+
+
+                const engine =
+                    document
+                        .getElementById(
+                            "editCarEngine"
+                        )
+                        .value
+                        .trim();
+
+
+                const transmission =
+                    document
+                        .getElementById(
+                            "editCarTransmission"
+                        )
+                        .value
+                        .trim();
+
+
+                const price =
+                    Number(
+                        document
+                            .getElementById(
+                                "editCarPrice"
+                            )
+                            .value
+                    );
+
+
+                const status =
+                    document
+                        .getElementById(
+                            "editCarStatus"
+                        )
+                        .value;
+
+
+                const description =
+                    document
+                        .getElementById(
+                            "editCarDescription"
+                        )
+                        .value
+                        .trim();
+
+
+                // =====================================
+                // التحقق من البيانات
+                // =====================================
+
+                if (
+                    !name ||
+                    !brand ||
+                    !model
+                ) {
+
+                    alert(
+                        "يرجى إدخال اسم السيارة والماركة والموديل"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !Number.isFinite(year) ||
+                    year <= 0
+                ) {
+
+                    alert(
+                        "يرجى إدخال سنة صحيحة"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !Number.isFinite(price) ||
+                    price < 0
+                ) {
+
+                    alert(
+                        "يرجى إدخال سعر صحيح"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    mileage !== null &&
+                    (
+                        !Number.isFinite(mileage) ||
+                        mileage < 0
+                    )
+                ) {
+
+                    alert(
+                        "يرجى إدخال عداد صحيح"
+                    );
+
+                    return;
+
+                }
+
+
+                // =====================================
+                // تجهيز البيانات لإرسالها إلى D1
+                // =====================================
+
+                const updatedCar = {
+
+                    id:
+                        Number(
+                            editCarId
+                        ),
+
+                    name:
+                        name,
+
+                    brand:
+                        brand,
+
+                    model:
+                        model,
+
+                    year:
+                        year,
+
+                    vin:
+                        vin || null,
+
+                    mileage:
+                        mileage,
+
+                    color:
+                        color || null,
+
+                    fuel_type:
+                        fuelType || null,
+
+                    body_type:
+                        bodyType || null,
+
+                    engine:
+                        engine || null,
+
+                    transmission:
+                        transmission || null,
+
+                    price:
+                        price,
+
+                    status:
+                        status,
+
+                    description:
+                        description || null,
+
+                    main_image:
+                        carToEdit.main_image || null
+
+                };
+
+
+                // =====================================
+                // إرسال التعديل إلى API
+                // =====================================
+
+                const response =
+                    await fetch(
+                        "/api/cars",
+                        {
+
+                            method:
+                                "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    updatedCar
+                                )
+
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !result.success
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "فشل حفظ تعديلات السيارة"
+                    );
+
+                }
+
+
+                alert(
+                    "تم حفظ تعديلات السيارة بنجاح ✅"
+                );
+
+
+                window.location.href =
+                    "admin.html";
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "خطأ حفظ تعديلات السيارة:",
+                    error
+                );
+
+
+                alert(
+                    "حدث خطأ أثناء حفظ التعديلات:\n" +
+                    error.message
+                );
+
+            }
+
+        }
+    );
+
+}
 
                 // =====================================
                 // قراءة البيانات من النموذج
