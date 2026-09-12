@@ -509,12 +509,84 @@
         }
 
     </style>
+<style>
+    body {
+        visibility: hidden;
+    }
 
+    html.admin-authenticated body {
+        visibility: visible;
+    }
+</style>
 </head>
 
 
 <body>
+<script>
+    (async function protectAdminPage() {
 
+        try {
+
+            const response =
+                await fetch(
+                    "/api/admin-session",
+                    {
+                        method: "GET",
+                        credentials: "same-origin"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.authenticated
+            ) {
+
+                window.location.replace(
+                    "/admin-login.html"
+                );
+
+                return;
+
+            }
+
+
+            window.adminUser =
+                data.user;
+
+
+            window.adminPermissions =
+                data.permissions || [];
+
+
+            document.documentElement
+                .classList
+                .add(
+                    "admin-authenticated"
+                );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "فشل التحقق من جلسة الإدارة:",
+                error
+            );
+
+
+            window.location.replace(
+                "/admin-login.html"
+            );
+
+        }
+
+    })();
+</script>
 
 <!-- =====================================
      الهيدر
