@@ -9,14 +9,13 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>رؤية النخبة للسيارات</title>
+    <title>رؤية النخبة للسيارات | استيراد السيارات الأمريكية</title>
 
     <meta
         name="description"
-        content="رؤية النخبة للسيارات - سيارات أمريكية مختارة بعناية"
+        content="شركة رؤية النخبة للسيارات - بيع واستيراد السيارات الأمريكية، البحث حسب الطلب، الشراء من مزادات IAAI وCOPART، فحص CARFAX ومتابعة الشحن."
     >
 
-    <!-- خط عربي احترافي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -32,16 +31,14 @@
 <body>
 
 
-<!-- =================================
+<!-- =========================================
      الهيدر
-================================= -->
+========================================= -->
 
 <header class="main-header">
 
-    <a
-        href="index.html"
-        class="brand"
-    >
+    <a href="index.html" class="brand">
+
         <span class="brand-mark">
             R
         </span>
@@ -55,24 +52,23 @@
                 للسيارات
             </small>
         </div>
+
     </a>
 
 
     <nav class="main-nav">
 
-        <a
-            href="index.html"
-            class="active"
-        >
+        <a href="index.html" class="active">
             الرئيسية
         </a>
 
         <a href="cars.html">
             السيارات
         </a>
+
         <a href="auction.html">
-    المزاد
-</a>
+            المزاد
+        </a>
 
         <a href="#about">
             من نحن
@@ -83,7 +79,7 @@
         </a>
 
         <a href="#contact">
-            اتصل بنا
+            تواصل معنا
         </a>
 
     </nav>
@@ -91,17 +87,21 @@
 
     <div class="header-actions">
 
+        <!-- لوحة الإدارة تبقى موجودة كأيقونة صغيرة -->
         <a
             href="admin.html"
-            class="admin-link"
+            class="admin-icon-link"
+            title="لوحة الإدارة"
+            aria-label="لوحة الإدارة"
         >
-            لوحة الإدارة
+            🔐
         </a>
 
         <button
             class="mobile-menu-button"
             id="mobileMenuButton"
             type="button"
+            aria-label="فتح القائمة"
         >
             ☰
         </button>
@@ -115,9 +115,9 @@
 <main>
 
 
-<!-- =================================
-     الواجهة الرئيسية المتحركة
-================================= -->
+<!-- =========================================
+     HERO
+========================================= -->
 
 <section class="hero-new">
 
@@ -127,7 +127,7 @@
             class="hero-slide active"
             style="
                 background-image:
-                url('https://images.unsplash.com/photo-1503376780353-7e6692767b70');
+                url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1900&q=90');
             "
         ></div>
 
@@ -136,7 +136,7 @@
             class="hero-slide"
             style="
                 background-image:
-                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7');
+                url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1900&q=90');
             "
         ></div>
 
@@ -145,7 +145,7 @@
             class="hero-slide"
             style="
                 background-image:
-                url('https://images.unsplash.com/photo-1542362567-b07e54358753');
+                url('https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1900&q=90');
             "
         ></div>
 
@@ -158,22 +158,22 @@
     <div class="hero-content">
 
         <span class="hero-badge">
-            سيارات مختارة بعناية
+            🇺🇸 خبرة في السيارات الأمريكية
         </span>
 
 
         <h1>
-            قيادة مختلفة تبدأ
+            سيارتك من أمريكا
             <span>
-                برؤية النخبة
+                تبدأ برؤية النخبة
             </span>
         </h1>
 
 
         <p>
-            سيارات أمريكية مختارة، مواصفات واضحة،
-            وتجربة بحث تساعدك في الوصول إلى سيارتك
-            المناسبة بسهولة.
+            بيع واستيراد السيارات الأمريكية، البحث حسب الطلب،
+            فحص تاريخ السيارة، الشراء من المزادات ومتابعة الشحن
+            خطوة بخطوة حتى وجهتك.
         </p>
 
 
@@ -183,16 +183,16 @@
                 href="cars.html"
                 class="primary-button"
             >
-                استعرض السيارات
+                استعرض سياراتنا
                 <span>←</span>
             </a>
 
 
             <a
-                href="#contact"
+                href="auction.html"
                 class="secondary-button"
             >
-                تواصل معنا
+                تصفح المزاد
             </a>
 
         </div>
@@ -213,22 +213,22 @@
 
             <div>
                 <strong>
-                    100%
+                    CARFAX
                 </strong>
 
                 <span>
-                    معلومات واضحة
+                    فحص تاريخ السيارة
                 </span>
             </div>
 
 
             <div>
                 <strong>
-                    24/7
+                    USA
                 </strong>
 
                 <span>
-                    تصفح الموقع
+                    شراء واستيراد مباشر
                 </span>
             </div>
 
@@ -242,16 +242,19 @@
         <button
             class="hero-dot active"
             data-slide="0"
+            aria-label="الصورة الأولى"
         ></button>
 
         <button
             class="hero-dot"
             data-slide="1"
+            aria-label="الصورة الثانية"
         ></button>
 
         <button
             class="hero-dot"
             data-slide="2"
+            aria-label="الصورة الثالثة"
         ></button>
 
     </div>
@@ -262,7 +265,7 @@
         class="scroll-down"
     >
         <span>
-            اكتشف السيارات
+            اكتشف سياراتنا
         </span>
 
         <b>
@@ -274,65 +277,79 @@
 
 
 
-<!-- =================================
-     المميزات
-================================= -->
+<!-- =========================================
+     شريط الثقة
+========================================= -->
 
-<section class="features-section">
+<section class="trust-strip">
 
-    <div class="features-grid">
+    <div class="trust-strip-inner">
 
-        <article class="feature-card">
+        <article class="trust-item">
+            <div class="trust-icon">
+                🚘
+            </div>
 
-            <span class="feature-number">
-                01
-            </span>
+            <div>
+                <strong>
+                    سيارات مختارة
+                </strong>
 
-            <h3>
-                سيارات مختارة
-            </h3>
-
-            <p>
-                عرض منظم للسيارات مع المواصفات
-                والصور والحالة والسعر.
-            </p>
-
+                <span>
+                    خيارات متنوعة من السوق الأمريكي
+                </span>
+            </div>
         </article>
 
 
-        <article class="feature-card">
+        <article class="trust-item">
+            <div class="trust-icon">
+                📄
+            </div>
 
-            <span class="feature-number">
-                02
-            </span>
+            <div>
+                <strong>
+                    فحص CARFAX
+                </strong>
 
-            <h3>
-                بحث سريع
-            </h3>
-
-            <p>
-                ابحث حسب الاسم والماركة والسنة
-                ونوع السيارة.
-            </p>
-
+                <span>
+                    مراجعة تاريخ السيارة قبل الشراء
+                </span>
+            </div>
         </article>
 
 
-        <article class="feature-card">
+        <article class="trust-item">
+            <div class="trust-icon">
+                🚢
+            </div>
 
-            <span class="feature-number">
-                03
-            </span>
+            <div>
+                <strong>
+                    شحن واستيراد
+                </strong>
 
-            <h3>
-                تفاصيل واضحة
-            </h3>
+                <span>
+                    متابعة السيارة حتى وصولها
+                </span>
+            </div>
+        </article>
 
-            <p>
-                انتقل مباشرة إلى صفحة السيارة
-                وشاهد صورها ومواصفاتها.
-            </p>
 
+        <article class="trust-item">
+            <div class="trust-icon">
+                🤝
+            </div>
+
+            <div>
+                <strong>
+                    متابعة مستمرة
+                </strong>
+
+                <span>
+                    نتابع معك جميع مراحل الشراء
+                </span>
+            </div>
         </article>
 
     </div>
@@ -341,9 +358,9 @@
 
 
 
-<!-- =================================
-     السيارات
-================================= -->
+<!-- =========================================
+     سياراتنا
+========================================= -->
 
 <section
     class="cars-section-new"
@@ -355,7 +372,7 @@
         <div>
 
             <span class="section-kicker">
-                معرضنا
+                معرض رؤية النخبة
             </span>
 
             <h2>
@@ -366,8 +383,8 @@
 
 
         <p>
-            استخدم البحث والتصفية للوصول
-            إلى السيارة المناسبة لك.
+            ابحث في السيارات المعروضة لدينا حسب الاسم
+            أو الماركة أو السنة أو نوع السيارة.
         </p>
 
     </div>
@@ -483,8 +500,7 @@
     </div>
 
 
-
-    <!-- JavaScript يضع السيارات هنا -->
+    <!-- السيارات من JavaScript -->
 
     <div
         class="cars-container"
@@ -492,16 +508,28 @@
     ></div>
 
 
+    <div class="home-all-cars">
+
+        <a
+            href="cars.html"
+            class="primary-button"
+        >
+            مشاهدة جميع السيارات
+            <span>←</span>
+        </a>
+
+    </div>
+
 </section>
 
 
 
-<!-- =================================
+<!-- =========================================
      من نحن
-================================= -->
+========================================= -->
 
 <section
-    class="about-section"
+    class="about-section elite-about-section"
     id="about"
 >
 
@@ -511,14 +539,24 @@
             من نحن
         </span>
 
+
         <h2>
-            رؤية النخبة ليست مجرد معرض سيارات
+            وجهتك الموثوقة للسيارات الأمريكية
         </h2>
 
+
         <p>
-            نسعى إلى تقديم تجربة أكثر وضوحًا
-            وتنظيمًا للباحث عن السيارة، من لحظة
-            التصفح وحتى الاطلاع على كامل التفاصيل.
+            مرحبًا بكم في شركة رؤية النخبة للسيارات،
+            المتخصصة في تجارة واستيراد السيارات من الولايات المتحدة
+            الأمريكية. نسعى إلى تقديم خيارات متنوعة ومعلومات واضحة
+            لمساعدة العميل على اتخاذ قرار شراء أكثر ثقة.
+        </p>
+
+
+        <p>
+            نعمل على تسهيل تجربة البحث والشراء والاستيراد،
+            ابتداءً من اختيار السيارة ومراجعة حالتها،
+            وصولًا إلى الشراء ومتابعة الشحن.
         </p>
 
 
@@ -526,23 +564,36 @@
 
             <div>
                 <span>✓</span>
-                معلومات منظمة
+                الشفافية في المعلومات
             </div>
 
             <div>
                 <span>✓</span>
-                صور متعددة للسيارة
+                المصداقية في التعامل
             </div>
 
             <div>
                 <span>✓</span>
-                تحديث حالة السيارة
+                خيارات متعددة
             </div>
 
             <div>
                 <span>✓</span>
-                تجربة مناسبة للهاتف
+                متابعة قبل وبعد الشراء
             </div>
+
+        </div>
+
+
+        <div class="about-actions">
+
+            <a
+                href="about.html"
+                class="dark-outline-button"
+            >
+                تعرف على رؤية النخبة
+                <span>←</span>
+            </a>
 
         </div>
 
@@ -554,8 +605,9 @@
         <div class="about-image-main">
 
             <img
-                src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5"
-                alt="سيارة فاخرة"
+                src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?auto=format&fit=crop&w=1200&q=90"
+                alt="سيارة أمريكية فاخرة"
+                loading="lazy"
             >
 
         </div>
@@ -568,7 +620,7 @@
             </strong>
 
             <span>
-                تجربة سيارات أكثر أناقة
+                ثقة • وضوح • متابعة
             </span>
 
         </div>
@@ -579,73 +631,542 @@
 
 
 
-<!-- =================================
+<!-- =========================================
      خدماتنا
-================================= -->
+========================================= -->
 
 <section
     class="services-section"
     id="services"
 >
 
-    <div class="section-heading centered">
+    <div class="section-heading centered services-heading">
 
         <div>
 
-            <span class="section-kicker">
+            <span class="section-kicker service-kicker">
                 خدماتنا
             </span>
 
             <h2>
-                كل ما تحتاجه في مكان واحد
+                من البحث عن السيارة حتى وصولها
             </h2>
+
+            <p class="services-intro">
+                نقدم مجموعة من الخدمات التي تساعدك
+                في شراء واستيراد سيارتك من الولايات المتحدة
+                بصورة أكثر وضوحًا وتنظيمًا.
+            </p>
 
         </div>
 
     </div>
 
 
-    <div class="services-grid">
+    <div class="services-grid premium-services-grid">
+
 
         <article>
-            <span>01</span>
+
+            <span class="service-icon">
+                🚘
+            </span>
 
             <h3>
-                استعراض السيارات
+                بيع السيارات
             </h3>
 
             <p>
-                تصفح السيارات المتوفرة
-                وشاهد أهم المعلومات مباشرة.
+                سيارات متوفرة مع الصور والمواصفات
+                والسعر وحالة السيارة.
             </p>
+
         </article>
 
 
         <article>
-            <span>02</span>
+
+            <span class="service-icon">
+                🔍
+            </span>
 
             <h3>
-                مقارنة المواصفات
+                البحث حسب الطلب
             </h3>
 
             <p>
-                بيانات مرتبة تساعدك على معرفة
-                السيارة التي تناسب احتياجك.
+                أخبرنا بالموديل والسنة والميزانية
+                وسنساعدك في البحث عن خيارات مناسبة.
             </p>
+
         </article>
 
 
         <article>
-            <span>03</span>
+
+            <span class="service-icon">
+                🇺🇸
+            </span>
 
             <h3>
-                تواصل سريع
+                المزادات الأمريكية
             </h3>
 
             <p>
-                الوصول إلى معلومات السيارة
-                والتواصل للاستفسار بسهولة.
+                البحث والشراء من المزادات الأمريكية
+                ومتابعة السيارة بعد إتمام الصفقة.
             </p>
+
+        </article>
+
+
+        <article>
+
+            <span class="service-icon">
+                📄
+            </span>
+
+            <h3>
+                فحص CARFAX
+            </h3>
+
+            <p>
+                مراجعة تاريخ الحوادث والملاك السابقين
+                والصيانة والعداد والعنوان وغير ذلك.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span class="service-icon">
+                🔎
+            </span>
+
+            <h3>
+                مراجعة حالة السيارة
+            </h3>
+
+            <p>
+                مراجعة المعلومات المتاحة عن السيارة
+                قبل اتخاذ قرار الشراء.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span class="service-icon">
+                🚢
+            </span>
+
+            <h3>
+                الشحن والاستيراد
+            </h3>
+
+            <p>
+                متابعة عملية الشحن والاستيراد
+                ومراحل انتقال السيارة.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span class="service-icon">
+                📍
+            </span>
+
+            <h3>
+                متابعة الشحنة
+            </h3>
+
+            <p>
+                متابعة تطورات الشحن وإبقاء العميل
+                على اطلاع قدر الإمكان.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span class="service-icon">
+                🤝
+            </span>
+
+            <h3>
+                استشارة قبل الشراء
+            </h3>
+
+            <p>
+                مساعدة العميل في اختيار الخيار الأنسب
+                حسب احتياجه وميزانيته.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="services-more">
+
+        <a
+            href="services.html"
+            class="primary-button"
+        >
+            جميع خدماتنا
+            <span>←</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CARFAX
+========================================= -->
+
+<section class="carfax-home-section">
+
+    <div class="carfax-home-inner">
+
+        <div class="carfax-home-content">
+
+            <span class="section-kicker">
+                CARFAX
+            </span>
+
+            <h2>
+                اعرف تاريخ السيارة قبل أن تشتري
+            </h2>
+
+            <p>
+                يمكن لفحص CARFAX أن يساعدك في مراجعة
+                معلومات مهمة عن تاريخ السيارة قبل الشراء.
+            </p>
+
+
+            <div class="carfax-list">
+
+                <div>
+                    <span>✓</span>
+                    تاريخ الحوادث والأضرار
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    الملاك السابقون
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    سجل الصيانة
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    قراءة العداد
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    نوع الاستخدام
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    معلومات العنوان والتسجيل
+                </div>
+
+            </div>
+
+
+            <a
+                href="#contact"
+                class="primary-button"
+            >
+                أرسل رقم الشاصي VIN
+                <span>←</span>
+            </a>
+
+        </div>
+
+
+        <div class="carfax-card">
+
+            <div class="carfax-card-top">
+                <span>
+                    CARFAX
+                </span>
+
+                <b>
+                    VIN CHECK
+                </b>
+            </div>
+
+
+            <div class="carfax-vin-example">
+
+                <small>
+                    Vehicle Identification Number
+                </small>
+
+                <strong>
+                    1 • • • • • • • • • • • • • • 9
+                </strong>
+
+            </div>
+
+
+            <div class="carfax-mini-grid">
+
+                <div>
+                    <b>01</b>
+                    <span>الحوادث</span>
+                </div>
+
+                <div>
+                    <b>02</b>
+                    <span>الملكية</span>
+                </div>
+
+                <div>
+                    <b>03</b>
+                    <span>الصيانة</span>
+                </div>
+
+                <div>
+                    <b>04</b>
+                    <span>العداد</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     المزادات الأمريكية
+========================================= -->
+
+<section class="auction-home-section">
+
+    <div class="auction-home-image">
+
+        <img
+            src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1400&q=90"
+            alt="سيارات أمريكية"
+            loading="lazy"
+        >
+
+        <div class="auction-image-badge">
+            🇺🇸 USA
+        </div>
+
+    </div>
+
+
+    <div class="auction-home-content">
+
+        <span class="section-kicker">
+            المزادات الأمريكية
+        </span>
+
+        <h2>
+            خيارات أكثر من السوق الأمريكي
+        </h2>
+
+        <p>
+            نساعدك في البحث عن السيارة المناسبة
+            في المزادات الأمريكية حسب الموديل والسنة
+            والميزانية والمواصفات المطلوبة.
+        </p>
+
+
+        <div class="auction-home-points">
+
+            <div>
+                <span>01</span>
+
+                <p>
+                    تحديد السيارة والمواصفات المطلوبة
+                </p>
+            </div>
+
+
+            <div>
+                <span>02</span>
+
+                <p>
+                    البحث ومراجعة الخيارات المتاحة
+                </p>
+            </div>
+
+
+            <div>
+                <span>03</span>
+
+                <p>
+                    متابعة الشراء والشحن والاستيراد
+                </p>
+            </div>
+
+        </div>
+
+
+        <a
+            href="auction.html"
+            class="dark-button"
+        >
+            تصفح سيارات المزاد
+            <span>←</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     خطوات الاستيراد
+========================================= -->
+
+<section class="import-process-section">
+
+    <div class="process-heading">
+
+        <span class="section-kicker">
+            كيف نعمل؟
+        </span>
+
+        <h2>
+            من أمريكا إلى وجهتك
+        </h2>
+
+        <p>
+            نتابع معك كل خطوة.
+        </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+
+        <article class="process-card">
+
+            <span class="process-number">
+                01
+            </span>
+
+            <div class="process-icon">
+                🔍
+            </div>
+
+            <h3>
+                البحث
+            </h3>
+
+            <p>
+                تحديد السيارة المناسبة حسب طلبك.
+            </p>
+
+        </article>
+
+
+        <article class="process-card">
+
+            <span class="process-number">
+                02
+            </span>
+
+            <div class="process-icon">
+                📄
+            </div>
+
+            <h3>
+                الفحص
+            </h3>
+
+            <p>
+                مراجعة المعلومات وتاريخ السيارة.
+            </p>
+
+        </article>
+
+
+        <article class="process-card">
+
+            <span class="process-number">
+                03
+            </span>
+
+            <div class="process-icon">
+                🤝
+            </div>
+
+            <h3>
+                الشراء
+            </h3>
+
+            <p>
+                إتمام عملية الشراء من السوق الأمريكي.
+            </p>
+
+        </article>
+
+
+        <article class="process-card">
+
+            <span class="process-number">
+                04
+            </span>
+
+            <div class="process-icon">
+                🚢
+            </div>
+
+            <h3>
+                الشحن
+            </h3>
+
+            <p>
+                متابعة إجراءات نقل وشحن السيارة.
+            </p>
+
+        </article>
+
+
+        <article class="process-card">
+
+            <span class="process-number">
+                05
+            </span>
+
+            <div class="process-icon">
+                📍
+            </div>
+
+            <h3>
+                الوصول
+            </h3>
+
+            <p>
+                متابعة الرحلة حتى الوصول إلى الوجهة.
+            </p>
+
         </article>
 
     </div>
@@ -654,39 +1175,205 @@
 
 
 
-<!-- =================================
+<!-- =========================================
      التواصل
-================================= -->
+========================================= -->
 
 <section
-    class="contact-section"
+    class="premium-contact-section"
     id="contact"
 >
 
+    <div class="premium-contact-inner">
+
+
+        <div class="contact-main-info">
+
+            <span class="section-kicker service-kicker">
+                تواصل معنا
+            </span>
+
+            <h2>
+                هل تبحث عن سيارة محددة؟
+            </h2>
+
+            <p>
+                أرسل لنا نوع السيارة والموديل والسنة
+                والميزانية التقريبية وسنساعدك في البحث.
+                ويمكنك أيضًا إرسال رقم الشاصي VIN
+                للاستفسار عن فحص CARFAX.
+            </p>
+
+
+            <div class="contact-action-buttons">
+
+                <a
+                    href="https://wa.me/9647850020301"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="whatsapp-contact-button"
+                >
+                    <span>
+                        💬
+                    </span>
+
+                    واتساب IAAI
+                </a>
+
+
+                <a
+                    href="https://wa.me/9647739344441"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="whatsapp-contact-button"
+                >
+                    <span>
+                        💬
+                    </span>
+
+                    واتساب COPART
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contact-details-card">
+
+
+            <div class="contact-detail-row">
+
+                <span class="contact-detail-icon">
+                    ☎
+                </span>
+
+                <div>
+                    <small>
+                        IAAI
+                    </small>
+
+                    <a href="tel:07850020301">
+                        07850020301
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="contact-detail-row">
+
+                <span class="contact-detail-icon">
+                    ☎
+                </span>
+
+                <div>
+                    <small>
+                        COPART
+                    </small>
+
+                    <a href="tel:07739344441">
+                        07739344441
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div class="contact-detail-row">
+
+                <span class="contact-detail-icon">
+                    📍
+                </span>
+
+                <div>
+                    <small>
+                        موقعنا
+                    </small>
+
+                    <strong>
+                        النجف الأشرف / المدينة المائية /
+                        مجاور متجر ماز
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="contact-socials">
+
+                <a
+                    href="https://www.facebook.com/share/18Vu97yFNG/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Facebook
+                    <span>
+                        النخبة لأستيراد السيارات
+                    </span>
+                </a>
+
+
+                <div class="social-display-only">
+                    Instagram
+                    <span>
+                        aln__usa
+                    </span>
+                </div>
+
+
+                <a
+                    href="https://www.tiktok.com/@alnukhb1?_r=1&_t=ZS-99gNMppRhED"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    TikTok
+                    <span>
+                        مزاد النخبة
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CTA الأخير
+========================================= -->
+
+<section class="final-cta-section">
+
     <div>
 
-        <span class="section-kicker light">
-            تواصل معنا
+        <span>
+            رؤية النخبة للسيارات
         </span>
 
         <h2>
-            وجدت السيارة التي تبحث عنها؟
+            من أمريكا إلى وجهتك…
+            نتابع معك كل خطوة.
         </h2>
-
-        <p>
-            تواصل معنا لمعرفة المزيد عن السيارة
-            ومواصفاتها وتوفرها.
-        </p>
 
     </div>
 
 
     <a
-        href="mailto:your-email@example.com"
-        class="contact-button"
+        href="https://wa.me/9647850020301"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="final-cta-button"
     >
-        تواصل معنا
-        <span>←</span>
+        ابدأ البحث عن سيارتك
+        <span>
+            ←
+        </span>
     </a>
 
 </section>
@@ -696,15 +1383,16 @@
 
 
 
-<!-- =================================
-     الفوتر
-================================= -->
+<!-- =========================================
+     Footer
+========================================= -->
 
-<footer class="modern-footer">
+<footer class="modern-footer elite-footer">
 
-    <div class="footer-top">
+    <div class="footer-main-grid">
 
-        <div>
+
+        <div class="footer-company">
 
             <a
                 href="index.html"
@@ -729,10 +1417,22 @@
 
             </a>
 
+
+            <p>
+                وجهتك الموثوقة للسيارات الأمريكية.
+                بيع واستيراد وبحث وفحص ومتابعة
+                من الولايات المتحدة إلى وجهتك.
+            </p>
+
         </div>
 
 
-        <div class="footer-links">
+
+        <div class="footer-column">
+
+            <h3>
+                روابط سريعة
+            </h3>
 
             <a href="index.html">
                 الرئيسية
@@ -741,20 +1441,65 @@
             <a href="cars.html">
                 السيارات
             </a>
-            <a href="auction.html">
-    المزاد
-</a>
 
-            <a href="#about">
+            <a href="auction.html">
+                المزاد
+            </a>
+
+            <a href="about.html">
                 من نحن
             </a>
 
-            <a href="#contact">
-                التواصل
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                خدماتنا
+            </h3>
+
+            <a href="services.html">
+                البحث عن سيارة
             </a>
 
-            <a href="admin.html">
-                الإدارة
+            <a href="services.html">
+                فحص CARFAX
+            </a>
+
+            <a href="services.html">
+                المزادات الأمريكية
+            </a>
+
+            <a href="services.html">
+                الشحن والاستيراد
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                تواصل معنا
+            </h3>
+
+            <a href="tel:07850020301">
+                IAAI: 07850020301
+            </a>
+
+            <a href="tel:07739344441">
+                COPART: 07739344441
+            </a>
+
+            <span>
+                النجف الأشرف
+            </span>
+
+            <a href="#contact">
+                جميع معلومات التواصل
             </a>
 
         </div>
@@ -775,6 +1520,7 @@
     </div>
 
 </footer>
+
 
 
 <script src="script.js"></script>
