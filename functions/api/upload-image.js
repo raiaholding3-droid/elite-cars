@@ -1,6 +1,34 @@
+import {
+    requirePermission
+} from "../_lib/admin-auth.js";
 export async function onRequestPost(context) {
 
     try {
+                // =====================================
+        // التحقق من صلاحية رفع صور السيارات
+        // =====================================
+
+        const addPermission =
+            await requirePermission(
+                context,
+                "cars_add"
+            );
+
+        const editPermission =
+            await requirePermission(
+                context,
+                "cars_edit"
+            );
+
+
+        if (
+            !addPermission.ok &&
+            !editPermission.ok
+        ) {
+
+            return addPermission.response;
+
+        }
 
         const formData =
             await context.request.formData();
