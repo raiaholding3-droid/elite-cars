@@ -3,252 +3,731 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>سيارات المزاد | رؤية النخبة للسيارات</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="description"
+        content="سيارات المزاد الأمريكي - رؤية النخبة للسيارات"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>
+        سيارات المزاد | رؤية النخبة للسيارات
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
+
 
 <body>
 
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header class="main-header">
 
-    <a href="index.html" class="brand">
-
-        <span class="brand-mark">
-            R
-        </span>
-
-        <div>
-            <strong>
-                رؤية النخبة
-            </strong>
-
-            <small>
-                للسيارات
-            </small>
-        </div>
-
-    </a>
-
-
-    <nav class="main-nav">
-
-        <a href="index.html">
-            الرئيسية
-        </a>
-
-        <a href="cars.html">
-            السيارات
-        </a>
-
-        <a href="auction.html" class="active">
-            المزاد
-        </a>
-
-        <a href="index.html#about">
-            من نحن
-        </a>
-
-        <a href="index.html#services">
-            خدماتنا
-        </a>
-
-        <a href="index.html#contact">
-            اتصل بنا
-        </a>
-
-    </nav>
-
-
-    <div class="header-actions">
+    <div class="header-container">
 
         <a
-            href="admin.html"
-            class="admin-link"
+            href="index.html"
+            class="brand"
+            aria-label="رؤية النخبة للسيارات"
         >
-            لوحة الإدارة
+
+            <div class="brand-mark">
+                R
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    رؤية النخبة
+                </strong>
+
+                <span>
+                    للسيارات
+                </span>
+
+            </div>
+
         </a>
 
-        <button
-            class="mobile-menu-button"
-            id="mobileMenuButton"
-            type="button"
-        >
-            ☰
-        </button>
+
+        <nav class="main-nav">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a
+                href="auction.html"
+                class="active"
+            >
+                المزاد
+            </a>
+
+            <a href="about.html">
+                من نحن
+            </a>
+
+            <a href="services.html">
+                خدماتنا
+            </a>
+
+            <a href="contact.html">
+                تواصل معنا
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <a
+                href="admin.html"
+                class="admin-icon-link"
+                title="لوحة الإدارة"
+                aria-label="لوحة الإدارة"
+            >
+                🔐
+            </a>
+
+
+            <button
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                type="button"
+                aria-label="فتح القائمة"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
 
     </div>
 
 </header>
 
 
+
 <main>
 
 
-<section class="auction-page-hero">
+<!-- =========================================================
+     AUCTION HERO
+========================================================= -->
 
-    <div class="auction-page-hero-overlay"></div>
+<section class="auction-modern-hero">
 
-    <div class="auction-page-hero-content">
+    <div class="auction-modern-overlay"></div>
 
-        <span class="section-kicker">
-            سيارات البيع المباشر
-        </span>
+    <div class="auction-modern-hero-content">
+
+        <div class="auction-kicker">
+            🇺🇸 سيارات البيع المباشر والمزاد الأمريكي
+        </div>
 
         <h1>
-            سيارات المزاد
+            سيارات
+            <span>
+                المزاد
+            </span>
         </h1>
 
         <p>
-            سيارات مختارة من المزادات الأمريكية
-            مع معلومات البيع المباشر والسعر والموعد.
+            تصفح السيارات المتوفرة من المزادات الأمريكية،
+            واطلع على سعر البيع المباشر والمزايدة ومعلومات السيارة
+            قبل اتخاذ قرار الشراء.
         </p>
+
+
+        <div class="auction-hero-actions">
+
+            <a
+                href="#auctionInventory"
+                class="auction-primary-button"
+            >
+                تصفح سيارات المزاد
+            </a>
+
+            <a
+                href="contact.html"
+                class="auction-secondary-button"
+            >
+                اطلب سيارة حسب الطلب
+            </a>
+
+        </div>
+
+
+        <div class="auction-hero-features">
+
+            <div>
+                <strong>
+                    IAAI
+                </strong>
+
+                <span>
+                    سيارات من المزاد الأمريكي
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    COPART
+                </strong>
+
+                <span>
+                    خيارات متعددة للشراء
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    BUY NOW
+                </strong>
+
+                <span>
+                    سيارات البيع المباشر
+                </span>
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<section class="auction-page-section">
 
-    <div class="auction-page-header">
+<!-- =========================================================
+     TRUST STRIP
+========================================================= -->
+
+<section class="auction-trust-strip">
+
+    <div class="auction-trust-item">
+
+        <span class="auction-trust-icon">
+            🔍
+        </span>
 
         <div>
-
-            <span class="section-kicker">
-                أحدث النتائج
-            </span>
-
-            <h2>
-                السيارات المتوفرة في المزاد
-            </h2>
-
-        </div>
-
-
-        <div class="auction-count-box">
-
-            <strong id="auctionCarsCount">
-                0
+            <strong>
+                معلومات واضحة
             </strong>
 
             <span>
-                سيارة
+                تفاصيل تساعدك قبل الشراء
             </span>
-
         </div>
 
     </div>
 
 
-    <div class="auction-filters">
+    <div class="auction-trust-item">
 
-        <input
-            type="text"
-            id="auctionSearchInput"
-            placeholder="ابحث باسم السيارة أو الماركة..."
-        >
+        <span class="auction-trust-icon">
+            💰
+        </span>
 
+        <div>
+            <strong>
+                البيع المباشر
+            </strong>
 
-        <select id="auctionHouseFilter">
-
-            <option value="">
-                جميع المزادات
-            </option>
-
-            <option value="IAA">
-                IAA
-            </option>
-
-            <option value="Copart">
-                Copart
-            </option>
-
-        </select>
-
-
-        <select id="auctionYearFilter">
-
-            <option value="">
-                جميع السنوات
-            </option>
-
-            <option value="2026">
-                2026
-            </option>
-
-            <option value="2025">
-                2025
-            </option>
-
-            <option value="2024">
-                2024
-            </option>
-
-            <option value="2023">
-                2023
-            </option>
-
-        </select>
-
-
-        <button
-            type="button"
-            id="auctionSearchButton"
-        >
-            بحث
-        </button>
+            <span>
+                معرفة سعر Buy Now عند توفره
+            </span>
+        </div>
 
     </div>
 
 
-    <div
-        id="auctionCarsContainer"
-        class="auction-cars-grid"
-    >
-        جاري تحميل سيارات المزاد...
+    <div class="auction-trust-item">
+
+        <span class="auction-trust-icon">
+            🚢
+        </span>
+
+        <div>
+            <strong>
+                الشحن والاستيراد
+            </strong>
+
+            <span>
+                متابعة السيارة حتى وجهتك
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="auction-trust-item">
+
+        <span class="auction-trust-icon">
+            🤝
+        </span>
+
+        <div>
+            <strong>
+                مساعدة قبل الشراء
+            </strong>
+
+            <span>
+                فريقنا يساعدك في اختيار السيارة
+            </span>
+        </div>
+
     </div>
 
 </section>
+
+
+
+<!-- =========================================================
+     AUCTION INVENTORY
+========================================================= -->
+
+<section
+    id="auctionInventory"
+    class="auction-modern-section"
+>
+
+    <div class="auction-modern-container">
+
+
+        <!-- Section header -->
+
+        <div class="auction-section-heading">
+
+            <div>
+
+                <span class="section-mini-title">
+                    السيارات المتوفرة
+                </span>
+
+                <h2>
+                    ابحث في سيارات المزاد
+                </h2>
+
+                <p>
+                    استخدم البحث والتصفية للوصول بسرعة إلى السيارة المناسبة.
+                </p>
+
+            </div>
+
+
+            <div class="auction-count-box">
+
+                <span>
+                    عدد السيارات
+                </span>
+
+                <strong id="auctionCarsCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Filters -->
+
+        <div class="auction-modern-filters">
+
+
+            <div class="auction-filter-field auction-search-field">
+
+                <label for="auctionSearchInput">
+                    البحث
+                </label>
+
+                <div class="auction-input-wrapper">
+
+                    <span>
+                        🔎
+                    </span>
+
+                    <input
+                        type="search"
+                        id="auctionSearchInput"
+                        placeholder="اسم السيارة، الماركة، الموديل، VIN أو رقم اللوت"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <div class="auction-filter-field">
+
+                <label for="auctionHouseFilter">
+                    المزاد
+                </label>
+
+                <select id="auctionHouseFilter">
+
+                    <option value="">
+                        جميع المزادات
+                    </option>
+
+                    <option value="IAA">
+                        IAAI
+                    </option>
+
+                    <option value="Copart">
+                        COPART
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="auction-filter-field">
+
+                <label for="auctionYearFilter">
+                    سنة الصنع
+                </label>
+
+                <select id="auctionYearFilter">
+
+                    <option value="">
+                        جميع السنوات
+                    </option>
+
+                    <option value="2026">
+                        2026
+                    </option>
+
+                    <option value="2025">
+                        2025
+                    </option>
+
+                    <option value="2024">
+                        2024
+                    </option>
+
+                    <option value="2023">
+                        2023
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <button
+                id="auctionSearchButton"
+                class="auction-filter-button"
+                type="button"
+            >
+                بحث
+            </button>
+
+        </div>
+
+
+
+        <!-- Cars -->
+
+        <div
+            id="auctionCarsContainer"
+            class="auction-cars-grid"
+        >
+
+            <div class="auction-loading">
+
+                <div class="auction-loading-spinner"></div>
+
+                <p>
+                    جاري تحميل سيارات المزاد...
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="auction-process-section">
+
+    <div class="auction-modern-container">
+
+        <div class="auction-center-heading">
+
+            <span class="section-mini-title">
+                كيف نساعدك؟
+            </span>
+
+            <h2>
+                من اختيار السيارة حتى وصولها
+            </h2>
+
+            <p>
+                رؤية النخبة تتابع معك خطوات شراء واستيراد السيارة من أمريكا.
+            </p>
+
+        </div>
+
+
+        <div class="auction-process-grid">
+
+
+            <article class="auction-process-card">
+
+                <div class="auction-process-number">
+                    01
+                </div>
+
+                <div class="auction-process-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    اختر السيارة
+                </h3>
+
+                <p>
+                    ابحث في السيارات المتوفرة واختر السيارة التي تناسب احتياجك.
+                </p>
+
+            </article>
+
+
+
+            <article class="auction-process-card">
+
+                <div class="auction-process-number">
+                    02
+                </div>
+
+                <div class="auction-process-icon">
+                    📄
+                </div>
+
+                <h3>
+                    راجع معلوماتها
+                </h3>
+
+                <p>
+                    يمكنك التواصل معنا لمراجعة حالة السيارة ومعلوماتها قبل الشراء.
+                </p>
+
+            </article>
+
+
+
+            <article class="auction-process-card">
+
+                <div class="auction-process-number">
+                    03
+                </div>
+
+                <div class="auction-process-icon">
+                    💳
+                </div>
+
+                <h3>
+                    الشراء
+                </h3>
+
+                <p>
+                    نساعدك في إجراءات شراء السيارة من المزاد أو البيع المباشر.
+                </p>
+
+            </article>
+
+
+
+            <article class="auction-process-card">
+
+                <div class="auction-process-number">
+                    04
+                </div>
+
+                <div class="auction-process-icon">
+                    🚢
+                </div>
+
+                <h3>
+                    الشحن والمتابعة
+                </h3>
+
+                <p>
+                    نتابع إجراءات الاستيراد والشحن حتى وصول السيارة إلى وجهتها.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="auction-contact-banner">
+
+    <div class="auction-modern-container">
+
+        <div class="auction-contact-banner-inner">
+
+            <div>
+
+                <span>
+                    لم تجد السيارة التي تبحث عنها؟
+                </span>
+
+                <h2>
+                    أرسل لنا مواصفات السيارة المطلوبة
+                </h2>
+
+                <p>
+                    أرسل النوع والموديل والسنة والميزانية التقريبية،
+                    وسنساعدك في البحث عنها في السوق الأمريكي.
+                </p>
+
+            </div>
+
+
+            <div class="auction-contact-actions">
+
+                <a
+                    href="https://wa.me/9647850020301"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="auction-whatsapp-button"
+                >
+                    واتساب IAAI
+                </a>
+
+
+                <a
+                    href="https://wa.me/9647739344441"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="auction-whatsapp-button auction-whatsapp-secondary"
+                >
+                    واتساب COPART
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 
 </main>
 
 
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer class="modern-footer">
 
-    <div class="footer-top">
-
-        <a
-            href="index.html"
-            class="brand footer-brand"
-        >
-
-            <span class="brand-mark">
-                R
-            </span>
-
-            <div>
-                <strong>
-                    رؤية النخبة
-                </strong>
-
-                <small>
-                    للسيارات
-                </small>
-            </div>
-
-        </a>
+    <div class="footer-container">
 
 
-        <div class="footer-links">
+        <div class="footer-column footer-about">
+
+            <a
+                href="index.html"
+                class="footer-brand"
+            >
+
+                <div class="brand-mark">
+                    R
+                </div>
+
+                <div>
+
+                    <strong>
+                        رؤية النخبة
+                    </strong>
+
+                    <span>
+                        للسيارات
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <p>
+                وجهتك الموثوقة للسيارات الأمريكية.
+                نساعدك في البحث والشراء والاستيراد والشحن من أمريكا.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                روابط سريعة
+            </h3>
 
             <a href="index.html">
                 الرئيسية
@@ -262,6 +741,58 @@
                 المزاد
             </a>
 
+            <a href="about.html">
+                من نحن
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                خدماتنا
+            </h3>
+
+            <a href="services.html">
+                شراء السيارات
+            </a>
+
+            <a href="services.html">
+                المزادات الأمريكية
+            </a>
+
+            <a href="services.html">
+                CARFAX
+            </a>
+
+            <a href="services.html">
+                الشحن والاستيراد
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                تواصل معنا
+            </h3>
+
+            <a href="tel:07850020301">
+                IAAI: 07850020301
+            </a>
+
+            <a href="tel:07739344441">
+                COPART: 07739344441
+            </a>
+
+            <span>
+                النجف الأشرف / المدينة المائية / مجاور متجر ماز
+            </span>
+
         </div>
 
     </div>
@@ -270,16 +801,23 @@
     <div class="footer-bottom">
 
         <p>
-            © 2026 شركة رؤية النخبة للسيارات
+            © 2026 رؤية النخبة للسيارات - جميع الحقوق محفوظة
         </p>
+
+        <span>
+            من أمريكا إلى وجهتك… نتابع معك كل خطوة.
+        </span>
 
     </div>
 
 </footer>
 
 
+
 <script src="script.js"></script>
+
 <script src="auction.js"></script>
+
 
 </body>
 
