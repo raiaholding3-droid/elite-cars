@@ -1,126 +1,307 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>تفاصيل السيارة | رؤية النخبة للسيارات</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="description"
+        content="تفاصيل السيارة - رؤية النخبة للسيارات"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>
+        تفاصيل السيارة | رؤية النخبة للسيارات
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <header class="main-header">
-        <div class="container header-content">
 
-            <a href="index.html" class="brand">
-                <span class="brand-mark">R</span>
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-                <div>
-                    <strong>رؤية النخبة</strong>
-                    <small>للسيارات</small>
-                </div>
+<header class="main-header">
+
+    <div class="header-container">
+
+        <a
+            href="index.html"
+            class="brand"
+            aria-label="رؤية النخبة للسيارات"
+        >
+
+            <div class="brand-mark">
+                R
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>
+                    رؤية النخبة
+                </strong>
+
+                <span>
+                    للسيارات
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <nav class="main-nav">
+
+            <a href="index.html">
+                الرئيسية
             </a>
 
-            <nav class="main-nav">
-                <a href="index.html">الرئيسية</a>
-                <a href="cars.html">السيارات</a>
-                <a href="auction.html">
-    المزاد
-</a>
-                <a href="index.html#about">من نحن</a>
-                <a href="index.html#services">خدماتنا</a>
-                <a href="index.html#contact">اتصل بنا</a>
-                <a href="admin.html" class="admin-link">لوحة الإدارة</a>
-            </nav>
+            <a
+                href="cars.html"
+                class="active"
+            >
+                السيارات
+            </a>
 
-            <button class="mobile-menu-button" id="mobileMenuButton">
-                ☰
+            <a href="auction.html">
+                المزاد
+            </a>
+
+            <a href="about.html">
+                من نحن
+            </a>
+
+            <a href="services.html">
+                خدماتنا
+            </a>
+
+            <a href="contact.html">
+                تواصل معنا
+            </a>
+
+        </nav>
+
+
+
+        <div class="header-actions">
+
+            <a
+                href="admin.html"
+                class="admin-icon-link"
+                title="لوحة الإدارة"
+                aria-label="لوحة الإدارة"
+            >
+                🔐
+            </a>
+
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="فتح القائمة"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
             </button>
 
         </div>
-    </header>
+
+    </div>
+
+</header>
 
 
-    <section class="car-details-page">
 
-        <div class="container">
+<main>
 
-            <a href="cars.html" class="back-to-cars">
-                ← العودة إلى السيارات
+
+<!-- =========================================================
+     PAGE HERO
+========================================================= -->
+
+<section class="details-page-hero">
+
+    <div class="details-page-hero-overlay"></div>
+
+
+    <div class="details-modern-container">
+
+        <span class="details-hero-kicker">
+            رؤية النخبة للسيارات
+        </span>
+
+
+        <h1>
+            تفاصيل السيارة
+        </h1>
+
+
+        <p>
+            تعرف على مواصفات السيارة وصورها وحالتها قبل التواصل معنا للشراء.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CAR DETAILS
+========================================================= -->
+
+<section class="modern-car-details-section">
+
+    <div class="details-modern-container">
+
+
+        <!-- العودة -->
+
+        <div class="details-top-bar">
+
+            <a
+                href="cars.html"
+                class="details-back-button"
+            >
+                <span>
+                    ←
+                </span>
+
+                العودة إلى السيارات
             </a>
 
-            <div class="car-details-layout">
+
+            <span class="details-page-label">
+                السيارات المتوفرة
+            </span>
+
+        </div>
 
 
-                <!-- الصور -->
-                <div class="car-gallery">
 
-                   <div class="car-main-image-wrapper">
-
-    <img
-        id="carImage"
-        src=""
-        alt="صورة السيارة"
-    >
-
-    <!-- السهم الأيسر -->
-    <button
-        type="button"
-        id="prevImageButton"
-        class="floating-gallery-button floating-left"
-        aria-label="الصورة السابقة"
-    >
-        ❮
-    </button>
-
-    <!-- السهم الأيمن -->
-    <button
-        type="button"
-        id="nextImageButton"
-        class="floating-gallery-button floating-right"
-        aria-label="الصورة التالية"
-    >
-        ❯
-    </button>
-
-</div>
-
-                        <span
-                            id="carStatus"
-                            class="details-status"
-                        >
-                            متوفرة
-                        </span>
-
-                    </div>
+        <div class="modern-car-details-layout">
 
 
-                    <div
-                        id="carThumbnails"
-                        class="car-thumbnails"
+            <!-- =================================================
+                 GALLERY
+            ================================================== -->
+
+            <div class="modern-car-gallery">
+
+
+                <div class="modern-main-image-wrapper">
+
+
+                    <img
+                        id="carImage"
+                        src=""
+                        alt="صورة السيارة"
                     >
+
+
+                    <span
+                        id="carStatus"
+                        class="details-status"
+                    >
+                        متوفرة
+                    </span>
+
+
+
+                    <button
+                        type="button"
+                        id="prevImageButton"
+                        class="floating-gallery-button floating-left"
+                        aria-label="الصورة السابقة"
+                    >
+                        ❮
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="nextImageButton"
+                        class="floating-gallery-button floating-right"
+                        aria-label="الصورة التالية"
+                    >
+                        ❯
+                    </button>
+
+
+                    <div class="details-image-counter-label">
+                        معرض الصور
                     </div>
 
                 </div>
 
 
-                <!-- المعلومات -->
-                <div class="car-details-info">
 
-                    <span class="section-badge">
+                <div
+                    id="carThumbnails"
+                    class="car-thumbnails"
+                >
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 INFORMATION
+            ================================================== -->
+
+            <div class="modern-car-info">
+
+
+                <div class="details-title-area">
+
+                    <span class="details-section-badge">
                         تفاصيل السيارة
                     </span>
 
-                    <h1 id="carName">
+
+                    <h2 id="carName">
                         اسم السيارة
-                    </h1>
+                    </h2>
+
 
                     <p
                         id="carDescription"
@@ -128,182 +309,675 @@
                     >
                     </p>
 
+                </div>
 
-                    <div class="details-price-box">
 
-                        <span>
-                            السعر
+
+                <!-- السعر -->
+
+                <div class="modern-details-price-box">
+
+                    <div>
+
+                        <span class="details-price-label">
+                            سعر السيارة
                         </span>
+
 
                         <strong id="carPrice">
                             -
                         </strong>
-<p
-    id="portPriceNote"
-    class="port-price-note"
-    style="display:none;"
->
-</p>
+
                     </div>
 
 
-                   <div class="specifications-grid">
+                    <div class="details-price-icon">
+                        $
+                    </div>
 
-    <div class="spec-box">
-        <span>السنة</span>
-        <strong id="carYear">-</strong>
-    </div>
 
-    <div class="spec-box">
-        <span>الماركة</span>
-        <strong id="carBrand">-</strong>
-    </div>
+                    <p
+                        id="portPriceNote"
+                        class="port-price-note"
+                        style="display:none;"
+                    >
+                    </p>
 
-    <div class="spec-box">
-        <span>الموديل</span>
-        <strong id="carModel">-</strong>
-    </div>
+                </div>
 
-    <div class="spec-box">
-        <span>نوع السيارة</span>
-        <strong id="carType">-</strong>
-    </div>
 
-    <div class="spec-box">
-        <span>المحرك</span>
-        <strong id="carEngine">-</strong>
-    </div>
 
-    <div class="spec-box">
-        <span>ناقل الحركة</span>
-        <strong id="carTransmission">-</strong>
-    </div>
+                <!-- المواصفات -->
 
-    <div class="spec-box">
-        <span>رقم الشاصي VIN</span>
-        <strong id="carVin">-</strong>
-    </div>
+                <div class="details-specs-heading">
 
-    <div class="spec-box">
-        <span>العداد</span>
-        <strong id="carMileage">-</strong>
-    </div>
+                    <div>
 
-    <div class="spec-box">
-        <span>اللون</span>
-        <strong id="carColor">-</strong>
-    </div>
+                        <span>
+                            المواصفات
+                        </span>
 
-    <div class="spec-box">
-        <span>نوع الوقود</span>
-        <strong id="carFuel">-</strong>
-    </div>
-
-    <div class="spec-box">
-        <span>الحالة</span>
-        <strong id="carStatusText">-</strong>
-    </div>
-
-</div>
-
-                    <div class="details-actions">
-
-                        <a
-                            href="index.html#contact"
-                            class="hero-button primary-button"
-                        >
-                            تواصل معنا
-                        </a>
-
-                        <a
-                            href="cars.html"
-                            class="hero-button secondary-button"
-                        >
-                            مشاهدة سيارات أخرى
-                        </a>
+                        <h3>
+                            معلومات السيارة
+                        </h3>
 
                     </div>
 
                 </div>
 
+
+
+                <div class="modern-specifications-grid">
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            📅
+                        </span>
+
+                        <div>
+
+                            <span>
+                                السنة
+                            </span>
+
+                            <strong id="carYear">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            🚘
+                        </span>
+
+                        <div>
+
+                            <span>
+                                الماركة
+                            </span>
+
+                            <strong id="carBrand">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            🚙
+                        </span>
+
+                        <div>
+
+                            <span>
+                                الموديل
+                            </span>
+
+                            <strong id="carModel">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            ◼
+                        </span>
+
+                        <div>
+
+                            <span>
+                                نوع السيارة
+                            </span>
+
+                            <strong id="carType">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            ⚙️
+                        </span>
+
+                        <div>
+
+                            <span>
+                                المحرك
+                            </span>
+
+                            <strong id="carEngine">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            ⚙
+                        </span>
+
+                        <div>
+
+                            <span>
+                                ناقل الحركة
+                            </span>
+
+                            <strong id="carTransmission">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box modern-vin-box">
+
+                        <span class="spec-icon">
+                            #
+                        </span>
+
+                        <div>
+
+                            <span>
+                                رقم الشاصي VIN
+                            </span>
+
+                            <strong id="carVin">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            🛣
+                        </span>
+
+                        <div>
+
+                            <span>
+                                العداد
+                            </span>
+
+                            <strong id="carMileage">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            🎨
+                        </span>
+
+                        <div>
+
+                            <span>
+                                اللون
+                            </span>
+
+                            <strong id="carColor">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            ⛽
+                        </span>
+
+                        <div>
+
+                            <span>
+                                نوع الوقود
+                            </span>
+
+                            <strong id="carFuel">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="modern-spec-box">
+
+                        <span class="spec-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <span>
+                                الحالة
+                            </span>
+
+                            <strong id="carStatusText">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- الأزرار -->
+
+                <div class="modern-details-actions">
+
+
+                    <a
+                        href="contact.html"
+                        class="details-contact-button"
+                    >
+                        تواصل معنا
+                    </a>
+
+
+                    <a
+                        href="cars.html"
+                        class="details-more-cars-button"
+                    >
+                        مشاهدة سيارات أخرى
+                    </a>
+
+
+                </div>
+
+
+                <div class="details-help-note">
+
+                    <span>
+                        💬
+                    </span>
+
+
+                    <p>
+                        للاستفسار عن السيارة أو الشراء أو الشحن،
+                        تواصل معنا وسنساعدك في جميع التفاصيل.
+                    </p>
+
+                </div>
+
+
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <footer class="modern-footer">
 
-        <div class="container footer-grid">
+<!-- =========================================================
+     TRUST SECTION
+========================================================= -->
+
+<section class="details-trust-section">
+
+    <div class="details-modern-container">
+
+
+        <div class="details-trust-grid">
+
+
+            <div class="details-trust-item">
+
+                <span>
+                    🔍
+                </span>
+
+                <div>
+
+                    <strong>
+                        معلومات واضحة
+                    </strong>
+
+                    <p>
+                        نعرض لك تفاصيل السيارة قبل اتخاذ قرار الشراء.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="details-trust-item">
+
+                <span>
+                    📄
+                </span>
+
+                <div>
+
+                    <strong>
+                        فحص CARFAX
+                    </strong>
+
+                    <p>
+                        يمكنك طلب تقرير CARFAX باستخدام رقم الشاصي.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="details-trust-item">
+
+                <span>
+                    🇺🇸
+                </span>
+
+                <div>
+
+                    <strong>
+                        شراء من أمريكا
+                    </strong>
+
+                    <p>
+                        نساعدك في البحث والشراء من السوق الأمريكي.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="details-trust-item">
+
+                <span>
+                    🚢
+                </span>
+
+                <div>
+
+                    <strong>
+                        الشحن والمتابعة
+                    </strong>
+
+                    <p>
+                        متابعة إجراءات الشحن والاستيراد حتى وصول السيارة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="details-bottom-cta">
+
+    <div class="details-modern-container">
+
+        <div class="details-bottom-cta-inner">
+
 
             <div>
 
-                <a href="index.html" class="brand footer-brand">
+                <span>
+                    تحتاج مساعدة؟
+                </span>
 
-                    <span class="brand-mark">
-                        R
-                    </span>
-
-                    <div>
-                        <strong>رؤية النخبة</strong>
-                        <small>للسيارات</small>
-                    </div>
-
-                </a>
+                <h2>
+                    نحن معك قبل وبعد شراء السيارة
+                </h2>
 
                 <p>
-                    وجهتك للسيارات الأمريكية المختارة بعناية.
+                    من البحث عن السيارة وحتى الشراء والشحن والاستيراد.
                 </p>
 
             </div>
 
 
-            <div>
 
-                <h4>روابط سريعة</h4>
+            <div class="details-bottom-actions">
 
-                <a href="index.html">
-                    الرئيسية
+                <a
+                    href="https://wa.me/9647850020301"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    واتساب IAAI
                 </a>
 
-                <a href="cars.html">
-                    السيارات
-                </a>
-<a href="auction.html">
-    المزاد
-</a>
-                <a href="index.html#about">
-                    من نحن
-                </a>
 
-            </div>
-
-
-            <div>
-
-                <h4>الإدارة</h4>
-
-                <a href="admin.html">
-                    لوحة الإدارة
-                </a>
-
-                <a href="add-car.html">
-                    إضافة سيارة
+                <a
+                    href="https://wa.me/9647739344441"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    واتساب COPART
                 </a>
 
             </div>
 
+
         </div>
 
-        <div class="footer-bottom">
-            © رؤية النخبة للسيارات
+    </div>
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="modern-footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-column footer-about">
+
+            <a
+                href="index.html"
+                class="footer-brand"
+            >
+
+                <div class="brand-mark">
+                    R
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        رؤية النخبة
+                    </strong>
+
+                    <span>
+                        للسيارات
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <p>
+                وجهتك الموثوقة للسيارات الأمريكية.
+                نساعدك في البحث والشراء والاستيراد والشحن من أمريكا.
+            </p>
+
         </div>
 
-    </footer>
 
 
-    <script src="script.js"></script>
+        <div class="footer-column">
+
+            <h3>
+                روابط سريعة
+            </h3>
+
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a href="auction.html">
+                المزاد
+            </a>
+
+            <a href="about.html">
+                من نحن
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                خدماتنا
+            </h3>
+
+
+            <a href="services.html">
+                شراء السيارات
+            </a>
+
+            <a href="services.html">
+                المزادات الأمريكية
+            </a>
+
+            <a href="services.html">
+                CARFAX
+            </a>
+
+            <a href="services.html">
+                الشحن والاستيراد
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                تواصل معنا
+            </h3>
+
+
+            <a href="tel:07850020301">
+                IAAI: 07850020301
+            </a>
+
+            <a href="tel:07739344441">
+                COPART: 07739344441
+            </a>
+
+            <span>
+                النجف الأشرف / المدينة المائية / مجاور متجر ماز
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 رؤية النخبة للسيارات - جميع الحقوق محفوظة
+        </p>
+
+        <span>
+            من أمريكا إلى وجهتك… نتابع معك كل خطوة.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
 
 </body>
+
 </html>
