@@ -1,17 +1,4 @@
 // =====================================
-// السيارات المحفوظة
-// =====================================
-
-function getSavedCars() {
-
-    return JSON.parse(
-        localStorage.getItem("eliteCars")
-    ) || [];
-
-}
-
-
-// =====================================
 // جميع السيارات من قاعدة D1
 // =====================================
 
@@ -94,19 +81,6 @@ function openCarDetails(carId) {
 
     window.location.href =
         "car-details.html?car=" + carId;
-
-}
-
-
-// =====================================
-// زر التواصل
-// =====================================
-
-function contactUs() {
-
-    alert(
-        "شكرًا لاهتمامك بالسيارة. سيتم التواصل معك قريبًا."
-    );
 
 }
 
@@ -1011,9 +985,9 @@ if (statusTextElement) {
     else {
 
         const detailsPage =
-            document.querySelector(
-                ".car-details-page"
-            );
+    document.querySelector(
+        ".modern-car-details-section"
+    );
 
 
         if (detailsPage) {
