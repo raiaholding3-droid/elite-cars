@@ -1,364 +1,829 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>معرض السيارات | رؤية النخبة للسيارات</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>السيارات | رؤية النخبة للسيارات</title>
+
+    <meta
+        name="description"
+        content="تصفح سيارات رؤية النخبة للسيارات، سيارات أمريكية مختارة مع الصور والمواصفات والأسعار وحالة السيارة."
+    >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-    <!-- الهيدر -->
-    <header class="main-header">
-        <div class="container header-content">
 
-            <a href="index.html" class="brand">
-                <span class="brand-mark">R</span>
+<!-- =========================================
+     الهيدر
+========================================= -->
 
-                <div>
-                    <strong>رؤية النخبة</strong>
-                    <small>للسيارات</small>
-                </div>
+<header class="main-header">
+
+    <a href="index.html" class="brand">
+
+        <span class="brand-mark">
+            R
+        </span>
+
+        <div>
+            <strong>
+                رؤية النخبة
+            </strong>
+
+            <small>
+                للسيارات
+            </small>
+        </div>
+
+    </a>
+
+
+    <nav class="main-nav">
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+        <a href="cars.html" class="active">
+            السيارات
+        </a>
+
+        <a href="auction.html">
+            المزاد
+        </a>
+
+        <a href="about.html">
+            من نحن
+        </a>
+
+        <a href="services.html">
+            خدماتنا
+        </a>
+
+        <a href="contact.html">
+            تواصل معنا
+        </a>
+
+    </nav>
+
+
+    <div class="header-actions">
+
+        <a
+            href="admin.html"
+            class="admin-icon-link"
+            title="لوحة الإدارة"
+            aria-label="لوحة الإدارة"
+        >
+            🔐
+        </a>
+
+        <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            type="button"
+            aria-label="فتح القائمة"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="cars-page-hero">
+
+    <div class="cars-page-hero-overlay"></div>
+
+    <div class="cars-page-hero-content">
+
+        <span class="section-kicker service-kicker">
+            معرض السيارات
+        </span>
+
+        <h1>
+            اختر سيارتك القادمة
+        </h1>
+
+        <p>
+            تصفح سيارات رؤية النخبة،
+            وشاهد الصور والمواصفات والسعر وحالة السيارة
+            قبل الانتقال إلى صفحة التفاصيل.
+        </p>
+
+        <div class="page-breadcrumb">
+
+            <a href="index.html">
+                الرئيسية
             </a>
 
-            <nav class="main-nav">
-                <a href="index.html">الرئيسية</a>
-                <a href="cars.html" class="active">السيارات</a>
-                <a href="auction.html">
-    المزاد
-</a>
-                <a href="index.html#about">من نحن</a>
-                <a href="index.html#services">خدماتنا</a>
-                <a href="index.html#contact">اتصل بنا</a>
+            <span>/</span>
 
-                <a href="admin.html" class="admin-link">
-                    لوحة الإدارة
-                </a>
-            </nav>
-
-            <button class="mobile-menu-button" id="mobileMenuButton">
-                ☰
-            </button>
+            <strong>
+                السيارات
+            </strong>
 
         </div>
-    </header>
+
+    </div>
+
+</section>
 
 
-    <!-- عنوان الصفحة -->
-    <section class="cars-page-hero">
 
-        <div class="container">
+<!-- =========================================
+     معلومات سريعة
+========================================= -->
 
-            <span class="section-badge">
-                معرض رؤية النخبة
+<section class="cars-page-stats">
+
+    <div class="cars-page-stats-inner">
+
+        <div class="cars-page-stat">
+
+            <span class="cars-page-stat-icon">
+                🚘
             </span>
 
-            <h1>
-                اختر سيارتك القادمة
-            </h1>
+            <div>
+
+                <strong id="carsPageCount">
+                    0
+                </strong>
+
+                <small>
+                    سيارة في المعرض
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="cars-page-stat">
+
+            <span class="cars-page-stat-icon">
+                🔍
+            </span>
+
+            <div>
+
+                <strong>
+                    بحث متقدم
+                </strong>
+
+                <small>
+                    ابحث بالاسم والماركة والسنة
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="cars-page-stat">
+
+            <span class="cars-page-stat-icon">
+                📄
+            </span>
+
+            <div>
+
+                <strong>
+                    معلومات واضحة
+                </strong>
+
+                <small>
+                    الحالة والسعر والمواصفات
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="cars-page-stat">
+
+            <span class="cars-page-stat-icon">
+                🇺🇸
+            </span>
+
+            <div>
+
+                <strong>
+                    سيارات أمريكية
+                </strong>
+
+                <small>
+                    خيارات متنوعة لعملائنا
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     قسم السيارات
+========================================= -->
+
+<section class="cars-catalog-section">
+
+    <div class="cars-catalog-header">
+
+        <div>
+
+            <span class="section-kicker">
+                سياراتنا
+            </span>
+
+            <h2>
+                تصفح السيارات المتوفرة
+            </h2>
 
             <p>
-                تصفح السيارات المتوفرة وابحث حسب الماركة والسنة ونوع السيارة.
+                استخدم خيارات البحث والتصفية
+                للوصول إلى السيارة التي تناسبك.
             </p>
 
         </div>
 
-    </section>
+
+        <a
+            href="contact.html"
+            class="cars-request-link"
+        >
+            لم تجد سيارتك؟
+            <strong>
+                اطلب سيارة
+            </strong>
+            <span>←</span>
+        </a>
+
+    </div>
 
 
-    <!-- البحث -->
-    <section class="cars-page-section">
 
-        <div class="container">
+    <!-- =========================================
+         البحث والتصفية
+    ========================================= -->
 
-            <div class="cars-page-title">
-
-                <div>
-                    <span class="section-badge">
-                        سياراتنا
-                    </span>
-
-                    <h2>
-                        جميع السيارات
-                    </h2>
-                </div>
-
-                <div class="cars-total">
-                    <span id="carsPageCount">0</span>
-                    سيارة
-                </div>
-
-            </div>
+    <div class="cars-premium-filter">
 
 
-            <div class="cars-search-box">
+        <div class="cars-search-field">
 
-                <div class="search-field search-main">
+            <span>
+                🔍
+            </span>
 
-                    <label>
-                        البحث
-                    </label>
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="مثال: Yukon أو Tahoe"
-                    >
-
-                </div>
-
-
-                <div class="search-field">
-
-                    <label>
-                        الماركة
-                    </label>
-
-                    <select id="brandFilter">
-
-                        <option value="">
-                            جميع الماركات
-                        </option>
-
-                        <option value="GMC">
-                            GMC
-                        </option>
-
-                        <option value="Chevrolet">
-                            Chevrolet
-                        </option>
-
-                        <option value="Ford">
-                            Ford
-                        </option>
-
-                        <option value="KIA">
-                            KIA
-                        </option>
-
-                        <option value="Toyota">
-                            Toyota
-                        </option>
-
-                        <option value="Nissan">
-                            Nissan
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="search-field">
-
-                    <label>
-                        السنة
-                    </label>
-
-                    <select id="yearFilter">
-
-                        <option value="">
-                            جميع السنوات
-                        </option>
-
-                        <option value="2026">
-                            2026
-                        </option>
-
-                        <option value="2025">
-                            2025
-                        </option>
-
-                        <option value="2024">
-                            2024
-                        </option>
-
-                        <option value="2023">
-                            2023
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="search-field">
-
-                    <label>
-                        النوع
-                    </label>
-
-                    <select id="typeFilter">
-
-                        <option value="">
-                            جميع الأنواع
-                        </option>
-
-                        <option value="SUV">
-                            SUV
-                        </option>
-
-                        <option value="Sedan">
-                            Sedan
-                        </option>
-
-                        <option value="Pickup">
-                            Pickup
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <button
-                    class="filter-button"
-                    onclick="filterCars()"
-                >
-                    بحث
-                </button>
-
-            </div>
-
-
-            <!-- السيارات تظهر هنا -->
-            <div
-                class="cars-grid"
-                id="carsContainer"
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="ابحث باسم السيارة..."
+                autocomplete="off"
             >
+
+        </div>
+
+
+
+        <div class="cars-filter-field">
+
+            <label for="brandFilter">
+                الماركة
+            </label>
+
+            <select
+                id="brandFilter"
+                onchange="filterCars()"
+            >
+
+                <option value="">
+                    جميع الماركات
+                </option>
+
+                <option value="GMC">
+                    GMC
+                </option>
+
+                <option value="Chevrolet">
+                    Chevrolet
+                </option>
+
+                <option value="Ford">
+                    Ford
+                </option>
+
+                <option value="Cadillac">
+                    Cadillac
+                </option>
+
+                <option value="Jeep">
+                    Jeep
+                </option>
+
+                <option value="Dodge">
+                    Dodge
+                </option>
+
+                <option value="RAM">
+                    RAM
+                </option>
+
+                <option value="Toyota">
+                    Toyota
+                </option>
+
+                <option value="KIA">
+                    KIA
+                </option>
+
+                <option value="Hyundai">
+                    Hyundai
+                </option>
+
+                <option value="Nissan">
+                    Nissan
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="cars-filter-field">
+
+            <label for="yearFilter">
+                السنة
+            </label>
+
+            <select
+                id="yearFilter"
+                onchange="filterCars()"
+            >
+
+                <option value="">
+                    جميع السنوات
+                </option>
+
+                <option value="2027">
+                    2027
+                </option>
+
+                <option value="2026">
+                    2026
+                </option>
+
+                <option value="2025">
+                    2025
+                </option>
+
+                <option value="2024">
+                    2024
+                </option>
+
+                <option value="2023">
+                    2023
+                </option>
+
+                <option value="2022">
+                    2022
+                </option>
+
+                <option value="2021">
+                    2021
+                </option>
+
+                <option value="2020">
+                    2020
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="cars-filter-field">
+
+            <label for="typeFilter">
+                نوع السيارة
+            </label>
+
+            <select
+                id="typeFilter"
+                onchange="filterCars()"
+            >
+
+                <option value="">
+                    جميع الأنواع
+                </option>
+
+                <option value="SUV">
+                    SUV
+                </option>
+
+                <option value="Sedan">
+                    Sedan
+                </option>
+
+                <option value="Truck">
+                    Truck
+                </option>
+
+                <option value="Coupe">
+                    Coupe
+                </option>
+
+                <option value="Hatchback">
+                    Hatchback
+                </option>
+
+                <option value="Van">
+                    Van
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            class="cars-filter-button"
+            onclick="filterCars()"
+        >
+            بحث
+            <span>←</span>
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         شريط ملاحظات
+    ========================================= -->
+
+    <div class="cars-catalog-note">
+
+        <div>
+
+            <span>
+                ✓
+            </span>
+
+            <p>
+                اضغط على
+                <strong>عرض التفاصيل</strong>
+                لمشاهدة جميع معلومات وصور السيارة.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                🚢
+            </span>
+
+            <p>
+                السيارة التي حالتها
+                <strong>في الطريق</strong>
+                يظهر سعرها إلى الميناء حسب المعلومات المعروضة.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         السيارات من قاعدة البيانات
+    ========================================= -->
+
+    <div
+        id="carsContainer"
+        class="cars-container cars-page-grid"
+    >
+
+        <div class="cars-loading-state">
+
+            <div class="cars-loading-circle">
+                R
+            </div>
+
+            <strong>
+                جاري تحميل السيارات...
+            </strong>
+
+            <span>
+                يرجى الانتظار قليلًا
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     البحث حسب الطلب
+========================================= -->
+
+<section class="cars-custom-request">
+
+    <div class="cars-custom-request-inner">
+
+
+        <div class="cars-custom-request-content">
+
+            <span class="section-kicker service-kicker">
+                لم تجد السيارة المناسبة؟
+            </span>
+
+            <h2>
+                نبحث عنها لك في أمريكا
+            </h2>
+
+            <p>
+                أرسل لنا نوع السيارة والموديل والسنة
+                والميزانية التقريبية،
+                وسنساعدك في البحث عن الخيارات المتاحة
+                في السوق والمزادات الأمريكية.
+            </p>
+
+
+            <div class="cars-custom-points">
+
+                <span>
+                    ✓ تحديد السيارة المطلوبة
+                </span>
+
+                <span>
+                    ✓ البحث في أمريكا
+                </span>
+
+                <span>
+                    ✓ مراجعة معلومات السيارة
+                </span>
+
+                <span>
+                    ✓ متابعة الشراء والشحن
+                </span>
+
             </div>
 
         </div>
 
-    </section>
 
+        <div class="cars-custom-request-action">
 
-    <!-- التواصل -->
-    <section class="cars-page-contact">
-
-        <div class="container cars-page-contact-content">
-
-            <div>
-
-                <span class="section-badge">
-                    هل تبحث عن سيارة معينة؟
-                </span>
-
-                <h2>
-                    أخبرنا بما تبحث عنه
-                </h2>
-
-                <p>
-                    إذا لم تجد السيارة المناسبة في المعرض، تواصل معنا وسنساعدك في البحث عنها.
-                </p>
-
+            <div class="cars-request-icon">
+                🇺🇸
             </div>
 
+            <strong>
+                اطلب البحث عن سيارتك
+            </strong>
+
+            <p>
+                تواصل معنا عبر واتساب
+                وأرسل تفاصيل السيارة المطلوبة.
+            </p>
 
             <a
-                href="index.html#contact"
-                class="hero-button primary-button"
+                href="https://wa.me/9647850020301?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A8%D8%AD%D8%AB%20%D8%B9%D9%86%20%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9.%0A%D9%86%D9%88%D8%B9%20%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9%3A%0A%D8%A7%D9%84%D9%85%D9%88%D8%AF%D9%8A%D9%84%3A%0A%D8%A7%D9%84%D8%B3%D9%86%D8%A9%3A%0A%D8%A7%D9%84%D9%85%D9%8A%D8%B2%D8%A7%D9%86%D9%8A%D8%A9%3A"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="primary-button"
             >
-                تواصل معنا
+                أرسل طلب السيارة
+                <span>←</span>
             </a>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- الفوتر -->
-    <footer class="modern-footer">
 
-        <div class="container footer-grid">
+<!-- =========================================
+     CTA
+========================================= -->
 
-            <div>
+<section class="final-cta-section">
 
-                <a href="index.html" class="brand footer-brand">
+    <div>
 
-                    <span class="brand-mark">
-                        R
-                    </span>
+        <span>
+            رؤية النخبة للسيارات
+        </span>
 
-                    <div>
+        <h2>
+            من أمريكا إلى وجهتك…
+            نتابع معك كل خطوة.
+        </h2>
 
-                        <strong>
-                            رؤية النخبة
-                        </strong>
-
-                        <small>
-                            للسيارات
-                        </small>
-
-                    </div>
-
-                </a>
-
-                <p>
-                    وجهتك للسيارات الأمريكية المختارة بعناية.
-                </p>
-
-            </div>
+    </div>
 
 
-            <div>
+    <a
+        href="contact.html"
+        class="final-cta-button"
+    >
+        تواصل معنا
+        <span>←</span>
+    </a>
 
-                <h4>
-                    روابط سريعة
-                </h4>
-
-                <a href="index.html">
-                    الرئيسية
-                </a>
-
-                <a href="cars.html">
-                    السيارات
-                </a>
-                <a href="auction.html">
-    المزاد
-</a>
-
-                <a href="index.html#about">
-                    من نحن
-                </a>
-
-            </div>
+</section>
 
 
-            <div>
+</main>
 
-                <h4>
-                    الإدارة
-                </h4>
 
-                <a href="admin.html">
-                    لوحة الإدارة
-                </a>
 
-                <a href="add-car.html">
-                    إضافة سيارة
-                </a>
+<!-- =========================================
+     Footer
+========================================= -->
 
-            </div>
+<footer class="modern-footer elite-footer">
+
+    <div class="footer-main-grid">
+
+
+        <div class="footer-company">
+
+            <a
+                href="index.html"
+                class="brand footer-brand"
+            >
+
+                <span class="brand-mark">
+                    R
+                </span>
+
+                <div>
+
+                    <strong>
+                        رؤية النخبة
+                    </strong>
+
+                    <small>
+                        للسيارات
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <p>
+                وجهتك الموثوقة للسيارات الأمريكية.
+                بيع واستيراد وبحث وفحص ومتابعة
+                من الولايات المتحدة إلى وجهتك.
+            </p>
 
         </div>
 
-        <div class="footer-bottom">
-            © رؤية النخبة للسيارات
+
+
+        <div class="footer-column">
+
+            <h3>
+                روابط سريعة
+            </h3>
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="cars.html">
+                السيارات
+            </a>
+
+            <a href="auction.html">
+                المزاد
+            </a>
+
+            <a href="about.html">
+                من نحن
+            </a>
+
         </div>
 
-    </footer>
 
 
-    <script src="script.js"></script>
+        <div class="footer-column">
+
+            <h3>
+                خدماتنا
+            </h3>
+
+            <a href="services.html">
+                البحث عن سيارة
+            </a>
+
+            <a href="services.html#carfax">
+                فحص CARFAX
+            </a>
+
+            <a href="auction.html">
+                المزادات الأمريكية
+            </a>
+
+            <a href="services.html">
+                الشحن والاستيراد
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h3>
+                تواصل معنا
+            </h3>
+
+            <a href="tel:07850020301">
+                IAAI: 07850020301
+            </a>
+
+            <a href="tel:07739344441">
+                COPART: 07739344441
+            </a>
+
+            <span>
+                النجف الأشرف
+            </span>
+
+            <a href="contact.html">
+                جميع معلومات التواصل
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 شركة رؤية النخبة للسيارات
+        </p>
+
+        <span>
+            جميع الحقوق محفوظة
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
