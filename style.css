@@ -11617,3 +11617,926 @@ a.contact-social-card:hover {
     }
 
 }
+/* =========================================================
+   AUCTION PAGE - PROFESSIONAL DESIGN
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+
+.auction-modern-hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 5, 7, 0.97) 0%,
+            rgba(4, 5, 7, 0.88) 45%,
+            rgba(4, 5, 7, 0.55) 100%
+        ),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=85")
+        center center / cover no-repeat;
+}
+
+.auction-modern-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(200, 161, 79, 0.13),
+            transparent 38%
+        );
+}
+
+.auction-modern-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 110px 0 80px;
+}
+
+.auction-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 9px 16px;
+    border: 1px solid rgba(212, 175, 92, 0.35);
+    border-radius: 999px;
+    background: rgba(212, 175, 92, 0.09);
+    color: #d8b766;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.auction-modern-hero h1 {
+    max-width: 700px;
+    margin: 0;
+    color: #ffffff;
+    font-family: "Cairo", sans-serif;
+    font-size: clamp(44px, 6vw, 78px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.auction-modern-hero h1 span {
+    color: #d4af5c;
+}
+
+.auction-modern-hero p {
+    max-width: 720px;
+    margin: 24px 0 0;
+    color: #d4d4d4;
+    font-family: "Tajawal", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2;
+}
+
+.auction-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.auction-primary-button,
+.auction-secondary-button {
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: "Cairo", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.auction-primary-button {
+    background: #d4af5c;
+    color: #111111;
+}
+
+.auction-primary-button:hover {
+    transform: translateY(-2px);
+    background: #e1c16e;
+}
+
+.auction-secondary-button {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.auction-secondary-button:hover {
+    transform: translateY(-2px);
+    border-color: #d4af5c;
+    color: #d4af5c;
+}
+
+.auction-hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 42px;
+    margin-top: 54px;
+}
+
+.auction-hero-features > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.auction-hero-features strong {
+    color: #d4af5c;
+    font-family: "Cairo", sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.auction-hero-features span {
+    color: #c8c8c8;
+    font-family: "Tajawal", sans-serif;
+    font-size: 14px;
+}
+
+
+/* ---------------------------------------------------------
+   Trust strip
+--------------------------------------------------------- */
+
+.auction-trust-strip {
+    position: relative;
+    z-index: 5;
+    width: min(1200px, calc(100% - 40px));
+    margin: -38px auto 0;
+    padding: 22px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    border: 1px solid #e7e7e7;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.08);
+}
+
+.auction-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.auction-trust-icon {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #f7f1e4;
+    font-size: 21px;
+}
+
+.auction-trust-item div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.auction-trust-item strong {
+    color: #181818;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.auction-trust-item span:not(.auction-trust-icon) {
+    color: #777777;
+    font-family: "Tajawal", sans-serif;
+    font-size: 12px;
+}
+
+
+/* ---------------------------------------------------------
+   Main auction section
+--------------------------------------------------------- */
+
+.auction-modern-section {
+    padding: 105px 0;
+    background: #f7f7f8;
+}
+
+.auction-modern-container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.auction-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+.section-mini-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #b28a34;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.auction-section-heading h2,
+.auction-center-heading h2 {
+    margin: 0;
+    color: #151515;
+    font-family: "Cairo", sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+}
+
+.auction-section-heading p,
+.auction-center-heading p {
+    margin: 10px 0 0;
+    color: #777777;
+    font-family: "Tajawal", sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.auction-count-box {
+    min-width: 135px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border: 1px solid #e1e1e1;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.auction-count-box span {
+    color: #777777;
+    font-family: "Tajawal", sans-serif;
+    font-size: 13px;
+}
+
+.auction-count-box strong {
+    color: #b28a34;
+    font-family: "Cairo", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+
+/* ---------------------------------------------------------
+   Filters
+--------------------------------------------------------- */
+
+.auction-modern-filters {
+    margin-bottom: 35px;
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    align-items: end;
+    gap: 15px;
+    border: 1px solid #e3e3e3;
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+}
+
+.auction-filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.auction-filter-field label {
+    color: #444444;
+    font-family: "Cairo", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.auction-input-wrapper {
+    position: relative;
+}
+
+.auction-input-wrapper > span {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.auction-modern-filters input,
+.auction-modern-filters select {
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    border: 1px solid #dddddd;
+    border-radius: 9px;
+    outline: none;
+    background: #fafafa;
+    color: #222222;
+    font-family: "Tajawal", sans-serif;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.auction-input-wrapper input {
+    padding-right: 44px;
+}
+
+.auction-modern-filters input:focus,
+.auction-modern-filters select:focus {
+    border-color: #c4a04c;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(196, 160, 76, 0.12);
+}
+
+.auction-filter-button {
+    height: 50px;
+    min-width: 110px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 9px;
+    background: #151515;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.auction-filter-button:hover {
+    transform: translateY(-1px);
+    background: #b28a34;
+}
+
+
+/* ---------------------------------------------------------
+   Cars grid
+--------------------------------------------------------- */
+
+.auction-cars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.auction-car-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.055);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.auction-car-card:hover {
+    transform: translateY(-6px);
+    border-color: #d3bb82;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.10);
+}
+
+.auction-car-image {
+    position: relative;
+    height: 235px;
+    overflow: hidden;
+    background: #ededed;
+}
+
+.auction-car-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.auction-car-card:hover .auction-car-image img {
+    transform: scale(1.035);
+}
+
+.auction-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888888;
+    background: #eeeeee;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.auction-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(13, 13, 13, 0.91);
+    color: #d9b962;
+    backdrop-filter: blur(8px);
+    font-family: "Cairo", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.auction-car-content {
+    padding: 20px;
+}
+
+.auction-car-content h3 {
+    margin: 0 0 8px;
+    overflow: hidden;
+    color: #171717;
+    font-family: "Cairo", sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.55;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.auction-car-meta {
+    margin-bottom: 17px;
+    color: #777777;
+    font-family: "Tajawal", sans-serif;
+    font-size: 14px;
+}
+
+.auction-car-data {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 20px;
+}
+
+.auction-car-data > div {
+    min-width: 0;
+    padding: 10px 11px;
+    border-radius: 8px;
+    background: #f7f7f7;
+    color: #555555;
+    font-family: "Tajawal", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.auction-car-data strong {
+    color: #222222;
+}
+
+.auction-car-data .buy-now-price {
+    color: #a77c20;
+    font-family: "Cairo", sans-serif;
+    font-weight: 900;
+}
+
+.auction-car-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.auction-source-button {
+    width: 100%;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #151515;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.auction-source-button:hover {
+    transform: translateY(-1px);
+    background: #b28a34;
+}
+
+
+/* ---------------------------------------------------------
+   Empty / Loading
+--------------------------------------------------------- */
+
+.auction-empty {
+    grid-column: 1 / -1;
+    padding: 65px 25px;
+    border: 1px dashed #d3d3d3;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #777777;
+    text-align: center;
+    font-family: "Cairo", sans-serif;
+    font-size: 16px;
+}
+
+.auction-loading {
+    grid-column: 1 / -1;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: #777777;
+    font-family: "Cairo", sans-serif;
+}
+
+.auction-loading-spinner {
+    width: 38px;
+    height: 38px;
+    border: 4px solid #e6e6e6;
+    border-top-color: #b28a34;
+    border-radius: 50%;
+    animation: auctionSpin 0.8s linear infinite;
+}
+
+@keyframes auctionSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   Process section
+--------------------------------------------------------- */
+
+.auction-process-section {
+    padding: 95px 0;
+    background: #ffffff;
+}
+
+.auction-center-heading {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.auction-process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.auction-process-card {
+    position: relative;
+    min-height: 240px;
+    padding: 27px 23px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    border-radius: 15px;
+    background: #fafafa;
+}
+
+.auction-process-number {
+    position: absolute;
+    top: 3px;
+    left: 14px;
+    color: rgba(178, 138, 52, 0.12);
+    font-family: "Cairo", sans-serif;
+    font-size: 58px;
+    font-weight: 900;
+}
+
+.auction-process-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: #f4ead3;
+    font-size: 22px;
+}
+
+.auction-process-card h3 {
+    margin: 0 0 10px;
+    color: #1b1b1b;
+    font-family: "Cairo", sans-serif;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.auction-process-card p {
+    margin: 0;
+    color: #747474;
+    font-family: "Tajawal", sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ---------------------------------------------------------
+   Contact banner
+--------------------------------------------------------- */
+
+.auction-contact-banner {
+    padding: 70px 0;
+    background: #111214;
+}
+
+.auction-contact-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.auction-contact-banner-inner > div:first-child {
+    max-width: 710px;
+}
+
+.auction-contact-banner-inner span {
+    color: #d4af5c;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.auction-contact-banner-inner h2 {
+    margin: 8px 0 12px;
+    color: #ffffff;
+    font-family: "Cairo", sans-serif;
+    font-size: clamp(25px, 3.5vw, 38px);
+    font-weight: 900;
+}
+
+.auction-contact-banner-inner p {
+    margin: 0;
+    color: #bdbdbd;
+    font-family: "Tajawal", sans-serif;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.auction-contact-actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auction-whatsapp-button {
+    min-width: 170px;
+    min-height: 48px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: #d4af5c;
+    color: #111111;
+    text-decoration: none;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.auction-whatsapp-secondary {
+    border: 1px solid #d4af5c;
+    background: transparent;
+    color: #d4af5c;
+}
+
+
+/* ---------------------------------------------------------
+   Admin icon
+--------------------------------------------------------- */
+
+.admin-icon-link {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 92, 0.25);
+    border-radius: 9px;
+    background: rgba(212, 175, 92, 0.07);
+    color: #d4af5c;
+    text-decoration: none;
+    font-size: 16px;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-icon-link:hover {
+    transform: translateY(-1px);
+    background: rgba(212, 175, 92, 0.15);
+}
+
+
+/* =========================================================
+   AUCTION RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .auction-trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .auction-modern-filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .auction-search-field {
+        grid-column: 1 / -1;
+    }
+
+    .auction-filter-button {
+        width: 100%;
+    }
+
+    .auction-cars-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .auction-process-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .auction-modern-hero {
+        min-height: auto;
+    }
+
+    .auction-modern-hero-content {
+        width: min(100% - 28px, 1200px);
+        padding: 95px 0 80px;
+    }
+
+    .auction-modern-hero h1 {
+        font-size: 43px;
+    }
+
+    .auction-modern-hero p {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+
+    .auction-hero-actions {
+        flex-direction: column;
+    }
+
+    .auction-primary-button,
+    .auction-secondary-button {
+        width: 100%;
+    }
+
+    .auction-hero-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 38px;
+    }
+
+    .auction-hero-features > div {
+        padding: 13px 7px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 9px;
+        text-align: center;
+    }
+
+    .auction-hero-features strong {
+        font-size: 13px;
+    }
+
+    .auction-hero-features span {
+        font-size: 11px;
+    }
+
+    .auction-trust-strip {
+        width: calc(100% - 28px);
+        margin-top: -28px;
+        padding: 18px;
+        grid-template-columns: 1fr;
+    }
+
+    .auction-modern-container {
+        width: calc(100% - 28px);
+    }
+
+    .auction-modern-section {
+        padding: 80px 0;
+    }
+
+    .auction-section-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .auction-count-box {
+        width: 100%;
+    }
+
+    .auction-modern-filters {
+        padding: 16px;
+        grid-template-columns: 1fr;
+    }
+
+    .auction-search-field {
+        grid-column: auto;
+    }
+
+    .auction-cars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auction-car-image {
+        height: 240px;
+    }
+
+    .auction-process-section {
+        padding: 75px 0;
+    }
+
+    .auction-process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auction-contact-banner-inner {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .auction-contact-actions {
+        width: 100%;
+    }
+
+    .auction-whatsapp-button {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .auction-modern-hero h1 {
+        font-size: 37px;
+    }
+
+    .auction-kicker {
+        font-size: 12px;
+    }
+
+    .auction-hero-features {
+        grid-template-columns: 1fr;
+    }
+
+    .auction-car-data {
+        grid-template-columns: 1fr;
+    }
+
+}
