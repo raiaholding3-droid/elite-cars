@@ -413,27 +413,54 @@
 
                     <label for="editCarImages">
                         صور جديدة
-                    </label>
+                    <!-- =====================================
+     إدارة صور السيارة
+===================================== -->
 
-                    <input
-                        type="file"
-                        id="editCarImages"
-                        accept="image/*"
-                        multiple
-                    >
+<div class="form-group form-full">
 
-                    <small>
-                        تعديل الصور سنربطه في الخطوة التالية.
-                        حاليًا اترك هذا الحقل فارغًا عند حفظ البيانات.
-                    </small>
+    <label>
+        صور السيارة الحالية
+    </label>
 
-                </div>
+    <small>
+        اضغط على الصورة التي تريد جعلها
+        ⭐ الصورة الرئيسية للسيارة.
+    </small>
+
+    <div
+        id="editImagePreview"
+        class="image-preview"
+    ></div>
+
+</div>
 
 
-                <div
-                    id="editImagePreview"
-                    class="image-preview form-full"
-                ></div>
+<div class="form-group form-full">
+
+    <label for="editCarImages">
+        إضافة صور جديدة
+    </label>
+
+    <input
+        type="file"
+        id="editCarImages"
+        accept="image/*"
+        multiple
+    >
+
+    <small>
+        يمكنك إضافة عدة صور جديدة.
+        بعد اختيار الصور ستظهر هنا،
+        ويمكنك تحديد الصورة الرئيسية.
+    </small>
+
+    <div
+        id="editNewImagesPreview"
+        class="image-preview"
+    ></div>
+
+</div>
 
 
             </div>
