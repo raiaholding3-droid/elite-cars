@@ -44,8 +44,58 @@ async function getAllCars() {
 
 function getMainImage(car) {
 
+    // =====================================
+    // 1- الصورة الرئيسية المحفوظة في D1
+    // =====================================
+
     if (
-        car.images &&
+        car &&
+        car.main_image
+    ) {
+
+        return car.main_image;
+
+    }
+
+
+    // =====================================
+    // 2- البحث عن is_main داخل سجلات الصور
+    // =====================================
+
+    if (
+        car &&
+        Array.isArray(car.image_records)
+    ) {
+
+        const selectedMainImage =
+            car.image_records.find(
+                function(image) {
+
+                    return (
+                        Number(image.is_main) === 1 &&
+                        image.image_url
+                    );
+
+                }
+            );
+
+
+        if (selectedMainImage) {
+
+            return selectedMainImage.image_url;
+
+        }
+
+    }
+
+
+    // =====================================
+    // 3- إذا لم توجد رئيسية نستخدم أول صورة
+    // =====================================
+
+    if (
+        car &&
+        Array.isArray(car.images) &&
         car.images.length > 0
     ) {
 
@@ -54,14 +104,14 @@ function getMainImage(car) {
     }
 
 
-    if (car.main_image) {
+    // =====================================
+    // 4- دعم البيانات القديمة
+    // =====================================
 
-        return car.main_image;
-
-    }
-
-
-    if (car.image) {
+    if (
+        car &&
+        car.image
+    ) {
 
         return car.image;
 
@@ -71,7 +121,6 @@ function getMainImage(car) {
     return "";
 
 }
-
 
 // =====================================
 // الانتقال إلى تفاصيل السيارة
