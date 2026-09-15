@@ -13380,3 +13380,40 @@ a.contact-social-card:hover {
     }
 
 }
+/* =========================================
+   السعر في بطاقة السيارة
+========================================= */
+
+.car-price-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 14px 0 16px;
+}
+
+.car-price-wrap .car-price-value {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.port-price-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 999px;
+
+    background: rgba(230, 196, 92, 0.14);
+    border: 1px solid rgba(230, 196, 92, 0.45);
+
+    color: #8a5a00;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+
+    white-space: nowrap;
+}
