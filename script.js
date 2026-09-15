@@ -244,21 +244,25 @@ function displayCars(carsToDisplay) {
                         ${car.status || "متوفرة"}
                     </p>
 
-                   <strong>
-    $${Number(
-        car.price || 0
-    ).toLocaleString()}
-</strong>
+                   <div class="car-price-wrap">
 
-${
-    car.status === "في الطريق"
-    ? `
-        <p class="port-price-note">
-            🚢 السعر المذكور إلى الميناء
-        </p>
-    `
-    : ""
-}
+    <strong class="car-price-value">
+        $${Number(
+            car.price || 0
+        ).toLocaleString()}
+    </strong>
+
+    ${
+        car.status === "في الطريق"
+        ? `
+            <span class="port-price-badge">
+                🚢 السعر إلى الميناء
+            </span>
+        `
+        : ""
+    }
+
+</div>
 
 <button
                         onclick="
