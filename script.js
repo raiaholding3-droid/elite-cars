@@ -2218,15 +2218,11 @@ if (editImagesInput) {
 }
 
 
-// =====================================
-// معاينة الصور الجديدة
-// =====================================
-
 function showNewEditImages() {
 
     const preview =
         document.getElementById(
-            "editImagePreview"
+            "editNewImagesPreview"
         );
 
 
@@ -2238,9 +2234,19 @@ function showNewEditImages() {
     preview.innerHTML = "";
 
 
+    if (
+        !editSelectedImages ||
+        editSelectedImages.length === 0
+    ) {
+
+        return;
+
+    }
+
+
     editSelectedImages.forEach(
         function(
-            image,
+            file,
             index
         ) {
 
@@ -2250,19 +2256,35 @@ function showNewEditImages() {
                 );
 
 
+            const imageUrl =
+                URL.createObjectURL(
+                    file
+                );
+
+
+            const isMain =
+                selectedEditMainImage ===
+                "new:" + index;
+
+
             box.className =
-                "preview-image-box";
+                "preview-image-box" +
+                (
+                    isMain
+                    ? " selected-main-image"
+                    : ""
+                );
 
 
             box.innerHTML = `
 
                 <img
-                    src="${image}"
-                    alt="صورة جديدة"
+                    src="${imageUrl}"
+                    alt="صورة جديدة ${index + 1}"
                 >
 
                 ${
-                    index === 0
+                    isMain
                     ?
                     `
                         <span
@@ -2273,15 +2295,41 @@ function showNewEditImages() {
                     `
                     :
                     `
-                        <span
-                            class="image-number"
+                        <button
+                            type="button"
+                            class="select-main-image-button"
                         >
-                            صورة ${index + 1}
-                        </span>
+                            اجعلها الرئيسية
+                        </button>
                     `
                 }
 
             `;
+
+
+            box.addEventListener(
+                "click",
+                function() {
+
+                    // الصورة الرئيسية الآن
+                    // صورة جديدة وليست URL قديم
+
+                    selectedEditMainImage =
+                        "new:" + index;
+
+
+                    // تحديث معاينة الصور الجديدة
+
+                    showNewEditImages();
+
+
+                    // تحديث الصور القديمة
+                    // لإزالة علامة الرئيسية منها
+
+                    showCurrentEditImages();
+
+                }
+            );
 
 
             preview.appendChild(
@@ -2292,8 +2340,6 @@ function showNewEditImages() {
     );
 
 }
-
-
 // =====================================
 // حفظ تعديلات السيارة في D1
 // =====================================
@@ -2324,23 +2370,7 @@ if (editCarForm) {
             }
 
 
-            // =====================================
-            // الصور الجديدة غير مفعلة في الحفظ بعد
-            // =====================================
 
-            if (
-                editImagesInput &&
-                editImagesInput.files &&
-                editImagesInput.files.length > 0
-            ) {
-
-                alert(
-                    "تعديل الصور سنفعّله في الخطوة التالية.\n\nاحذف اختيار الصور الجديدة ثم احفظ بيانات السيارة."
-                );
-
-                return;
-
-            }
 
 
             try {
@@ -2598,9 +2628,19 @@ if (editCarForm) {
                         description || null,
 
                    main_image:
-    selectedEditMainImage ||
-    carToEdit.main_image ||
-    null
+    (
+        typeof selectedEditMainImage === "string" &&
+        selectedEditMainImage.startsWith("new:")
+    )
+        ? (
+            carToEdit.main_image ||
+            null
+        )
+        : (
+            selectedEditMainImage ||
+            carToEdit.main_image ||
+            null
+        )
 
 
                 // =====================================
@@ -2648,14 +2688,130 @@ if (editCarForm) {
                 }
 
 
-                alert(
-                    "تم حفظ تعديلات السيارة بنجاح ✅"
-                );
+               // =====================================
+// رفع الصور الجديدة إلى R2
+// =====================================
+
+if (
+    editImagesInput &&
+    editImagesInput.files &&
+    editImagesInput.files.length > 0
+) {
+
+    const newFiles =
+        Array.from(
+            editImagesInput.files
+        );
 
 
-                window.location.href =
-                    "admin.html";
+    // =====================================
+    // معرفة عدد الصور الموجودة مسبقًا
+    // حتى لا تتكرر image_order
+    // =====================================
 
+    const currentImages =
+        getCarImages(
+            carToEdit
+        );
+
+    const startOrder =
+        currentImages.length;
+
+
+    for (
+        let i = 0;
+        i < newFiles.length;
+        i++
+    ) {
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "image",
+            newFiles[i]
+        );
+
+        formData.append(
+            "carId",
+            String(editCarId)
+        );
+
+        formData.append(
+            "imageOrder",
+            String(
+                startOrder + i
+            )
+        );
+
+
+        // =====================================
+        // الصور الجديدة ليست الرئيسية تلقائيًا
+        // لأننا اخترنا الرئيسية من الصور الحالية
+        // =====================================
+
+        // =====================================
+// هل هذه الصورة الجديدة هي الرئيسية؟
+// =====================================
+
+const isNewMainImage =
+    selectedEditMainImage ===
+    "new:" + i;
+
+
+formData.append(
+    "isMain",
+    isNewMainImage
+        ? "1"
+        : "0"
+);
+
+
+        const uploadResponse =
+            await fetch(
+                "/api/upload-image",
+                {
+                    method:
+                        "POST",
+
+                    body:
+                        formData
+                }
+            );
+
+
+        const uploadResult =
+            await uploadResponse.json();
+
+
+        if (
+            !uploadResponse.ok ||
+            !uploadResult.success
+        ) {
+
+            throw new Error(
+                uploadResult.message ||
+                "فشل رفع إحدى الصور الجديدة"
+            );
+
+        }
+
+    }
+
+}
+
+
+// =====================================
+// انتهاء الحفظ
+// =====================================
+
+alert(
+    "تم حفظ تعديلات السيارة والصور بنجاح ✅"
+);
+
+window.location.href =
+    "admin.html"; 
             }
 
             catch (error) {
