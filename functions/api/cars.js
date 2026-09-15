@@ -256,51 +256,49 @@ const adminAuth =
 // ==========================================
 // PUT
 // تعديل بيانات سيارة كاملة
-//
-// يتم إرسال:
-// {
-//     id: 1,
-//     name: "...",
-//     brand: "...",
-//     ...
-// }
+// + تحديث الصورة الرئيسية
 // ==========================================
 
 export async function onRequestPut(context) {
 
     try {
+
         // =====================================
-// التحقق من صلاحية تعديل السيارة
-// =====================================
+        // التحقق من صلاحية تعديل السيارة
+        // =====================================
 
-const permissionCheck =
-    await requirePermission(
-        context,
-        "cars_edit"
-    );
+        const permissionCheck =
+            await requirePermission(
+                context,
+                "cars_edit"
+            );
 
-if (!permissionCheck.ok) {
-    return permissionCheck.response;
-}
+        if (!permissionCheck.ok) {
+            return permissionCheck.response;
+        }
 
-const adminAuth =
-    permissionCheck.auth;
+        const adminAuth =
+            permissionCheck.auth;
+
+
+        // =====================================
+        // قراءة البيانات
+        // =====================================
 
         const data =
             await context.request.json();
 
 
-        // ======================================
+        // =====================================
         // التأكد من وجود ID
-        // ======================================
+        // =====================================
 
         if (!data.id) {
 
             return Response.json(
                 {
                     success: false,
-                    message:
-                        "رقم السيارة غير موجود"
+                    message: "رقم السيارة غير موجود"
                 },
                 {
                     status: 400
@@ -322,8 +320,7 @@ const adminAuth =
             return Response.json(
                 {
                     success: false,
-                    message:
-                        "رقم السيارة غير صحيح"
+                    message: "رقم السيارة غير صحيح"
                 },
                 {
                     status: 400
@@ -333,9 +330,9 @@ const adminAuth =
         }
 
 
-        // ======================================
+        // =====================================
         // التأكد من وجود السيارة
-        // ======================================
+        // =====================================
 
         const existingCar =
             await context.env.DB
@@ -353,8 +350,7 @@ const adminAuth =
             return Response.json(
                 {
                     success: false,
-                    message:
-                        "السيارة غير موجودة"
+                    message: "السيارة غير موجودة"
                 },
                 {
                     status: 404
@@ -364,9 +360,9 @@ const adminAuth =
         }
 
 
-        // ======================================
+        // =====================================
         // التحقق من البيانات الأساسية
-        // ======================================
+        // =====================================
 
         if (
             !data.name ||
@@ -381,8 +377,7 @@ const adminAuth =
             return Response.json(
                 {
                     success: false,
-                    message:
-                        "البيانات الأساسية غير مكتملة"
+                    message: "البيانات الأساسية غير مكتملة"
                 },
                 {
                     status: 400
@@ -392,16 +387,17 @@ const adminAuth =
         }
 
 
-        // ======================================
-        // الحالة
-        // ======================================
+        // =====================================
+        // التحقق من الحالة
+        // =====================================
 
         const allowedStatuses = [
-    "متوفرة",
-    "في الطريق",
-    "محجوزة",
-    "مباعة"
-];
+            "متوفرة",
+            "في الطريق",
+            "محجوزة",
+            "مباعة"
+        ];
+
 
         const status =
             data.status ||
@@ -416,8 +412,7 @@ const adminAuth =
             return Response.json(
                 {
                     success: false,
-                    message:
-                        "حالة السيارة غير صحيحة"
+                    message: "حالة السيارة غير صحيحة"
                 },
                 {
                     status: 400
@@ -427,9 +422,78 @@ const adminAuth =
         }
 
 
-        // ======================================
-        // تعديل السيارة
-        // ======================================
+        // =====================================
+        // تحديد الصورة الرئيسية
+        // =====================================
+
+        let mainImage =
+            existingCar.main_image;
+
+
+        if (
+            data.main_image !== undefined
+        ) {
+
+            if (
+                data.main_image === null ||
+                data.main_image === ""
+            ) {
+
+                mainImage = null;
+
+            }
+
+            else {
+
+                // نتأكد أن الصورة المختارة
+                // تخص هذه السيارة فعلًا
+
+                const selectedImage =
+                    await context.env.DB
+                        .prepare(`
+                            SELECT
+                                id,
+                                image_url
+                            FROM car_images
+                            WHERE
+                                car_id = ?
+                                AND image_url = ?
+                            LIMIT 1
+                        `)
+                        .bind(
+                            carId,
+                            data.main_image
+                        )
+                        .first();
+
+
+                if (!selectedImage) {
+
+                    return Response.json(
+                        {
+                            success: false,
+                            message:
+                                "الصورة الرئيسية المختارة لا تخص هذه السيارة"
+                        },
+                        {
+                            status: 400
+                        }
+                    );
+
+                }
+
+
+                mainImage =
+                    selectedImage.image_url;
+
+            }
+
+        }
+
+
+        // =====================================
+        // تحديث بيانات السيارة
+        // =====================================
 
         await context.env.DB
             .prepare(`
@@ -502,22 +566,104 @@ const adminAuth =
                     ? data.description || null
                     : existingCar.description,
 
-                data.main_image !== undefined
-                    ? data.main_image || null
-                    : existingCar.main_image,
+                mainImage,
 
                 carId
             )
             .run();
 
 
-        return Response.json({
-            success: true,
-            message:
-                "تم حفظ تعديلات السيارة بنجاح",
-            id:
-                carId
-        });
+        // =====================================
+        // مزامنة is_main في جدول الصور
+        // =====================================
+
+        if (
+            data.main_image !== undefined
+        ) {
+
+            // أولًا نلغي الرئيسية عن جميع الصور
+
+            await context.env.DB
+                .prepare(`
+                    UPDATE car_images
+                    SET is_main = 0
+                    WHERE car_id = ?
+                `)
+                .bind(carId)
+                .run();
+
+
+            // ثم نحدد الصورة المختارة كرئيسية
+
+            if (mainImage) {
+
+                await context.env.DB
+                    .prepare(`
+                        UPDATE car_images
+                        SET is_main = 1
+                        WHERE
+                            car_id = ?
+                            AND image_url = ?
+                    `)
+                    .bind(
+                        carId,
+                        mainImage
+                    )
+                    .run();
+
+            }
+
+        }
+
+
+        // =====================================
+        // تسجيل النشاط
+        // =====================================
+
+        try {
+
+            await logAdminActivity(
+                context,
+                adminAuth.user.id,
+                "car_updated",
+                "car",
+                carId,
+                {
+                    name: data.name,
+                    main_image: mainImage
+                }
+            );
+
+        }
+
+        catch (logError) {
+
+            console.error(
+                "خطأ تسجيل نشاط تعديل السيارة:",
+                logError
+            );
+
+        }
+
+
+        // =====================================
+        // نجاح
+        // =====================================
+
+        return Response.json(
+            {
+                success: true,
+
+                message:
+                    "تم حفظ تعديلات السيارة بنجاح",
+
+                id:
+                    carId,
+
+                main_image:
+                    mainImage
+            }
+        );
 
     }
 
@@ -532,6 +678,7 @@ const adminAuth =
         return Response.json(
             {
                 success: false,
+
                 message:
                     error.message ||
                     "حدث خطأ أثناء تعديل السيارة"
@@ -544,7 +691,6 @@ const adminAuth =
     }
 
 }
-
 
 
 // ==========================================
