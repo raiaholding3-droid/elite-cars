@@ -1554,7 +1554,11 @@ const editCarId =
 // =====================================
 
 let carToEdit = null;
+// =====================================
+// الصورة الرئيسية المختارة أثناء التعديل
+// =====================================
 
+let selectedEditMainImage = null;
 
 // =====================================
 // الصور الجديدة المختارة
@@ -1932,7 +1936,6 @@ function getCarImages(car) {
 // =====================================
 // عرض الصور الحالية
 // =====================================
-
 function showCurrentEditImages() {
 
     const preview =
@@ -1945,9 +1948,15 @@ function showCurrentEditImages() {
         !preview ||
         !carToEdit
     ) {
+
         return;
+
     }
 
+
+    // =====================================
+    // الحصول على صور السيارة
+    // =====================================
 
     const images =
         getCarImages(
@@ -1968,10 +1977,75 @@ function showCurrentEditImages() {
             </p>
         `;
 
+        selectedEditMainImage = null;
+
         return;
 
     }
 
+
+    // =====================================
+    // تحديد الصورة الرئيسية الحالية
+    // =====================================
+
+    if (!selectedEditMainImage) {
+
+        if (carToEdit.main_image) {
+
+            selectedEditMainImage =
+                carToEdit.main_image;
+
+        }
+
+        else if (
+            Array.isArray(
+                carToEdit.image_records
+            )
+        ) {
+
+            const mainRecord =
+                carToEdit.image_records.find(
+                    function(record) {
+
+                        return (
+                            Number(
+                                record.is_main
+                            ) === 1
+                        );
+
+                    }
+                );
+
+
+            if (
+                mainRecord &&
+                mainRecord.image_url
+            ) {
+
+                selectedEditMainImage =
+                    mainRecord.image_url;
+
+            }
+
+        }
+
+
+        // إذا لم تكن هناك رئيسية محفوظة
+        // نستخدم أول صورة كاحتياط
+
+        if (!selectedEditMainImage) {
+
+            selectedEditMainImage =
+                images[0];
+
+        }
+
+    }
+
+
+    // =====================================
+    // عرض الصور
+    // =====================================
 
     images.forEach(
         function(
@@ -1985,8 +2059,18 @@ function showCurrentEditImages() {
                 );
 
 
+            const isMain =
+                image ===
+                selectedEditMainImage;
+
+
             box.className =
-                "preview-image-box";
+                "preview-image-box" +
+                (
+                    isMain
+                    ? " selected-main-image"
+                    : ""
+                );
 
 
             box.innerHTML = `
@@ -1997,7 +2081,7 @@ function showCurrentEditImages() {
                 >
 
                 ${
-                    index === 0
+                    isMain
                     ?
                     `
                         <span
@@ -2008,15 +2092,34 @@ function showCurrentEditImages() {
                     `
                     :
                     `
-                        <span
-                            class="image-number"
+                        <button
+                            type="button"
+                            class="select-main-image-button"
                         >
-                            صورة ${index + 1}
-                        </span>
+                            اجعلها الرئيسية
+                        </button>
                     `
                 }
 
             `;
+
+
+            // =====================================
+            // اختيار الصورة الرئيسية
+            // =====================================
+
+            box.addEventListener(
+                "click",
+                function() {
+
+                    selectedEditMainImage =
+                        image;
+
+
+                    showCurrentEditImages();
+
+                }
+            );
 
 
             preview.appendChild(
@@ -2494,10 +2597,10 @@ if (editCarForm) {
                     description:
                         description || null,
 
-                    main_image:
-                        carToEdit.main_image || null
-
-                };
+                   main_image:
+    selectedEditMainImage ||
+    carToEdit.main_image ||
+    null
 
 
                 // =====================================
