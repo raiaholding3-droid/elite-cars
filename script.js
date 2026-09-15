@@ -2641,6 +2641,7 @@ if (editCarForm) {
             carToEdit.main_image ||
             null
         )
+                        };
 
 
                 // =====================================
