@@ -428,12 +428,113 @@ export async function onRequestPost(context) {
 
 
             // =====================================
-            // الصور
+// جلب تفاصيل السيارة والصور
+// =====================================
+
+let mainImage =
+    existingCar?.main_image ??
+    null;
+
+
+try {
+
+    const detailsIdentifier =
+        car.lot_number ||
+        car.slug_vin ||
+        car.vin;
+
+
+    if (detailsIdentifier) {
+
+        const detailsUrl =
+            `https://apibara.tech/api/v1/vehicle-auction/vehicles/${encodeURIComponent(detailsIdentifier)}`;
+
+
+        const detailsResponse =
+            await fetch(
+                detailsUrl,
+                {
+                    method: "GET",
+
+                    headers: {
+
+                        "Accept":
+                            "application/json",
+
+                        "X-API-Key":
+                            apiKey
+
+                    }
+                }
+            );
+
+
+        if (detailsResponse.ok) {
+
+            const detailsData =
+                await detailsResponse.json();
+
+
+            const detailsCar =
+                detailsData?.response?.data ||
+                detailsData?.data ||
+                null;
+
+
+            // =====================================
+            // استخراج أول صورة كبيرة
             // =====================================
 
-            const mainImage =
-                existingCar?.main_image ??
-                null;
+            if (
+                detailsCar &&
+                detailsCar.media &&
+                Array.isArray(
+                    detailsCar.media.items
+                )
+            ) {
+
+                const firstImage =
+                    detailsCar.media.items.find(
+                        function(item) {
+
+                            return (
+                                item &&
+                                item.type === "image" &&
+                                (
+                                    item.large ||
+                                    item.thumb
+                                )
+                            );
+
+                        }
+                    );
+
+
+                if (firstImage) {
+
+                    mainImage =
+                        firstImage.large ||
+                        firstImage.thumb;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+catch (imageError) {
+
+    console.error(
+        "خطأ جلب صورة السيارة:",
+        lotNumber,
+        imageError
+    );
+
+}
 
 
             // =====================================
@@ -614,7 +715,7 @@ export async function onRequestPost(context) {
                             buyNowPrice,
                             auctionDate,
                             sourceUrl,
-                            null
+                            mainImage
                         )
                         .run();
 
